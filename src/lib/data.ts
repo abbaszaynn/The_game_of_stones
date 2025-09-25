@@ -1,0 +1,164 @@
+import type { Company, NewsArticle, Document } from '@/lib/types';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
+
+const findImage = (id: string) => PlaceHolderImages.find((img) => img.id === id)?.imageUrl || '';
+
+const documents: Document[] = [
+  { id: 'doc-1', companyId: 'durr-mines', title: 'Q1 2024 Geological Survey', type: 'Geological Report', url: '#' },
+  { id: 'doc-2', companyId: 'durr-mines', title: 'Skardu Region Mining License', type: 'License', url: '#' },
+  { id: 'doc-3', companyId: 'earth-lux', title: 'Jutial Nala Prospectus', type: 'Geological Report', url: '#' },
+  { id: 'doc-4', companyId: 'earth-lux', title: 'Annual Financial Summary 2023', type: 'Financial Summary', url: '#' },
+  { id: 'doc-5', companyId: 'himalayan-minerals', title: 'Kargah Nala Concession Paper', type: 'Concession Paper', url: '#' },
+  { id: 'doc-6', companyId: 'himalayan-minerals', title: 'Environmental Impact Assessment', type: 'Geological Report', url: '#' },
+];
+
+const companies: Company[] = [
+  {
+    id: 'durr-mines-and-minerals',
+    name: 'Durr Mines and Minerals',
+    tagline: 'Precision in Extraction, Excellence in Delivery.',
+    logoUrl: findImage('logo-durr'),
+    description: 'Durr Mines and Minerals is a leading entity in the exploration and development of mineral resources, specializing in high-value commodities. With a commitment to sustainable practices, we leverage cutting-edge technology to maximize efficiency and minimize environmental impact.',
+    history: 'Founded in 2005, Durr Mines has grown from a small exploratory firm into a regional powerhouse. Our journey is marked by significant discoveries and a steadfast dedication to our stakeholders and the environment.',
+    leadership: [
+      { name: 'Ahmad Durrani', title: 'CEO & Founder' },
+      { name: 'Fatima Khan', title: 'Chief Geologist' },
+    ],
+    projects: [{ name: 'Skardu Topaz Project', status: 'Operational' }],
+    investorContacts: [{ name: 'Investor Relations Dept.', email: 'invest@durrmines.com', phone: '+1-202-555-0175' }],
+    locations: [
+      {
+        name: 'Main Skardu Mine',
+        polygon: [
+          { lat: 35.606778, lng: 75.374582 },
+          { lat: 35.611378, lng: 75.356035 },
+          { lat: 35.603268, lng: 75.343413 },
+          { lat: 35.558972, lng: 75.346333 },
+          { lat: 35.556753, lng: 75.397472 },
+          { lat: 35.570902, lng: 75.398565 },
+          { lat: 35.575398, lng: 75.383905 },
+          { lat: 35.599013, lng: 75.373735 },
+          { lat: 35.606778, lng: 75.374582 }
+        ],
+      },
+    ],
+    images: [findImage('gallery-durr-1'), findImage('gallery-durr-2')],
+    videos: [{id: 'vid-1', url: 'https://www.youtube.com/embed/dQw4w9WgXcQ', title: 'Drone Flyover of Skardu Site'}],
+    virtualTourUrl: 'https://earth.google.com/web/@35.586,-75.367,2712a,15000d,35y,0h,0t,0r',
+    documents: documents.filter(d => d.companyId === 'durr-mines'),
+  },
+  {
+    id: 'earth-lux-mines',
+    name: 'Earth Lux Mines',
+    tagline: 'Unearthing the Planet\'s Hidden Treasures.',
+    logoUrl: findImage('logo-lux'),
+    description: 'Earth Lux Mines focuses on the ethical sourcing of precious metals and gemstones. Our operations in the Gilgit region are renowned for their efficiency and community engagement, ensuring shared prosperity.',
+    history: 'Established in 2012, Earth Lux Mines quickly identified and secured promising sites in Jutial Nala. We pride ourselves on a modern approach to mining that respects local heritage and ecosystems.',
+    leadership: [
+      { name: 'Bilal Ahmed', title: 'Managing Director' },
+      { name: 'Sana Javed', title: 'Head of Operations' },
+    ],
+    projects: [{ name: 'Jutial Nala Gold Vein', status: 'Exploratory Phase' }],
+    investorContacts: [{ name: 'Public Relations', email: 'pr@earthlux.com', phone: '+1-202-555-0182' }],
+    locations: [
+       {
+        name: 'Jutial Nala, Gilgit',
+        polygon: [
+          { lat: 35.90578, lng: 74.35305 },
+          { lat: 35.90750, lng: 74.34940 },
+          { lat: 35.90900, lng: 74.34800 },
+          { lat: 35.90800, lng: 74.35500 },
+          { lat: 35.90600, lng: 74.35700 },
+          { lat: 35.90578, lng: 74.35305 }
+        ],
+      },
+    ],
+    images: [findImage('gallery-lux-1'), findImage('gallery-lux-2')],
+    videos: [{id: 'vid-2', url: 'https://www.youtube.com/embed/dQw4w9WgXcQ', title: 'Community Projects in Gilgit'}],
+    virtualTourUrl: 'https://earth.google.com/web/@35.907,-74.352,2465a,2000d,35y,0h,0t,0r',
+    documents: documents.filter(d => d.companyId === 'earth-lux'),
+  },
+  {
+    id: 'himalayan-minerals',
+    name: 'Himalayan Minerals',
+    tagline: 'Strength from the Mountains.',
+    logoUrl: findImage('logo-himalayan'),
+    description: 'Himalayan Minerals is dedicated to extracting industrial minerals from one of the world\'s most formidable mountain ranges. Our expertise in high-altitude operations is unmatched.',
+    history: 'Our operations began in 2008, with a focus on the rich mineral deposits around Kargah Nala. Himalayan Minerals has pioneered new techniques for safe and effective mining in challenging terrains.',
+    leadership: [
+      { name: 'Zoya Ali', title: 'Chairperson' },
+      { name: 'Usman Beg', title: 'Chief Engineer' },
+    ],
+    projects: [{ name: 'Kargah Nala Industrial Minerals', status: 'Operational' }],
+    investorContacts: [{ name: 'Shareholder Services', email: 'shares@himalayanmin.com', phone: '+1-202-555-0199' }],
+    locations: [
+      {
+        name: 'Kargah Nala, Gilgit',
+        polygon: [
+          { lat: 35.92083, lng: 74.30833 },
+          { lat: 35.92300, lng: 74.30500 },
+          { lat: 35.92450, lng: 74.31000 },
+          { lat: 35.92200, lng: 74.31250 },
+          { lat: 35.92083, lng: 74.30833 }
+        ],
+      },
+    ],
+    images: [findImage('gallery-himalayan-1'), findImage('gallery-himalayan-2')],
+    videos: [{id: 'vid-3', url: 'https://www.youtube.com/embed/dQw4w9WgXcQ', title: 'High-Altitude Operations'}],
+    virtualTourUrl: 'https://earth.google.com/web/@35.922,-74.309,2400a,2000d,35y,0h,0t,0r',
+    documents: documents.filter(d => d.companyId === 'himalayan-minerals'),
+  },
+];
+
+
+const news: NewsArticle[] = [
+  {
+    id: 'news-1',
+    title: 'Global Commodity Markets See Upward Trend',
+    excerpt: 'Analysts predict a strong quarter for mineral commodities, driven by increased demand in the tech and manufacturing sectors. Mining stocks are responding positively.',
+    content: 'Detailed analysis shows that the demand for rare earth minerals and copper has surged. Companies with established extraction operations, like Durr Mines and Minerals, are well-positioned to capitalize on this trend. Investors are watching closely as market dynamics unfold.',
+    imageUrl: findImage('news-1'),
+    publishDate: '2024-05-15T10:00:00Z',
+  },
+  {
+    id: 'news-2',
+    companyId: 'earth-lux-mines',
+    title: 'Earth Lux Mines Announces New Green Technology Initiative',
+    excerpt: 'In a move towards greater sustainability, Earth Lux Mines has partnered with leading tech firms to implement a new water recycling system at its Gilgit operations.',
+    content: 'The new system is expected to reduce water consumption by 40% and will be fully operational by Q4 2024. "This is a major step in our commitment to responsible mining," said Managing Director Bilal Ahmed. The initiative has been praised by environmental groups.',
+    imageUrl: findImage('news-2'),
+    publishDate: '2024-05-10T14:30:00Z',
+  },
+  {
+    id: 'news-3',
+    companyId: 'himalayan-minerals',
+    title: 'Himalayan Minerals Expands Operations at Kargah Nala',
+    excerpt: 'Following a successful exploratory phase, Himalayan Minerals is set to expand its industrial mineral extraction, projecting a 25% increase in output.',
+    content: 'The expansion involves the deployment of new, state-of-the-art drilling equipment designed for high-altitude performance. Chairperson Zoya Ali stated that the expansion will create new jobs and boost the local economy while adhering to strict safety protocols.',
+    imageUrl: findImage('news-3'),
+    publishDate: '2024-05-01T09:00:00Z',
+  },
+];
+
+export async function getCompanies(): Promise<Company[]> {
+  return companies;
+}
+
+export async function getCompanyById(id: string): Promise<Company | undefined> {
+  return companies.find((company) => company.id === id);
+}
+
+export async function getNews(): Promise<NewsArticle[]> {
+  return news.sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
+}
+
+export async function getDocuments(): Promise<Document[]> {
+    const allDocsWithCompanyName = documents.map(doc => {
+        const company = companies.find(c => c.id.startsWith(doc.companyId));
+        return {
+            ...doc,
+            companyName: company ? company.name : 'Unknown'
+        }
+    });
+    return allDocsWithCompanyName;
+}
