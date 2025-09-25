@@ -77,7 +77,7 @@ export default async function Home() {
             </p>
           </div>
           <div className="mx-auto w-full max-w-sm space-y-2">
-             <Button asChild size="lg" className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
+             <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
               <Link href="/map">
                 <Globe className="mr-2 h-5 w-5" /> Launch Virtual Tour
               </Link>
