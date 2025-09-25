@@ -10,6 +10,7 @@ const navItems = [
   { href: '/map', label: 'Map' },
   { href: '/news', label: 'News' },
   { href: '/documents', label: 'Documents' },
+  { href: '/contact', label: 'Contact' },
 ];
 
 export default function Navigation({ isScrolled }: { isScrolled?: boolean }) {

@@ -9,6 +9,7 @@ export interface Document {
   type: 'Geological Report' | 'License' | 'Concession Paper' | 'Financial Summary';
   url: string;
   companyId: string;
+  companyName?: string;
 }
 
 export interface Video {
@@ -42,4 +43,14 @@ export interface NewsArticle {
   imageUrl: string;
   publishDate: string;
   companyId?: string;
+}
+
+export interface Inquiry {
+  id: string;
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+  inquiryType: 'investor' | 'media' | 'public';
+  dateSubmitted: any; // Using 'any' for Firestore serverTimestamp
 }
