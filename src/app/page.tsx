@@ -14,7 +14,7 @@ export default async function Home() {
 
   return (
     <>
-      <section className="relative w-full h-screen">
+      <section className="relative w-full h-screen -mt-14">
         {heroImage && (
           <Image
             src={heroImage.imageUrl}
@@ -30,7 +30,7 @@ export default async function Home() {
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl font-headline text-accent text-shadow">
             THE GAME OF STONES
           </h1>
-          <p className="mt-4 max-w-3xl text-lg md:text-xl text-primary-foreground/80">
+          <p className="mt-4 max-w-3xl text-lg md:text-xl text-black">
             MineSight Global provides unparalleled insights into the world's leading mining operations. Explore rich data, interactive maps, and real-time news.
           </p>
           <div className="mt-8">
