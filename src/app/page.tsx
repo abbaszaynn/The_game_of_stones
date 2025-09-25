@@ -35,7 +35,7 @@ export default async function Home() {
           <div className="mt-8">
             <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
               <Link href="/map">
-                Explore Interactive Map <MapIcon className="ml-2 h-5 w-5" />
+                Visit the Mines <MapIcon className="ml-2 h-5 w-5" />
               </Link>
             </Button>
           </div>
