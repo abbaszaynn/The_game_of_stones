@@ -25,9 +25,9 @@ export default async function Home() {
             data-ai-hint={heroImage.imageHint}
           />
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-background to-black/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background to-black/30" />
         <div className="relative container mx-auto px-4 md:px-6 h-full flex flex-col items-center justify-end text-center text-primary-foreground pb-24">
-          <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl font-headline text-accent text-shadow">
+          <h1 className="text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl font-headline text-accent text-shadow">
             THE GAME OF STONES
           </h1>
           <p className="mt-4 max-w-3xl text-lg md:text-xl text-black">
