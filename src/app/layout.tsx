@@ -23,7 +23,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={cn('min-h-screen bg-background font-sans antialiased', inter.variable)}>
         <Header />
-        <main>{children}</main>
+        <main className='-mt-14'>{children}</main>
         <Footer />
         <Toaster />
         <AIChatButton />

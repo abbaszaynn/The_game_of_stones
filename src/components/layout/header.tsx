@@ -6,20 +6,39 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Logo } from '@/components/icons/logo';
 import { Menu } from 'lucide-react';
 import Navigation from './navigation';
+import { useEffect, useState } from 'react';
+import { cn } from '@/lib/utils';
 
 export function Header() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+
   return (
-    <header className="sticky top-0 z-50 w-full bg-transparent">
+    <header className={cn(
+      "sticky top-0 z-50 w-full transition-colors duration-300",
+      isScrolled ? 'bg-primary/90 backdrop-blur-sm' : 'bg-transparent'
+      )}>
       <div className="container flex h-14 max-w-screen-2xl items-center">
         <div className="flex flex-1 items-center justify-between">
           <Link href="/" className="flex items-center space-x-2">
             <Logo className="h-6 w-6 text-white" />
-            <span className="hidden font-bold text-white sm:inline-block">MineSight Global</span>
+            <span className={cn(
+              "hidden font-bold sm:inline-block",
+              isScrolled ? 'text-white' : 'text-white'
+              )}>MineSight Global</span>
           </Link>
 
           {/* Desktop Nav */}
           <nav className="hidden items-center gap-6 text-sm md:flex">
-            <Navigation />
+            <Navigation isScrolled={isScrolled} />
           </nav>
 
           {/* Mobile Nav Trigger */}
@@ -28,20 +47,23 @@ export function Header() {
               <SheetTrigger asChild>
                 <Button
                   variant="ghost"
-                  className="px-0 text-base text-white hover:bg-transparent hover:text-white/80 focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
+                  className={cn(
+                    "px-0 text-base focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0",
+                    isScrolled ? 'text-white hover:text-white/80' : 'text-white hover:text-white/80'
+                    )}
                 >
                   <Menu className="h-5 w-5" />
                   <span className="sr-only">Toggle Menu</span>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="left" className="pr-0">
+              <SheetContent side="left" className="pr-0 bg-primary text-primary-foreground">
                 <Link href="/" className="flex items-center">
                   <Logo className="mr-2 h-6 w-6" />
                   <span className="font-bold">MineSight Global</span>
                 </Link>
                 <div className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
                   <div className="flex flex-col space-y-3">
-                    <Navigation />
+                    <Navigation isScrolled={true} />
                   </div>
                 </div>
               </SheetContent>

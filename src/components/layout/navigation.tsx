@@ -12,8 +12,13 @@ const navItems = [
   { href: '/documents', label: 'Documents' },
 ];
 
-export default function Navigation() {
+export default function Navigation({ isScrolled }: { isScrolled?: boolean }) {
   const pathname = usePathname();
+  
+  const linkColor = isScrolled ? 'text-white' : 'text-white';
+  const linkColorHover = isScrolled ? 'hover:text-white/80' : 'hover:text-white/80';
+  const activeLinkColor = isScrolled ? 'text-white font-semibold' : 'text-white font-semibold';
+  const inactiveLinkColor = isScrolled ? 'text-white/70' : 'text-white/70';
 
   return (
     <>
@@ -22,10 +27,11 @@ export default function Navigation() {
           key={item.href}
           href={item.href}
           className={cn(
-            'transition-colors hover:text-white/80',
-            pathname === item.href ? 'text-white' : 'text-white/60',
-            'md:text-white md:hover:text-white/80',
-            pathname === item.href ? 'md:text-white' : 'md:text-white/60'
+            'transition-colors',
+            'md:text-base',
+            linkColor,
+            linkColorHover,
+            pathname === item.href ? activeLinkColor : inactiveLinkColor
           )}
         >
           {item.label}
