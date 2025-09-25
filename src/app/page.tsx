@@ -27,7 +27,7 @@ export default async function Home() {
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-black/5" />
         <div className="relative container mx-auto px-4 md:px-6 h-full flex flex-col items-center justify-center text-center text-primary-foreground pt-48">
-          <h1 className="text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl font-headline text-accent text-shadow">
+          <h1 className="text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl font-headline text-accent text-shadow text-stroke">
             THE GAME OF STONES
           </h1>
           <p className="mt-4 max-w-3xl text-lg md:text-xl text-black">
