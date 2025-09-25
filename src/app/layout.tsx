@@ -10,7 +10,7 @@ import AIChatButton from '@/components/ai-chat/ai-chat-button';
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
 export const metadata: Metadata = {
-  title: 'MineSight Global',
+  title: 'GB MINES',
   description: 'A global dashboard for mining companies, investors, and the public.',
 };
 

@@ -33,7 +33,7 @@ export function Header() {
             <span className={cn(
               "hidden font-bold sm:inline-block",
               isScrolled ? 'text-white' : 'text-white'
-              )}>MineSight Global</span>
+              )}>GB MINES</span>
           </Link>
 
           {/* Desktop Nav */}
@@ -59,7 +59,7 @@ export function Header() {
               <SheetContent side="left" className="pr-0 bg-primary text-primary-foreground">
                 <Link href="/" className="flex items-center">
                   <Logo className="mr-2 h-6 w-6" />
-                  <span className="font-bold">MineSight Global</span>
+                  <span className="font-bold">GB MINES</span>
                 </Link>
                 <div className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
                   <div className="flex flex-col space-y-3">
