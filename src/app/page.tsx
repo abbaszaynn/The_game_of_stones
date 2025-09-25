@@ -12,20 +12,20 @@ export default async function Home() {
   const heroImage = PlaceHolderImages.find((img) => img.id === 'hero-1');
 
   return (
-    <div className="flex flex-col min-h-[100dvh]">
-      <section className="relative w-full h-[80vh]">
+    <>
+      <section className="relative w-full h-screen">
         {heroImage && (
           <Image
             src={heroImage.imageUrl}
             alt="Vast mining landscape"
             fill
-            className="object-cover transform -rotate-180"
+            className="object-cover"
             priority
             data-ai-hint={heroImage.imageHint}
           />
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-background to-black/60" />
-        <div className="relative container mx-auto px-4 md:px-6 h-full flex flex-col items-center justify-end text-center text-primary-foreground pb-12">
+        <div className="absolute inset-0 bg-gradient-to-t from-background to-black/30" />
+        <div className="relative container mx-auto px-4 md:px-6 h-full flex flex-col items-center justify-end text-center text-primary-foreground pb-24">
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl font-headline">
             Unearthing Global Opportunities
           </h1>
@@ -84,6 +84,6 @@ export default async function Home() {
           </div>
         </div>
       </section>
-    </div>
+    </>
   );
 }
