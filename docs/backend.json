@@ -1,0 +1,267 @@
+{
+  "entities": {
+    "MiningCompany": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "MiningCompany",
+      "type": "object",
+      "description": "Represents a mining company with its associated details and mine locations.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the mining company."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the mining company."
+        },
+        "tagline": {
+          "type": "string",
+          "description": "Tagline or short description of the company."
+        },
+        "mineLocations": {
+          "type": "array",
+          "description": "Array of GeoJSON polygons or multi-polygons representing mine locations.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sampleImages": {
+          "type": "array",
+          "description": "Array of URLs or placeholders for high-quality sample images.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "videos": {
+          "type": "array",
+          "description": "Array of URLs for videos (YouTube or hosted, ideally 360° or drone footage).",
+          "items": {
+            "type": "string"
+          }
+        },
+        "virtualTourKML": {
+          "type": "string",
+          "description": "URL or embed link for KML/KMZ files for 3D virtual tours using Google Earth."
+        },
+        "geologicalReports": {
+          "type": "array",
+          "description": "Array of URLs to geological reports, licenses, and concession papers as PDFs.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "projectStatus": {
+          "type": "string",
+          "description": "Textual description or link to project status, milestones, and financial summaries."
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ]
+    },
+    "NewsArticle": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "NewsArticle",
+      "type": "object",
+      "description": "Represents a news article or company announcement.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the news article."
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the news article."
+        },
+        "content": {
+          "type": "string",
+          "description": "Content of the news article."
+        },
+        "datePublished": {
+          "type": "string",
+          "description": "Date and time the article was published.",
+          "format": "date-time"
+        },
+        "companyId": {
+          "type": "string",
+          "description": "Reference to MiningCompany. (Relationship: MiningCompany 1:N NewsArticle)"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "content",
+        "datePublished",
+        "companyId"
+      ]
+    },
+    "Document": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Document",
+      "type": "object",
+      "description": "Represents a document such as a geological report or license.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the document."
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the document."
+        },
+        "fileUrl": {
+          "type": "string",
+          "description": "URL of the document file (PDF).",
+          "format": "uri"
+        },
+        "dateUploaded": {
+          "type": "string",
+          "description": "Date and time the document was uploaded.",
+          "format": "date-time"
+        },
+        "companyId": {
+          "type": "string",
+          "description": "Reference to MiningCompany. (Relationship: MiningCompany 1:N Document)"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "fileUrl",
+        "dateUploaded",
+        "companyId"
+      ]
+    },
+    "Inquiry": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Inquiry",
+      "type": "object",
+      "description": "Represents an inquiry submitted through a contact form.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the inquiry."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the person submitting the inquiry."
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of the person submitting the inquiry.",
+          "format": "email"
+        },
+        "subject": {
+          "type": "string",
+          "description": "Subject of the inquiry."
+        },
+        "message": {
+          "type": "string",
+          "description": "The inquiry message."
+        },
+        "inquiryType": {
+          "type": "string",
+          "description": "Type of inquiry (e.g., investor, media, public)."
+        },
+        "dateSubmitted": {
+          "type": "string",
+          "description": "Date and time the inquiry was submitted.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "email",
+        "subject",
+        "message",
+        "inquiryType",
+        "dateSubmitted"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/miningCompanies/{companyId}",
+        "definition": {
+          "entityName": "MiningCompany",
+          "schema": {
+            "$ref": "#/backend/entities/MiningCompany"
+          },
+          "description": "Stores information about mining companies.  Accessible to all users for viewing, restricted to authorized users for creation/modification.",
+          "params": [
+            {
+              "name": "companyId",
+              "description": "Unique identifier for the mining company."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/miningCompanies/{companyId}/news/{newsId}",
+        "definition": {
+          "entityName": "NewsArticle",
+          "schema": {
+            "$ref": "#/backend/entities/NewsArticle"
+          },
+          "description": "Stores news articles related to a specific mining company. Publicly accessible for viewing, restricted for modification.",
+          "params": [
+            {
+              "name": "companyId",
+              "description": "Unique identifier for the mining company."
+            },
+            {
+              "name": "newsId",
+              "description": "Unique identifier for the news article."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/miningCompanies/{companyId}/documents/{documentId}",
+        "definition": {
+          "entityName": "Document",
+          "schema": {
+            "$ref": "#/backend/entities/Document"
+          },
+          "description": "Stores documents (reports, licenses) related to a specific mining company. Publicly accessible for viewing, restricted for modification.",
+          "params": [
+            {
+              "name": "companyId",
+              "description": "Unique identifier for the mining company."
+            },
+            {
+              "name": "documentId",
+              "description": "Unique identifier for the document."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/inquiries/{inquiryId}",
+        "definition": {
+          "entityName": "Inquiry",
+          "schema": {
+            "$ref": "#/backend/entities/Inquiry"
+          },
+          "description": "Stores inquiries submitted through the contact form. Publicly accessible for creation, restricted for other operations.",
+          "params": [
+            {
+              "name": "inquiryId",
+              "description": "Unique identifier for the inquiry."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "This Firestore structure is designed to support the mining company dashboard, focusing on showcasing company information, mine locations, news, documents, and handling inquiries. The design emphasizes authorization independence and facilitates secure list operations.  We leverage structural segregation to ensure documents in a collection share the same security requirements.\n\n*   `/miningCompanies/{companyId}`: Stores detailed information about each mining company. Documents in this collection are accessible to all users for viewing, but only authorized users (e.g., admins) can create, update, or delete them. This structure supports QAPs because listing mining companies does not require filtering based on user roles.\n*   `/miningCompanies/{companyId}/news/{newsId}`: Stores news articles related to specific mining companies.  Access is generally public, with administrative controls for management.\n*   `/miningCompanies/{companyId}/documents/{documentId}`: Contains documents such as geological reports and licenses. Access is typically public for viewing but restricted to authorized personnel for modifications.\n*   `/inquiries/{inquiryId}`: Stores inquiries submitted through the contact form. These are publicly accessible for creation (submitting an inquiry), but access for reading, updating, or deleting is restricted to authorized personnel. The structure allows secure 'list' operations as no filtering is needed during the list since all items share the same security posture. Further, the inquiryType field allows segregation for routing and handling within the application's backend.\n\nAuthorization Independence:  The structure promotes authorization independence by avoiding hierarchical authorization dependencies. For example, access to news articles or documents within a mining company does not require fetching the mining company's document to determine access rights. Security rules can directly evaluate access based on the user's role and the document's metadata, if necessary.\n\nQAPs (Rules are not Filters): The structure supports secure `list` operations by ensuring that each collection contains documents with a homogeneous security posture. For instance, all documents in the `/inquiries` collection have the same access requirements for reading, updating, and deleting, which prevents the need to filter based on authorization rules during list operations."
+  }
+}

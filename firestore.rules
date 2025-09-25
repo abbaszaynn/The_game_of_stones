@@ -1,0 +1,96 @@
+/**
+ * @file Firestore Security Rules
+ * @description This ruleset defines access control for the Mining Companies application.
+ *
+ * Core Philosophy:
+ * This ruleset prioritizes public read access for mining company data (companies, news, documents)
+ * while strictly controlling write access to authorized users. Inquiries can be created by anyone,
+ * but only authorized users can view, modify, or delete them.
+ *
+ * Data Structure:
+ * - /miningCompanies/{companyId}: Mining company profiles.
+ * - /miningCompanies/{companyId}/news/{newsId}: News articles related to companies.
+ * - /miningCompanies/{companyId}/documents/{documentId}: Documents related to companies.
+ * - /inquiries/{inquiryId}: Inquiries submitted via contact forms.
+ *
+ * Key Security Decisions:
+ * - Public read access for company data (miningCompanies, news, documents).
+ * - Only authorized users can create, update, or delete company data.
+ * - Inquiries can be created by anyone, but only authorized users can manage them.
+ * - No user-specific data is present, so ownership checks are not required for read operations.
+ */
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /**
+     * @description Controls access to mining company profiles.
+     * @path /miningCompanies/{companyId}
+     * @allow get, list: if true;
+     * @allow create: if false;
+     * @allow update: if false;
+     * @allow delete: if false;
+     * @deny create: if true; // Example: Prevents unauthorized creation of mining companies.
+     * @deny update: if true; // Example: Prevents unauthorized updates to mining company data.
+     * @deny delete: if true; // Example: Prevents unauthorized deletion of mining companies.
+     * @principle Public read, restricted write access for mining company profiles.
+     */
+    match /miningCompanies/{companyId} {
+      allow get, list: if true;
+      allow create, update, delete: if false;
+    }
+
+    /**
+     * @description Controls access to news articles related to mining companies.
+     * @path /miningCompanies/{companyId}/news/{newsId}
+     * @allow get, list: if true;
+     * @allow create: if false;
+     * @allow update: if false;
+     * @allow delete: if false;
+     * @deny create: if true; // Example: Prevents unauthorized creation of news articles.
+     * @deny update: if true; // Example: Prevents unauthorized updates to news articles.
+     * @deny delete: if true; // Example: Prevents unauthorized deletion of news articles.
+     * @principle Public read, restricted write access for news articles.
+     */
+    match /miningCompanies/{companyId}/news/{newsId} {
+      allow get, list: if true;
+      allow create, update, delete: if false;
+    }
+
+    /**
+     * @description Controls access to documents related to mining companies.
+     * @path /miningCompanies/{companyId}/documents/{documentId}
+     * @allow get, list: if true;
+     * @allow create: if false;
+     * @allow update: if false;
+     * @allow delete: if false;
+     * @deny create: if true; // Example: Prevents unauthorized creation of documents.
+     * @deny update: if true; // Example: Prevents unauthorized updates to documents.
+     * @deny delete: if true; // Example: Prevents unauthorized deletion of documents.
+     * @principle Public read, restricted write access for documents.
+     */
+    match /miningCompanies/{companyId}/documents/{documentId} {
+      allow get, list: if true;
+      allow create, update, delete: if false;
+    }
+
+    /**
+     * @description Controls access to inquiries submitted through the contact form.
+     * @path /inquiries/{inquiryId}
+     * @allow create: if true;
+     * @allow get, list: if false;
+     * @allow update: if false;
+     * @allow delete: if false;
+     * @allow create: if true; // Example: Allows any user to submit an inquiry.
+     * @deny get: if true; // Example: Prevents unauthorized reading of inquiries.
+     * @deny list: if true; // Example: Prevents unauthorized listing of inquiries.
+     * @deny update: if true; // Example: Prevents unauthorized updates to inquiries.
+     * @deny delete: if true; // Example: Prevents unauthorized deletion of inquiries.
+     * @principle Public create, restricted access for inquiries.
+     */
+    match /inquiries/{inquiryId} {
+      allow create: if true;
+      allow get, list, update, delete: if false;
+    }
+  }
+}
