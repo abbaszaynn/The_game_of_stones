@@ -19,7 +19,7 @@ export default async function Home() {
             src={heroImage.imageUrl}
             alt="Vast mining landscape"
             fill
-            className="object-cover"
+            className="object-cover rotate-180"
             priority
             data-ai-hint={heroImage.imageHint}
           />
