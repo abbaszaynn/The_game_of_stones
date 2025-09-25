@@ -74,7 +74,7 @@ export default async function Home() {
         <div className="container relative grid items-center justify-center gap-4 px-4 text-center md:px-6">
           <div className="space-y-3">
             <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight font-headline text-primary-foreground">
-              Experience the Mines, Virtually
+              THE GAME OF STONES
             </h2>
             <p className="mx-auto max-w-[600px] text-primary-foreground/80 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
               Our platform offers immersive 3D virtual tours of mine sites. Explore the terrain and infrastructure from anywhere in the world.
