@@ -22,8 +22,10 @@ export default function Navigation() {
           key={item.href}
           href={item.href}
           className={cn(
-            'transition-colors hover:text-foreground/80',
-            pathname === item.href ? 'text-foreground' : 'text-foreground/60'
+            'transition-colors hover:text-white/80',
+            pathname === item.href ? 'text-white' : 'text-white/60',
+            'md:text-white md:hover:text-white/80',
+            pathname === item.href ? 'md:text-white' : 'md:text-white/60'
           )}
         >
           {item.label}
