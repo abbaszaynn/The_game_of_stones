@@ -27,7 +27,7 @@ export default async function Home() {
         <div className="absolute inset-0 bg-gradient-to-t from-background to-black/10" />
         <div className="relative container mx-auto px-4 md:px-6 h-full flex flex-col items-center justify-end text-center text-primary-foreground pb-24">
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl font-headline">
-            Unearthing Global Opportunities
+            THE GAME OF STONES
           </h1>
           <p className="mt-4 max-w-3xl text-lg md:text-xl text-primary-foreground/80">
             MineSight Global provides unparalleled insights into the world's leading mining operations. Explore rich data, interactive maps, and real-time news.
