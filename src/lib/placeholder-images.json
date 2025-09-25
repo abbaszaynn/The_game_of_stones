@@ -2,9 +2,9 @@
   "placeholderImages": [
     {
       "id": "hero-1",
-      "description": "Vast mining landscape at sunset",
-      "imageUrl": "https://images.unsplash.com/photo-1741821251595-9d41830a2dfc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxtaW5pbmclMjBsYW5kc2NhcGV8ZW58MHx8fHwxNzU4ODE1ODQ1fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "mining landscape"
+      "description": "Photo of outer space",
+      "imageUrl": "https://images.unsplash.com/photo-1541873676-a18131494184?q=80&w=1918",
+      "imageHint": "outer space"
     },
     {
       "id": "logo-durr",

@@ -13,34 +13,29 @@ export default async function Home() {
 
   return (
     <div className="flex flex-col min-h-[100dvh]">
-      <section className="relative w-full h-[60vh] md:h-[80vh]">
+      <section className="relative w-full h-[80vh]">
         {heroImage && (
           <Image
             src={heroImage.imageUrl}
             alt="Vast mining landscape"
             fill
-            className="object-cover"
+            className="object-cover transform -rotate-180"
             priority
             data-ai-hint={heroImage.imageHint}
           />
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-background to-black/60" />
-        <div className="relative container mx-auto px-4 md:px-6 h-full flex flex-col items-center justify-center text-center text-primary-foreground">
+        <div className="relative container mx-auto px-4 md:px-6 h-full flex flex-col items-center justify-end text-center text-primary-foreground pb-12">
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl font-headline">
             Unearthing Global Opportunities
           </h1>
           <p className="mt-4 max-w-3xl text-lg md:text-xl text-primary-foreground/80">
             MineSight Global provides unparalleled insights into the world's leading mining operations. Explore rich data, interactive maps, and real-time news.
           </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
+          <div className="mt-8">
             <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
               <Link href="/map">
                 Explore Interactive Map <MapIcon className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-            <Button asChild size="lg" variant="secondary">
-              <Link href="/companies">
-                View Companies <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
           </div>
