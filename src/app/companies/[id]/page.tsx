@@ -69,7 +69,7 @@ export default async function CompanyDetailPage({ params }: { params: { id: stri
                     {company.projects.map((project, index) => (
                       <li key={index} className="flex items-center justify-between">
                         <span className="font-medium text-foreground">{project.name}</span>
-                        <Badge variant={project.status === 'Operational' ? 'default' : 'secondary'} className="bg-green-600 text-white">{project.status}</Badge>
+                        <Badge variant={project.status === 'Operational' ? 'default' : 'secondary'}>{project.status}</Badge>
                       </li>
                     ))}
                   </ul>
