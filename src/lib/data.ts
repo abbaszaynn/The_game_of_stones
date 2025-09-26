@@ -20,10 +20,8 @@ const companies: Company[] = [
     description: 'DURR MINE & MINERALS (PRIVATE) LIMITED is a private limited company based in Gilgit, Gilgit-Baltistan, Pakistan, formally incorporated under the Companies Act, 2017. The company was established to focus on a broad spectrum of mining and minerals operations, setting a foundation for growth in the region\'s natural resources sector.',
     history: 'Founded by Tabish Hassan and Daniyal Ali, DURR MINE & MINERALS (PRIVATE) LIMITED was officially incorporated in June 2025, marking a new chapter in the exploration and development of mineral assets in northern Pakistan. From the outset, the company set its registered office in Mohallah Khomer Yarkote, Gilgit, a region known for its mineral richness and strategic significance.',
     leadership: [
-      { name: 'Tabish Hassan', title: 'Director' },
+      { name: 'Tabish Hassan', title: 'CEO & Founder' },
       { name: 'Daniyal Ali', title: 'Director' },
-      { name: 'Ahmad Durrani', title: 'CEO & Founder' },
-      { name: 'Fatima Khan', title: 'Chief Geologist' },
     ],
     projects: [{ name: 'Skardu Topaz Project', status: 'Operational' }],
     investorContacts: [{ name: 'Investor Relations Dept.', email: 'invest@durrmines.com', phone: '+1-202-555-0175' }],
@@ -163,8 +161,16 @@ export async function getCompanies(): Promise<Company[]> {
 }
 
 export async function getCompanyById(id: string): Promise<Company | undefined> {
-  return companies.find((company) => company.id === id);
+  const company = companies.find((company) => company.id === id);
+  if (company) {
+    // Ensure the logo is always present, using a placeholder if needed.
+    if (!company.logoUrl) {
+      company.logoUrl = findImage('logo-durr'); // Default placeholder
+    }
+  }
+  return company;
 }
+
 
 export async function getNews(): Promise<NewsArticle[]> {
   return news.sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());

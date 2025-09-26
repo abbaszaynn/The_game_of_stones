@@ -94,13 +94,13 @@ export default async function CompanyDetailPage({ params }: { params: { id: stri
                 </CardContent>
               </Card>
               <Card>
-                <CardHeader className="pb-2">
+                <CardHeader className="pb-1">
                   <CardTitle className="text-2xl font-semibold text-foreground">Status</CardTitle>
                   <div className="pt-1">
                     <Badge className="bg-green-600 text-white hover:bg-green-600/90">Operational</Badge>
                   </div>
                 </CardHeader>
-                <CardContent className="pt-4">
+                <CardContent className="pt-2">
                   <h2 className="text-2xl font-semibold text-foreground mb-3">Projects</h2>
                   <ul className="space-y-3">
                     <li className="flex items-center gap-3">
