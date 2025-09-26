@@ -9,7 +9,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Briefcase, Download, Globe, Mail, MapPin, Phone, User } from 'lucide-react';
+import { Briefcase, Download, Globe, Mail, MapPin, Phone, User, Gem, Layers } from 'lucide-react';
 import Link from 'next/link';
 
 export default async function CompanyDetailPage({ params }: { params: { id: string } }) {
@@ -68,7 +68,7 @@ export default async function CompanyDetailPage({ params }: { params: { id: stri
                     <li>Acting as agents, consultants, contractors, and distributors in the mining sector.</li>
                   </ul>
                    <h3 className="font-semibold text-foreground text-xl mt-4">Commitment to Community and Compliance</h3>
-                  <p className="text-muted-foreground">DURR MINE & MINERALS (PRIVATE) LIMITED adheres to Pakistan’s legal and regulatory frameworks for corporate responsibility. The company’s founding declaration indicates that all relevant compliance, including beneficial ownership transparency and legal formalities, was strictly observed at incorporation.</p>
+                  <p className="text-muted-foreground">DURR MINE & MINERALS (PRIVATE) LIMITED adheres to Pakistan’s legal and regulatory frameworks for corporate responsibility. The company’s founding declaration indicates that all relevant compliance, including beneficial ownership transparency, and legal formalities, was strictly observed at incorporation.</p>
                    <h3 className="font-semibold text-foreground text-xl mt-4">Looking Forward</h3>
                   <p className="text-muted-foreground">Building on the geological promise of Gilgit-Baltistan, the company’s leadership envisions sustainable growth, community engagement, and technological advancement as keys to expanding operations. DURR MINE & MINERALS (PRIVATE) LIMITED aims to be a leading regional player, pursuing excellence in mineral resource development while upholding environmental and ethical standards.</p>
                 </CardContent>
@@ -112,6 +112,41 @@ export default async function CompanyDetailPage({ params }: { params: { id: stri
                       <span className="font-medium text-foreground">Gultari Project</span>
                     </li>
                   </ul>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle>Deposits</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <div>
+                    <h3 className="font-semibold text-foreground flex items-center gap-2 mb-2">
+                      <Gem className="w-5 h-5 text-accent" /> Marble Deposits (Bagicha, Skardu)
+                    </h3>
+                    <p className="text-sm text-muted-foreground mb-2"><strong>Location:</strong> Bagicha, District Skardu, Gilgit-Baltistan</p>
+                    <p className="text-sm text-muted-foreground mb-2"><strong>Deposit Type:</strong> Extensive Marble body with significant quartz-rich zones and block/vein formations.</p>
+                    <div className="text-sm text-muted-foreground">
+                      <p><strong>Dimensions:</strong></p>
+                      <ul className="list-disc pl-5 mt-1 space-y-1">
+                        <li>Sheets/Blocks: 1–4 feet thick; strike length 200–350 meters in various exposures.</li>
+                        <li>Strike Continuity: Exposures and blocks observed continuously along strike lengths of 1 to 5 kilometers.</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-foreground flex items-center gap-2 mb-2">
+                      <Layers className="w-5 h-5 text-accent" /> Copper & Polymetallic Deposits (Gultari, Skardu)
+                    </h3>
+                    <p className="text-sm text-muted-foreground mb-2"><strong>Location:</strong> Gultari, Tehsil Gultari, District Skardu, Gilgit-Baltistan</p>
+                    <p className="text-sm text-muted-foreground mb-2"><strong>Deposit Type:</strong> Copper ore in polymetallic settings, with iron and silica quartz.</p>
+                    <div className="text-sm text-muted-foreground">
+                      <p><strong>Ore Body:</strong></p>
+                       <ul className="list-disc pl-5 mt-1 space-y-1">
+                        <li>Exposed as mineralized veins; thicknesses from 1–5 feet and visually mapped along strike lengths of 200–350 meters at different locations.</li>
+                        <li>Veins and deposits traceable for 3 to 5 kilometers.</li>
+                      </ul>
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
                <Button asChild size="lg" className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
