@@ -67,7 +67,7 @@ export default async function CompanyDetailPage({ params }: { params: { id: stri
                   <Badge className="bg-green-600 text-white hover:bg-green-600/90">Operational</Badge>
                 </CardHeader>
                 <CardContent className="space-y-4 pt-4">
-                    <h3 className="font-semibold text-foreground mb-3">Projects</h3>
+                    <h2 className="font-semibold text-foreground mb-3">Projects</h2>
                     <ul className="space-y-3">
                         <li className="flex items-center gap-3">
                             <MapPin className="h-5 w-5 text-muted-foreground" />
@@ -227,7 +227,7 @@ export default async function CompanyDetailPage({ params }: { params: { id: stri
                                 <p className="flex items-center gap-3">
                                     <Mail className="h-4 w-4"/>
                                     <a href={`mailto:${contact.email}`} className="hover:text-foreground">{contact.email}</a>
-                                </p>
+                                 </p>
                                 <p className="flex items-center gap-3">
                                     <Phone className="h-4 w-4"/>
                                     <a href={`tel:${contact.phone}`} className="hover:text-foreground">{contact.phone}</a>
