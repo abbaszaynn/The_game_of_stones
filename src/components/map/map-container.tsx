@@ -1,8 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { APIProvider, Map, InfoWindow } from '@vis.gl/react-google-maps';
-import { Polygon } from '@vis.gl/react-google-maps';
+import { APIProvider, Map, InfoWindow, Polygon, AdvancedMarker } from '@vis.gl/react-google-maps';
 import type { Company } from '@/lib/types';
 import { Button } from '../ui/button';
 import Link from 'next/link';
@@ -12,23 +11,30 @@ interface MapContainerProps {
   apiKey: string;
 }
 
-export default function MapContainer({ companies, apiKey }: MapContainerProps) {
-  const [selectedCompany, setSelectedCompany] = useState<Company | null>(null);
-  const [selectedLocation, setSelectedLocation] = useState<{ name: string; position: { lat: number, lng: number } } | null>(null);
+// Helper to calculate the center of a polygon
+const getPolygonCenter = (polygon: { lat: number; lng: number }[]) => {
+  if (typeof window === 'undefined' || !window.google) {
+    // Return a default if google is not available (e.g., during SSR)
+    return { lat: 0, lng: 0 };
+  }
+  const bounds = new window.google.maps.LatLngBounds();
+  polygon.forEach(p => bounds.extend(p));
+  const center = bounds.getCenter();
+  return { lat: center.lat(), lng: center.lng() };
+};
 
-  const handlePolygonClick = (company: Company, location: Company['locations'][0]) => {
-    const bounds = new window.google.maps.LatLngBounds();
-    location.polygon.forEach(p => bounds.extend(p));
-    const center = bounds.getCenter();
-    
-    setSelectedCompany(company);
-    setSelectedLocation({
-        name: location.name,
-        position: { lat: center.lat(), lng: center.lng() }
-    });
-  };
+export default function MapContainer({ companies, apiKey }: MapContainerProps) {
+  const [selected, setSelected] = useState<{ company: Company; location: Company['locations'][0] } | null>(null);
 
   const mapId = process.env.NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID || 'DEMO_MAP_ID';
+  
+  const handleMarkerClick = (company: Company, location: Company['locations'][0]) => {
+    setSelected({ company, location });
+  };
+  
+  const handlePolygonClick = (company: Company, location: Company['locations'][0]) => {
+    setSelected({ company, location });
+  };
 
   return (
     <APIProvider apiKey={apiKey}>
@@ -56,25 +62,22 @@ export default function MapContainer({ companies, apiKey }: MapContainerProps) {
           ))
         )}
 
-        {selectedCompany && selectedLocation && (
+        {selected && (
           <InfoWindow
-            position={selectedLocation.position}
-            onCloseClick={() => {
-              setSelectedCompany(null);
-              setSelectedLocation(null);
-            }}
+            position={getPolygonCenter(selected.location.polygon)}
+            onCloseClick={() => setSelected(null)}
           >
             <div className="p-2 max-w-xs space-y-3">
               <div>
-                <h3 className="font-bold text-lg text-primary">{selectedCompany.name}</h3>
-                <p className="text-sm text-muted-foreground">{selectedLocation.name}</p>
+                <h3 className="font-bold text-lg text-primary">{selected.company.name}</h3>
+                <p className="text-sm text-muted-foreground">{selected.location.name}</p>
               </div>
               <div className='flex items-center gap-2'>
                 <Button variant="outline" size="sm" onClick={() => alert("3D Tour coming soon!")}>
                   Virtual 3D Tour
                 </Button>
                 <Button asChild size="sm">
-                  <Link href={`/companies/${selectedCompany.id}`}>View Company</Link>
+                  <Link href={`/companies/${selected.company.id}`}>View Company</Link>
                 </Button>
               </div>
             </div>
