@@ -6,7 +6,7 @@ const findImage = (id: string) => PlaceHolderImages.find((img) => img.id === id)
 
 const documents: Document[] = [
   { id: 'doc-1', companyId: 'durr-mines-and-minerals', title: 'Geological Field Report of Marble Ore at Bagicha', type: 'Geological Report', url: 'https://mega.nz/file/gIZRxJZY#iumoVJkKeejUdux1fQz-Y31o0lAMDcMhJ3X-KnDNyL0' },
-  { id: 'doc-2', companyId: 'durr-mines-and-minerals', title: 'Skardu Region Mining License', type: 'License', url: '#' },
+  { id: 'doc-2', companyId: 'durr-mines-and-minerals', title: 'MINING LICENSE', type: 'License', url: '#' },
   { id: 'doc-3', companyId: 'earth-lux-mines', title: 'Jutial Nala Prospectus', type: 'Geological Report', url: '#' },
   { id: 'doc-4', companyId: 'earth-lux-mines', title: 'Annual Financial Summary 2023', type: 'Financial Summary', url: '#' },
   { id: 'doc-5', companyId: 'himalayan-minerals', title: 'Kargah Nala Concession Paper', type: 'Concession Paper', url: '#' },
@@ -187,3 +187,5 @@ export async function getDocuments(): Promise<Document[]> {
     });
     return allDocsWithCompanyName;
 }
+
+    
