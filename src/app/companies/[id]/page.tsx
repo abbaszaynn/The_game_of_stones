@@ -9,7 +9,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Briefcase, Download, Globe, Mail, Phone, User, Users } from 'lucide-react';
+import { Briefcase, Download, Globe, Mail, MapPin, Phone, User } from 'lucide-react';
 import Link from 'next/link';
 
 export default async function CompanyDetailPage({ params }: { params: { id: string } }) {
@@ -67,13 +67,17 @@ export default async function CompanyDetailPage({ params }: { params: { id: stri
                   <Badge className="bg-green-600 text-white hover:bg-green-600/90">Operational</Badge>
                 </CardHeader>
                 <CardContent className="space-y-4 pt-4">
-                  <ul className="space-y-2">
-                    {company.projects.map((project, index) => (
-                      <li key={index} className="flex items-center justify-between">
-                        <span className="font-medium text-foreground">{project.name}</span>
-                      </li>
-                    ))}
-                  </ul>
+                    <h3 className="font-semibold text-foreground mb-3">Projects</h3>
+                    <ul className="space-y-3">
+                        <li className="flex items-center gap-3">
+                            <MapPin className="h-5 w-5 text-muted-foreground" />
+                            <span className="font-medium text-foreground">Skardu Topaz Project</span>
+                        </li>
+                        <li className="flex items-center gap-3">
+                            <MapPin className="h-5 w-5 text-muted-foreground" />
+                            <span className="font-medium text-foreground">Gultari Project</span>
+                        </li>
+                    </ul>
                 </CardContent>
               </Card>
               <Card>
