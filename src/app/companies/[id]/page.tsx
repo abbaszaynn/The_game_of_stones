@@ -55,8 +55,22 @@ export default async function CompanyDetailPage({ params }: { params: { id: stri
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <p className="text-muted-foreground">{company.description}</p>
-                  <h3 className="font-semibold text-foreground">Company History</h3>
+                  <h3 className="font-semibold text-foreground text-xl mt-4">Founding and Incorporation</h3>
                   <p className="text-muted-foreground">{company.history}</p>
+                  <h3 className="font-semibold text-foreground text-xl mt-4">Vision and Early Objectives</h3>
+                  <p className="text-muted-foreground">The company’s core vision is to explore, extract, and process a diverse array of minerals and ores, including precious and base metals, industrial minerals, and construction materials. Its registered mission indicates a focus on responsible resource development, local economic empowerment, and the creation of sustainable value through innovative mining practices.</p>
+                  <h3 className="font-semibold text-foreground text-xl mt-4">Growth and Development</h3>
+                  <p className="text-muted-foreground">DURR MINE & MINERALS (PRIVATE) LIMITED was capitalized at 2,000,000 PKR with shareholders each subscribing 10,000 ordinary shares, symbolizing a commitment to long-term investment and steady expansion. The company was structured with both subscribers/directors being professionally active in business—bringing management expertise and entrepreneurial energy to the venture.</p>
+                  <h3 className="font-semibold text-foreground text-xl mt-4">Operations and Activities</h3>
+                  <ul className="list-disc pl-5 text-muted-foreground space-y-2">
+                    <li>Mineral exploration, extraction, and processing of a variety of ores and valuable materials.</li>
+                    <li>Handling and transportation of minerals for local and international markets.</li>
+                    <li>Acting as agents, consultants, contractors, and distributors in the mining sector.</li>
+                  </ul>
+                   <h3 className="font-semibold text-foreground text-xl mt-4">Commitment to Community and Compliance</h3>
+                  <p className="text-muted-foreground">DURR MINE & MINERALS (PRIVATE) LIMITED adheres to Pakistan’s legal and regulatory frameworks for corporate responsibility. The company’s founding declaration indicates that all relevant compliance, including beneficial ownership transparency and legal formalities, was strictly observed at incorporation.</p>
+                   <h3 className="font-semibold text-foreground text-xl mt-4">Looking Forward</h3>
+                  <p className="text-muted-foreground">Building on the geological promise of Gilgit-Baltistan, the company’s leadership envisions sustainable growth, community engagement, and technological advancement as keys to expanding operations. DURR MINE & MINERALS (PRIVATE) LIMITED aims to be a leading regional player, pursuing excellence in mineral resource development while upholding environmental and ethical standards.</p>
                 </CardContent>
               </Card>
             </div>
@@ -82,10 +96,12 @@ export default async function CompanyDetailPage({ params }: { params: { id: stri
               <Card>
                 <CardHeader className="pb-2">
                   <CardTitle className="text-2xl font-semibold text-foreground">Status</CardTitle>
+                  <div className="pt-1">
+                    <Badge className="bg-green-600 text-white hover:bg-green-600/90">Operational</Badge>
+                  </div>
                 </CardHeader>
-                <CardContent className="pt-2">
-                  <Badge className="bg-green-600 text-white hover:bg-green-600/90">Operational</Badge>
-                  <h2 className="text-2xl font-semibold text-foreground mt-4 mb-3">Projects</h2>
+                <CardContent className="pt-4">
+                  <h2 className="text-2xl font-semibold text-foreground mb-3">Projects</h2>
                   <ul className="space-y-3">
                     <li className="flex items-center gap-3">
                       <MapPin className="h-5 w-5 text-muted-foreground" />
