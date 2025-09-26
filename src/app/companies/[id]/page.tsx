@@ -229,7 +229,7 @@ export default async function CompanyDetailPage({ params }: { params: { id: stri
                             </TableCell>
                             <TableCell className="text-right">
                                 <Button variant="ghost" size="icon" asChild>
-                                    <a href={doc.url} download>
+                                    <a href={doc.url} download target="_blank" rel="noopener noreferrer">
                                         <Download className="h-4 w-4" />
                                         <span className="sr-only">Download</span>
                                     </a>
