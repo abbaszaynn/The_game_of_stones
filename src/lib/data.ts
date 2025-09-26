@@ -159,7 +159,10 @@ const news: NewsArticle[] = [
 ];
 
 export async function getCompanies(): Promise<Company[]> {
-  return companies;
+  return companies.map(company => ({
+    ...company,
+    logoUrl: company.logoUrl || findImage('logo-durr'),
+  }));
 }
 
 export async function getCompanyById(id: string): Promise<Company | undefined> {
