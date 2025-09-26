@@ -1,9 +1,8 @@
 
 'use client';
 
-import { useState } from 'react';
-import { APIProvider, Map, InfoWindow } from '@vis.gl/react-google-maps';
-import { Polygon } from '@vis.gl/react-google-maps';
+import { useState, useEffect } from 'react';
+import { APIProvider, Map, InfoWindow, useMap } from '@vis.gl/react-google-maps';
 import type { Company } from '@/lib/types';
 import { Button } from '../ui/button';
 import Link from 'next/link';
@@ -16,7 +15,6 @@ interface MapContainerProps {
 // Helper to calculate the center of a polygon
 const getPolygonCenter = (polygon: { lat: number; lng: number }[]) => {
   if (typeof window === 'undefined' || !window.google) {
-    // Return a default if google is not available (e.g., during SSR)
     return { lat: 0, lng: 0 };
   }
   const bounds = new window.google.maps.LatLngBounds();
@@ -24,6 +22,44 @@ const getPolygonCenter = (polygon: { lat: number; lng: number }[]) => {
   const center = bounds.getCenter();
   return { lat: center.lat(), lng: center.lng() };
 };
+
+const Polygons = ({ companies, onPolygonClick }: { companies: Company[], onPolygonClick: (company: Company, location: Company['locations'][0]) => void }) => {
+  const map = useMap();
+
+  useEffect(() => {
+    if (!map) return;
+
+    const allPolygons: google.maps.Polygon[] = [];
+
+    companies.forEach(company => {
+      company.locations.forEach(location => {
+        const polygon = new google.maps.Polygon({
+          paths: location.polygon,
+          strokeColor: "#FFC107",
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: "#FFC107",
+          fillOpacity: 0.35,
+          map: map,
+        });
+
+        polygon.addListener('click', () => {
+          onPolygonClick(company, location);
+        });
+
+        allPolygons.push(polygon);
+      });
+    });
+
+    // Cleanup function to remove polygons when the component unmounts or dependencies change
+    return () => {
+      allPolygons.forEach(p => p.setMap(null));
+    };
+  }, [map, companies, onPolygonClick]);
+
+  return null; // This component does not render anything itself
+};
+
 
 export default function MapContainer({ companies, apiKey }: MapContainerProps) {
   const [selected, setSelected] = useState<{ company: Company; location: Company['locations'][0] } | null>(null);
@@ -44,21 +80,7 @@ export default function MapContainer({ companies, apiKey }: MapContainerProps) {
         mapId={mapId}
         className="h-full w-full"
       >
-        {companies.map((company) =>
-          company.locations.map((location) => (
-            <Polygon
-              key={`${company.id}-${location.name}`}
-              paths={location.polygon}
-              strokeColor="#FFC107"
-              strokeOpacity={0.8}
-              strokeWeight={2}
-              fillColor="#FFC107"
-              fillOpacity={0.35}
-              clickable={true}
-              onClick={() => handlePolygonClick(company, location)}
-            />
-          ))
-        )}
+        <Polygons companies={companies} onPolygonClick={handlePolygonClick} />
 
         {selected && (
           <InfoWindow
