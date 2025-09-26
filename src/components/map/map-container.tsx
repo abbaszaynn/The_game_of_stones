@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { APIProvider, Map, InfoWindow, Polygon } from '@vis.gl/react-google-maps';
+import { APIProvider, Map, InfoWindow } from '@vis.gl/react-google-maps';
+import { Polygon } from '@vis.gl/react-google-maps';
 import type { Company } from '@/lib/types';
 import { Button } from '../ui/button';
 import Link from 'next/link';
