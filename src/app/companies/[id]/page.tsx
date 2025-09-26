@@ -62,10 +62,10 @@ export default async function CompanyDetailPage({ params }: { params: { id: stri
             </div>
             <div className="space-y-8">
               <Card>
-                <CardHeader>
+                <CardHeader className="pb-2">
                   <CardTitle>Status</CardTitle>
                 </CardHeader>
-                <CardContent className="pt-2">
+                <CardContent>
                     <Badge className="bg-green-600 text-white hover:bg-green-600/90 mb-4">Operational</Badge>
                     <h2 className="text-2xl font-semibold text-foreground mb-3">Projects</h2>
                     <ul className="space-y-3">
