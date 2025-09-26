@@ -62,7 +62,7 @@ export default async function CompanyDetailPage({ params }: { params: { id: stri
             <div className="space-y-8">
               <Card>
                 <CardHeader>
-                  <CardTitle>Projects</CardTitle>
+                  <CardTitle>Status</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-4">
