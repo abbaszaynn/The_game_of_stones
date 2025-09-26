@@ -1,3 +1,4 @@
+
 import { getCompanyById } from '@/lib/data';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
@@ -61,11 +62,11 @@ export default async function CompanyDetailPage({ params }: { params: { id: stri
             </div>
             <div className="space-y-8">
               <Card>
-                <CardHeader>
+                <CardHeader className="flex flex-row items-center justify-between">
                   <CardTitle>Status</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
                   <Badge className="bg-green-600 text-white hover:bg-green-600/90">Operational</Badge>
+                </CardHeader>
+                <CardContent className="space-y-4 pt-4">
                   <ul className="space-y-2">
                     {company.projects.map((project, index) => (
                       <li key={index} className="flex items-center justify-between">
