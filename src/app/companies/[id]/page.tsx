@@ -76,24 +76,6 @@ export default async function CompanyDetailPage({ params }: { params: { id: stri
             </div>
             <div className="space-y-8">
               <Card>
-                <CardHeader>
-                  <CardTitle>Leadership</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  {company.leadership.map((leader, index) => (
-                    <div key={index} className="flex items-center gap-3">
-                      <div className="p-2 rounded-full bg-secondary">
-                        <User className="h-5 w-5 text-muted-foreground" />
-                      </div>
-                      <div>
-                        <p className="font-semibold">{leader.name}</p>
-                        <p className="text-sm text-muted-foreground">{leader.title}</p>
-                      </div>
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
-              <Card>
                 <CardHeader className="pb-1">
                   <CardTitle className="text-2xl font-semibold text-foreground">Status</CardTitle>
                   <div className="pt-1">
@@ -112,6 +94,24 @@ export default async function CompanyDetailPage({ params }: { params: { id: stri
                       <span className="font-medium text-foreground">Gultari Project</span>
                     </li>
                   </ul>
+                </CardContent>
+              </Card>
+               <Card>
+                <CardHeader>
+                  <CardTitle>Leadership</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  {company.leadership.map((leader, index) => (
+                    <div key={index} className="flex items-center gap-3">
+                      <div className="p-2 rounded-full bg-secondary">
+                        <User className="h-5 w-5 text-muted-foreground" />
+                      </div>
+                      <div>
+                        <p className="font-semibold">{leader.name}</p>
+                        <p className="text-sm text-muted-foreground">{leader.title}</p>
+                      </div>
+                    </div>
+                  ))}
                 </CardContent>
               </Card>
               <Card>
