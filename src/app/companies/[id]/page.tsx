@@ -62,11 +62,11 @@ export default async function CompanyDetailPage({ params }: { params: { id: stri
             </div>
             <div className="space-y-8">
               <Card>
-                <CardHeader className="flex flex-row items-center justify-between">
+                <CardHeader>
                   <CardTitle>Status</CardTitle>
-                  <Badge className="bg-green-600 text-white hover:bg-green-600/90">Operational</Badge>
                 </CardHeader>
                 <CardContent className="space-y-4 pt-4">
+                    <Badge className="bg-green-600 text-white hover:bg-green-600/90 mb-4">Operational</Badge>
                     <h2 className="text-2xl font-semibold text-foreground mb-3">Projects</h2>
                     <ul className="space-y-3">
                         <li className="flex items-center gap-3">
