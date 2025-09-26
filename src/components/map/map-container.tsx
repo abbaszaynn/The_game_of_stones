@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { APIProvider, Map, InfoWindow, Polygon, AdvancedMarker } from '@vis.gl/react-google-maps';
+import { APIProvider, Map, InfoWindow, Polygon } from '@vis.gl/react-google-maps';
 import type { Company } from '@/lib/types';
 import { Button } from '../ui/button';
 import Link from 'next/link';
@@ -27,10 +27,6 @@ export default function MapContainer({ companies, apiKey }: MapContainerProps) {
   const [selected, setSelected] = useState<{ company: Company; location: Company['locations'][0] } | null>(null);
 
   const mapId = process.env.NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID || 'DEMO_MAP_ID';
-  
-  const handleMarkerClick = (company: Company, location: Company['locations'][0]) => {
-    setSelected({ company, location });
-  };
   
   const handlePolygonClick = (company: Company, location: Company['locations'][0]) => {
     setSelected({ company, location });
