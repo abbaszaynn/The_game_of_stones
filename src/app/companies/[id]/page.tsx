@@ -58,6 +58,8 @@ export default async function CompanyDetailPage({ params }: { params: { id: stri
                   <p className="text-muted-foreground">{company.history}</p>
                 </CardContent>
               </Card>
+            </div>
+            <div className="space-y-8">
               <Card>
                 <CardHeader>
                   <CardTitle>Projects</CardTitle>
@@ -73,8 +75,6 @@ export default async function CompanyDetailPage({ params }: { params: { id: stri
                   </ul>
                 </CardContent>
               </Card>
-            </div>
-            <div className="space-y-8">
               <Card>
                 <CardHeader>
                   <CardTitle>Leadership</CardTitle>
