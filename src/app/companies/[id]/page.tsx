@@ -81,11 +81,11 @@ export default async function CompanyDetailPage({ params }: { params: { id: stri
               </Card>
               <Card>
                 <CardHeader className="pb-2">
-                  <CardTitle>Status</CardTitle>
+                  <CardTitle className="text-2xl font-semibold text-foreground">Status</CardTitle>
                 </CardHeader>
-                <CardContent className="pt-4 space-y-3">
-                  <Badge className="bg-green-600 text-white hover:bg-green-600/90 mb-2">Operational</Badge>
-                  <h2 className="text-2xl font-semibold text-foreground">Projects</h2>
+                <CardContent className="pt-2">
+                  <Badge className="bg-green-600 text-white hover:bg-green-600/90">Operational</Badge>
+                  <h2 className="text-2xl font-semibold text-foreground mt-4 mb-3">Projects</h2>
                   <ul className="space-y-3">
                     <li className="flex items-center gap-3">
                       <MapPin className="h-5 w-5 text-muted-foreground" />
@@ -100,7 +100,7 @@ export default async function CompanyDetailPage({ params }: { params: { id: stri
               </Card>
                <Button asChild size="lg" className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
                 <Link href="/map">
-                  <Globe className="mr-2 h-5 w-5" /> Launch Virtual Tour
+                  <Globe className="mr-2 h-5 w-5" /> Visit the Mines
                 </Link>
               </Button>
             </div>
