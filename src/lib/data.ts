@@ -4,10 +4,10 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 const findImage = (id: string) => PlaceHolderImages.find((img) => img.id === id)?.imageUrl || '';
 
 const documents: Document[] = [
-  { id: 'doc-1', companyId: 'durr-mines', title: 'Q1 2024 Geological Survey', type: 'Geological Report', url: '#' },
-  { id: 'doc-2', companyId: 'durr-mines', title: 'Skardu Region Mining License', type: 'License', url: '#' },
-  { id: 'doc-3', companyId: 'earth-lux', title: 'Jutial Nala Prospectus', type: 'Geological Report', url: '#' },
-  { id: 'doc-4', companyId: 'earth-lux', title: 'Annual Financial Summary 2023', type: 'Financial Summary', url: '#' },
+  { id: 'doc-1', companyId: 'durr-mines-and-minerals', title: 'Q1 2024 Geological Survey', type: 'Geological Report', url: '#' },
+  { id: 'doc-2', companyId: 'durr-mines-and-minerals', title: 'Skardu Region Mining License', type: 'License', url: '#' },
+  { id: 'doc-3', companyId: 'earth-lux-mines', title: 'Jutial Nala Prospectus', type: 'Geological Report', url: '#' },
+  { id: 'doc-4', companyId: 'earth-lux-mines', title: 'Annual Financial Summary 2023', type: 'Financial Summary', url: '#' },
   { id: 'doc-5', companyId: 'himalayan-minerals', title: 'Kargah Nala Concession Paper', type: 'Concession Paper', url: '#' },
   { id: 'doc-6', companyId: 'himalayan-minerals', title: 'Environmental Impact Assessment', type: 'Geological Report', url: '#' },
 ];
@@ -28,7 +28,7 @@ const companies: Company[] = [
     investorContacts: [{ name: 'Investor Relations Dept.', email: 'invest@durrmines.com', phone: '+1-202-555-0175' }],
     locations: [
       {
-        name: 'Main Skardu Mine',
+        name: 'Bagicha Marble Mine',
         polygon: [
           { lat: 35.606778, lng: 75.374582 },
           { lat: 35.611378, lng: 75.356035 },
@@ -38,14 +38,31 @@ const companies: Company[] = [
           { lat: 35.570902, lng: 75.398565 },
           { lat: 35.575398, lng: 75.383905 },
           { lat: 35.599013, lng: 75.373735 },
-          { lat: 35.606778, lng: 75.374582 }
+        ],
+      },
+       {
+        name: 'Gultari Copper Mine',
+        polygon: [
+          { lat: 34.746706, lng: 75.630010 },
+          { lat: 34.740339, lng: 75.644094 },
+          { lat: 34.721708, lng: 75.661562 },
+          { lat: 34.701370, lng: 75.671159 },
+          { lat: 34.698445, lng: 75.686172 },
+          { lat: 34.692636, lng: 75.694130 },
+          { lat: 34.683967, lng: 75.685651 },
+          { lat: 34.689811, lng: 75.657918 },
+          { lat: 34.692394, lng: 75.611105 },
+          { lat: 34.704402, lng: 75.607838 },
+          { lat: 34.703439, lng: 75.646978 },
+          { lat: 34.737789, lng: 75.629405 },
+          { lat: 34.744648, lng: 75.624278 },
         ],
       },
     ],
     images: [findImage('gallery-durr-1'), findImage('gallery-durr-2')],
     videos: [{id: 'vid-1', url: 'https://www.youtube.com/embed/dQw4w9WgXcQ', title: 'Drone Flyover of Skardu Site'}],
     virtualTourUrl: 'https://earth.google.com/web/@35.586,-75.367,2712a,15000d,35y,0h,0t,0r',
-    documents: documents.filter(d => d.companyId === 'durr-mines'),
+    documents: documents.filter(d => d.companyId === 'durr-mines-and-minerals'),
   },
   {
     id: 'earth-lux-mines',
@@ -76,7 +93,7 @@ const companies: Company[] = [
     images: [findImage('gallery-lux-1'), findImage('gallery-lux-2')],
     videos: [{id: 'vid-2', url: 'https://www.youtube.com/embed/dQw4w9WgXcQ', title: 'Community Projects in Gilgit'}],
     virtualTourUrl: 'https://earth.google.com/web/@35.907,-74.352,2465a,2000d,35y,0h,0t,0r',
-    documents: documents.filter(d => d.companyId === 'earth-lux'),
+    documents: documents.filter(d => d.companyId === 'earth-lux-mines'),
   },
   {
     id: 'himalayan-minerals',

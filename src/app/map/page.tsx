@@ -11,7 +11,7 @@ export default async function MapPage() {
       <div className="container mx-auto px-4 py-12 text-center">
         <h1 className="text-2xl font-bold text-destructive">Configuration Error</h1>
         <p className="text-muted-foreground mt-2">
-          The Google Maps API key is missing. Please add it to your environment variables.
+          The Google Maps API key is missing. Please add it to your environment variables in a .env.local file.
         </p>
       </div>
     );

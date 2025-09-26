@@ -62,25 +62,6 @@ export default async function CompanyDetailPage({ params }: { params: { id: stri
             </div>
             <div className="space-y-8">
               <Card>
-                <CardHeader className="pb-2">
-                  <CardTitle>Status</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <Badge className="bg-green-600 text-white hover:bg-green-600/90 mb-4">Operational</Badge>
-                    <h2 className="text-2xl font-semibold text-foreground mb-3">Projects</h2>
-                    <ul className="space-y-3">
-                        <li className="flex items-center gap-3">
-                            <MapPin className="h-5 w-5 text-muted-foreground" />
-                            <span className="font-medium text-foreground">Skardu Topaz Project</span>
-                        </li>
-                        <li className="flex items-center gap-3">
-                            <MapPin className="h-5 w-5 text-muted-foreground" />
-                            <span className="font-medium text-foreground">Gultari Project</span>
-                        </li>
-                    </ul>
-                </CardContent>
-              </Card>
-              <Card>
                 <CardHeader>
                   <CardTitle>Leadership</CardTitle>
                 </CardHeader>
@@ -98,33 +79,30 @@ export default async function CompanyDetailPage({ params }: { params: { id: stri
                   ))}
                 </CardContent>
               </Card>
-               <Dialog>
-                <DialogTrigger asChild>
-                  <Button size="lg" className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
-                    <Globe className="mr-2 h-5 w-5" /> Launch Virtual Tour
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="max-w-4xl h-[80vh]">
-                  <DialogHeader>
-                    <DialogTitle>Virtual Mine Tour: {company.name}</DialogTitle>
-                    <DialogDescription>
-                      Explore the mine site in 3D. Use your mouse to pan, zoom, and tilt the view.
-                    </DialogDescription>
-                  </DialogHeader>
-                  <div className="h-full w-full rounded-lg overflow-hidden border">
-                    <iframe
-                        src={company.virtualTourUrl}
-                        width="100%"
-                        height="100%"
-                        style={{ border: 0 }}
-                        allowFullScreen
-                        loading="lazy"
-                        referrerPolicy="no-referrer-when-downgrade"
-                        title={`Virtual tour of ${company.name}`}
-                    ></iframe>
-                  </div>
-                </DialogContent>
-              </Dialog>
+              <Card>
+                <CardHeader className="pb-2">
+                  <CardTitle>Status</CardTitle>
+                </CardHeader>
+                <CardContent className="pt-4 space-y-3">
+                  <Badge className="bg-green-600 text-white hover:bg-green-600/90 mb-2">Operational</Badge>
+                  <h2 className="text-2xl font-semibold text-foreground">Projects</h2>
+                  <ul className="space-y-3">
+                    <li className="flex items-center gap-3">
+                      <MapPin className="h-5 w-5 text-muted-foreground" />
+                      <span className="font-medium text-foreground">Skardu Topaz Project</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <MapPin className="h-5 w-5 text-muted-foreground" />
+                      <span className="font-medium text-foreground">Gultari Project</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+               <Button asChild size="lg" className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
+                <Link href="/map">
+                  <Globe className="mr-2 h-5 w-5" /> Launch Virtual Tour
+                </Link>
+              </Button>
             </div>
           </div>
         </TabsContent>
