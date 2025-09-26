@@ -172,8 +172,8 @@ export default async function CompanyDetailPage({ params }: { params: { id: stri
                     <CarouselItem key={index}>
                       <div className="p-1">
                         <Card>
-                          <CardContent className="flex aspect-[21/9] items-center justify-center p-0">
-                            <Image src={src} alt={`Gallery image ${index + 1}`} width={1280} height={548} className="rounded-lg object-cover" data-ai-hint="mining site" />
+                          <CardContent className="flex aspect-[16/10] items-center justify-center p-0">
+                            <Image src={src} alt={`Gallery image ${index + 1}`} width={1280} height={800} className="rounded-lg object-cover" data-ai-hint="mining site" />
                           </CardContent>
                         </Card>
                       </div>
@@ -272,3 +272,5 @@ export default async function CompanyDetailPage({ params }: { params: { id: stri
     </div>
   );
 }
+
+    
