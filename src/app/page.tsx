@@ -36,11 +36,11 @@ export default async function Home() {
             MineSight Global provides unparalleled insights into the world's leading mining operations. Explore rich data, interactive maps, and real-time news.
           </p>
           <div className="mt-8">
-            <ImageGallery images={galleryImages}>
-                <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
-                    View Gallery <Camera className="ml-2 h-5 w-5" />
-                </Button>
-            </ImageGallery>
+            <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
+              <Link href="/map">
+                <Globe className="mr-2 h-5 w-5" /> Visit the Mines
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
@@ -83,11 +83,11 @@ export default async function Home() {
             </p>
           </div>
           <div className="mx-auto w-full max-w-sm space-y-2">
-             <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
-              <Link href="/map">
-                <Globe className="mr-2 h-5 w-5" /> Visit the Mines
-              </Link>
-            </Button>
+            <ImageGallery images={galleryImages}>
+                <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
+                    View Gallery <Camera className="ml-2 h-5 w-5" />
+                </Button>
+            </ImageGallery>
           </div>
         </div>
       </section>
