@@ -6,6 +6,9 @@ import Image from 'next/image';
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
 import {
@@ -29,6 +32,12 @@ export default function ImageGallery({ images, children }: ImageGalleryProps) {
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="max-w-7xl w-full h-[90vh] bg-card/90 backdrop-blur-sm p-4 md:p-6 flex flex-col md:flex-row gap-4">
+        <DialogHeader className="sr-only">
+          <DialogTitle>Image Gallery</DialogTitle>
+          <DialogDescription>
+            A carousel of images from our mining sites. View images and their details.
+          </DialogDescription>
+        </DialogHeader>
         <div className="md:w-2/3 h-full">
             <Carousel className="w-full h-full">
                 <CarouselContent className="h-full">
