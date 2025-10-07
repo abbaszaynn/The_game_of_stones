@@ -1,3 +1,4 @@
+
 export interface MineLocation {
   name: string;
   polygon: { lat: number; lng: number }[];
@@ -16,6 +17,16 @@ export interface Video {
   id: string;
   url: string;
   title: string;
+}
+
+export interface GalleryImage {
+    id: string;
+    url: string;
+    title: string;
+    description: string;
+    companyName: string;
+    mineral?: string;
+    properties?: string;
 }
 
 export interface Company {

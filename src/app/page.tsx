@@ -1,16 +1,18 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { getCompanies } from '@/lib/data';
+import { getCompanies, getGalleryImages } from '@/lib/data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import CompanyCard from '@/components/company-card';
-import { ArrowRight, Globe, Map as MapIcon } from 'lucide-react';
+import { ArrowRight, Globe, Camera } from 'lucide-react';
+import ImageGallery from '@/components/image-gallery';
 
 export default async function Home() {
   const companies = await getCompanies();
   const heroImage = PlaceHolderImages.find((img) => img.id === 'hero-1');
+  const galleryImages = await getGalleryImages();
 
   return (
     <>
@@ -34,11 +36,11 @@ export default async function Home() {
             MineSight Global provides unparalleled insights into the world's leading mining operations. Explore rich data, interactive maps, and real-time news.
           </p>
           <div className="mt-8">
-            <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
-              <Link href="/map">
-                Visit the Mines <MapIcon className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
+            <ImageGallery images={galleryImages}>
+                <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
+                    View Gallery <Camera className="ml-2 h-5 w-5" />
+                </Button>
+            </ImageGallery>
           </div>
         </div>
       </section>

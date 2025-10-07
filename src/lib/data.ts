@@ -1,5 +1,5 @@
 
-import type { Company, NewsArticle, Document } from '@/lib/types';
+import type { Company, NewsArticle, Document, GalleryImage } from '@/lib/types';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const findImage = (id: string) => PlaceHolderImages.find((img) => img.id === id)?.imageUrl || '';
@@ -14,6 +14,23 @@ const documents: Document[] = [
   { id: 'doc-6', companyId: 'himalayan-minerals', title: 'Environmental Impact Assessment', type: 'Geological Report', url: '#' },
 ];
 
+const galleryImages: GalleryImage[] = [
+    { id: 'gal-1', url: 'https://i.postimg.cc/Bt1LhVfj/IMG-20250921-WA0003.jpg', title: 'Marble Quarry', description: 'Initial survey of the Bagicha marble quarry.', companyName: 'Durr Mines and Minerals', mineral: 'Marble', properties: 'High purity, suitable for architectural use.' },
+    { id: 'gal-2', url: 'https://i.postimg.cc/wyntqhLK/IMG-20250921-WA0004.jpg', title: 'Copper Vein', description: 'Exposed copper vein at the Gultari site.', companyName: 'Durr Mines and Minerals', mineral: 'Copper', properties: 'Rich polymetallic ore with traces of iron.' },
+    { id: 'gal-3', url: 'https://i.postimg.cc/K4gk9HhF/IMG-20250921-WA0005.jpg', title: 'Site Overview', description: 'Aerial view of the Gultari project area.', companyName: 'Durr Mines and Minerals' },
+    { id: 'gal-4', url: 'https://i.postimg.cc/DJRWvqLT/IMG-20250921-WA0006.jpg', title: 'Geological Mapping', description: 'Team conducting geological mapping and sampling.', companyName: 'Durr Mines and Minerals' },
+    { id: 'gal-5', url: 'https://i.postimg.cc/9zqRxnH2/IMG-20250921-WA0007.jpg', title: 'Core Samples', description: 'Extracted core samples ready for analysis.', companyName: 'Durr Mines and Minerals', mineral: 'Polymetallic Ore' },
+    { id: 'gal-6', url: 'https://i.postimg.cc/ZWJW5YBy/IMG-20250921-WA0008.jpg', title: 'Marble Block', description: 'A large, high-quality marble block extracted from Bagicha.', companyName: 'Durr Mines and Minerals', mineral: 'Marble' },
+    { id: 'gal-7', url: 'https://i.postimg.cc/MnznpZMZ/IMG-20250921-WA0010.jpg', title: 'Excavation Site', description: 'Heavy machinery at the main excavation site.', companyName: 'Durr Mines and Minerals' },
+    { id: 'gal-8', url: 'https://i.postimg.cc/1fhgbryM/IMG-20250921-WA0011.jpg', title: 'Gultari Landscape', description: 'The rugged landscape surrounding the Gultari copper deposits.', companyName: 'Durr Mines and Minerals' },
+    { id: 'gal-9', url: 'https://i.postimg.cc/LJmJ84Yg/IMG-20250921-WA0012.jpg', title: 'Polished Marble', description: 'Sample of polished marble showing its unique veining.', companyName: 'Durr Mines and Minerals', mineral: 'Marble' },
+    { id: 'gal-10', url: 'https://i.postimg.cc/G4b4m38z/IMG-20250921-WA0013.jpg', title: 'Ore Transport', description: 'Transporting raw ore for processing.', companyName: 'Durr Mines and Minerals' },
+    { id: 'gal-11', url: 'https://i.postimg.cc/68zy2snb/IMG-20250921-WA0014.jpg', title: 'Exploration Team', description: 'The exploration team at a new potential drill site.', companyName: 'Durr Mines and Minerals' },
+    { id: 'gal-12', url: 'https://i.postimg.cc/w1F7yKDp/IMG-20250921-WA0015.jpg', title: 'Site Access Road', description: 'Developing infrastructure and access roads to the mining sites.', companyName: 'Durr Mines and Minerals' },
+    { id: 'gal-13', url: 'https://i.postimg.cc/GB29vMjb/IMG-20250921-WA0016.jpg', title: 'Sunset at the Mine', description: 'A view of the Bagicha mine at sunset.', companyName: 'Durr Mines and Minerals' },
+    { id: 'gal-14', url: 'https://i.postimg.cc/cKH6fDcS/IMG-20250921-WA0017.jpg', title: 'Raw Copper Ore', description: 'Close-up of raw copper ore from the Gultari deposit.', companyName: 'Durr Mines and Minerals', mineral: 'Copper', properties: 'High-grade chalcopyrite.' },
+];
+
 const companies: Company[] = [
   {
     id: 'durr-mines-and-minerals',
@@ -21,6 +38,7 @@ const companies: Company[] = [
     tagline: 'Precision in Extraction, Excellence in Delivery.',
     description: 'DURR MINE & MINERALS (PRIVATE) LIMITED is a private limited company based in Gilgit, Gilgit-Baltistan, Pakistan, formally incorporated under the Companies Act, 2017. The company was established to focus on a broad spectrum of mining and minerals operations, setting a foundation for growth in the region\'s natural resources sector.',
     history: 'Founded by Tabish Hassan and Daniyal Ali, DURR MINE & MINERALS (PRIVATE) LIMITED was officially incorporated in June 2025, marking a new chapter in the exploration and development of mineral assets in northern Pakistan. From the outset, the company set its registered office in Mohallah Khomer Yarkote, Gilgit, a region known for its mineral richness and strategic significance.',
+    logoUrl: 'https://i.postimg.cc/Bt1LhVfj/IMG-20250921-WA0003.jpg',
     leadership: [
       { name: 'Tabish Hassan', title: 'CEO & Founder' },
       { name: 'Daniyal Ali', title: 'Director' },
@@ -207,5 +225,6 @@ export async function getDocuments(): Promise<Document[]> {
     return allDocsWithCompanyName;
 }
 
-    
-    
+export async function getGalleryImages(): Promise<GalleryImage[]> {
+    return galleryImages;
+}
