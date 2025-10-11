@@ -40,7 +40,7 @@ export interface Company {
   projects: { name: string; status: string }[];
   investorContacts: { name: string; email: string; phone: string }[];
   locations: MineLocation[];
-  images: string[];
+  images: GalleryImage[];
   videos: Video[];
   virtualTourUrl: string;
   documents: Document[];

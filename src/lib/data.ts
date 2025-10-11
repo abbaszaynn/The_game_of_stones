@@ -31,7 +31,7 @@ const galleryImages: GalleryImage[] = [
     { id: 'gal-14', url: 'https://images.unsplash.com/photo-1598585461494-0a619861e8a3?q=80&w=2070&auto=format&fit=crop', title: 'Agate', description: 'A slice of agate with beautiful banding.', companyName: 'Durr Mines and Minerals', mineral: 'Agate' }
 ];
 
-const companies: Company[] = [
+const companies: Omit<Company, 'images'> & { images: (string | GalleryImage)[] }[] = [
   {
     id: 'durr-mines-and-minerals',
     name: 'Durr Mines and Minerals',
@@ -78,22 +78,7 @@ const companies: Company[] = [
         ],
       },
     ],
-    images: [
-        'https://images.unsplash.com/photo-1588152763435-0de3c7bf35f6?q=80&w=1974&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1617393439972-8501a2434a93?q=80&w=1964&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1620188460115-d72b07f8a964?q=80&w=1974&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1590422157596-f6c6a666f272?q=80&w=1974&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1620188526398-9e579934e23c?q=80&w=1974&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1604187351543-03e583489851?q=80&w=1974&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1589935447047-bf37b37f3747?q=80&w=1974&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1616450639910-3c22b97f9c2d?q=80&w=1974&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1629814467368-a4e320ab1621?q=80&w=1968&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1588152755160-4f964a2c14c5?q=80&w=1974&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1525542813454-b336369e8557?q=80&w=1974&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1615147321523-a5539c362058?q=80&w=2070&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1610486036899-7901b0f5854b?q=80&w=1974&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1598585461494-0a619861e8a3?q=80&w=2070&auto=format&fit=crop'
-    ],
+    images: galleryImages.filter(img => img.companyName === 'Durr Mines and Minerals'),
     videos: [{id: 'vid-1', url: 'https://www.youtube.com/embed/dQw4w9WgXcQ', title: 'Drone Flyover of Skardu Site'}],
     virtualTourUrl: 'https://earth.google.com/web/@35.586,-75.367,2712a,15000d,35y,0h,0t,0r',
     documents: documents.filter(d => d.companyId === 'durr-mines-and-minerals'),
@@ -191,22 +176,53 @@ const news: NewsArticle[] = [
   },
 ];
 
+function processCompanyImages(company: Omit<Company, 'images'> & { images: (string | GalleryImage)[] }): Company {
+    const processedImages = company.images.map(img => {
+        if (typeof img === 'string') {
+            // It's a URL string, try to find a match in galleryImages
+            const matchedImage = galleryImages.find(gImg => gImg.url === img);
+            if (matchedImage) return matchedImage;
+            
+            // Or if it's a placeholder ID
+            const placeholderUrl = findImage(img);
+            if (placeholderUrl) {
+                 const matchedImageFromPlaceholder = galleryImages.find(gImg => gImg.url === placeholderUrl);
+                 if(matchedImageFromPlaceholder) return matchedImageFromPlaceholder;
+            }
+
+            // If no match, create a basic GalleryImage object
+            return {
+                id: `img-${Math.random()}`,
+                url: img,
+                title: 'Company Image',
+                description: `An image from ${company.name}`,
+                companyName: company.name,
+            };
+        }
+        return img; // It's already a GalleryImage object
+    });
+
+    return { ...company, images: processedImages };
+}
+
+
 export async function getCompanies(): Promise<Company[]> {
-  return companies.map(company => ({
-    ...company,
-    logoUrl: company.logoUrl || findImage('logo-durr'),
-  }));
+    return companies.map(processCompanyImages).map(company => ({
+        ...company,
+        logoUrl: company.logoUrl || findImage('logo-durr'),
+    }));
 }
 
 export async function getCompanyById(id: string): Promise<Company | undefined> {
-  const company = companies.find((company) => company.id === id);
-  if (company) {
-    // Ensure the logo is always present, using a placeholder if needed.
-    if (!company.logoUrl) {
-      company.logoUrl = findImage('logo-durr'); // Default placeholder
+  const companyData = companies.find((company) => company.id === id);
+  if (companyData) {
+    const processedCompany = processCompanyImages(companyData);
+    if (!processedCompany.logoUrl) {
+      processedCompany.logoUrl = findImage('logo-durr'); // Default placeholder
     }
+    return processedCompany;
   }
-  return company;
+  return undefined;
 }
 
 
