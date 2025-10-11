@@ -19,9 +19,10 @@ import {
   CarouselPrevious,
   type CarouselApi,
 } from '@/components/ui/carousel';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import type { GalleryImage } from '@/lib/types';
-import { Gem, Building, Info } from 'lucide-react';
+import { Gem, Building, Info, Maximize } from 'lucide-react';
+import { Button } from './ui/button';
 
 interface ImageGalleryProps {
   images: GalleryImage[];
@@ -33,6 +34,7 @@ export default function ImageGallery({ images, children }: ImageGalleryProps) {
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
   const [currentImage, setCurrentImage] = React.useState<GalleryImage | null>(null);
+  const [fullScreenImage, setFullScreenImage] = React.useState<GalleryImage | null>(null);
 
   React.useEffect(() => {
     if (!api) {
@@ -44,8 +46,9 @@ export default function ImageGallery({ images, children }: ImageGalleryProps) {
     setCurrentImage(images[api.selectedScrollSnap()]);
 
     const onSelect = () => {
-      setCurrent(api.selectedScrollSnap() + 1);
-      setCurrentImage(images[api.selectedScrollSnap()]);
+      const selectedSnap = api.selectedScrollSnap();
+      setCurrent(selectedSnap + 1);
+      setCurrentImage(images[selectedSnap]);
     };
 
     api.on('select', onSelect);
@@ -54,6 +57,14 @@ export default function ImageGallery({ images, children }: ImageGalleryProps) {
       api.off('select', onSelect);
     };
   }, [api, images]);
+  
+  const openFullScreen = (image: GalleryImage) => {
+    setFullScreenImage(image);
+  };
+
+  const closeFullScreen = () => {
+    setFullScreenImage(null);
+  };
 
   return (
     <Dialog>
@@ -70,7 +81,7 @@ export default function ImageGallery({ images, children }: ImageGalleryProps) {
             <CarouselContent className="h-full">
               {images.map((image) => (
                 <CarouselItem key={image.id} className="h-full">
-                  <div className="w-full h-full relative rounded-lg overflow-hidden">
+                  <div className="w-full h-full relative rounded-lg overflow-hidden group">
                     <Image
                       src={image.url}
                       alt={image.title}
@@ -78,6 +89,15 @@ export default function ImageGallery({ images, children }: ImageGalleryProps) {
                       className="object-contain"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 1000px"
                     />
+                    <div 
+                      className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer"
+                      onClick={() => openFullScreen(image)}
+                    >
+                      <Button variant="outline" size="icon">
+                        <Maximize className="w-6 h-6"/>
+                        <span className="sr-only">View full screen</span>
+                      </Button>
+                    </div>
                   </div>
                 </CarouselItem>
               ))}
@@ -120,6 +140,19 @@ export default function ImageGallery({ images, children }: ImageGalleryProps) {
           )}
         </div>
       </DialogContent>
+      {fullScreenImage && (
+        <Dialog open={!!fullScreenImage} onOpenChange={closeFullScreen}>
+            <DialogContent className="max-w-[95vw] max-h-[95vh] w-auto h-auto p-0 bg-transparent border-0 flex items-center justify-center">
+                 <Image
+                    src={fullScreenImage.url}
+                    alt={fullScreenImage.title}
+                    width={1920}
+                    height={1080}
+                    className="max-w-full max-h-[95vh] object-contain rounded-lg"
+                 />
+            </DialogContent>
+        </Dialog>
+      )}
     </Dialog>
   );
 }
