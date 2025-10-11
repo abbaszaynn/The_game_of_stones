@@ -30,7 +30,7 @@ export default async function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent/60 to-background" />
         <div className="relative container mx-auto px-4 md:px-6 h-full flex flex-col items-center justify-center text-center text-primary-foreground pt-48">
           <h1 className="text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl font-headline text-accent text-shadow">
-            The World of Minerals
+            THE WORLD OF MINES
           </h1>
           <p className="mt-4 max-w-3xl text-lg md:text-xl text-black">
             MineSight Global provides unparalleled insights into the world's leading mining operations. Explore rich data, interactive maps, and real-time news.
