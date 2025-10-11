@@ -1,5 +1,5 @@
 
-import { getCompanyById, getGalleryImages } from '@/lib/data';
+import { getCompanyById } from '@/lib/data';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -7,9 +7,9 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
-import { Briefcase, Download, Globe, Mail, MapPin, Phone, User, Gem, Layers, Camera } from 'lucide-react';
+import { Briefcase, Download, Globe, Mail, MapPin, Phone, User, Gem, Layers } from 'lucide-react';
 import Link from 'next/link';
-import ImageGallery from '@/components/image-gallery';
+import ImageGrid from '@/components/image-grid';
 
 export default async function CompanyDetailPage({ params }: { params: { id: string } }) {
   const company = await getCompanyById(params.id);
@@ -164,14 +164,9 @@ export default async function CompanyDetailPage({ params }: { params: { id: stri
               <CardDescription>Visuals from our sites and operations.</CardDescription>
             </CardHeader>
             <CardContent>
-              <h3 className="text-lg font-semibold mb-4">Images</h3>
-               <div className="mx-auto w-full max-w-sm space-y-2">
-                <ImageGallery images={company.images}>
-                    <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
-                        View Gallery <Camera className="ml-2 h-5 w-5" />
-                    </Button>
-                </ImageGallery>
-              </div>
+              <h3 className="text-lg font-semibold mb-4">Mineral & Site Images</h3>
+              <ImageGrid images={company.images} />
+              
               <h3 className="text-lg font-semibold mt-8 mb-4">Videos</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                  {company.videos.map(video => (
