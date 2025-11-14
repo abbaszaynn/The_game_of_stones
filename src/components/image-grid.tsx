@@ -7,7 +7,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from '@/components/ui/carousel';
 import { Card } from '@/components/ui/card';
 import type { GalleryImage } from '@/lib/types';
-import { Gem, Building, Info, Maximize } from 'lucide-react';
+import { Gem, Building, Info, Maximize, X } from 'lucide-react';
 import { Button } from './ui/button';
 
 interface ImageGridProps {
@@ -152,19 +152,25 @@ export default function ImageGrid({ images }: ImageGridProps) {
           </div>
         </DialogContent>
       </Dialog>
-        {fullScreenImage && (
-            <Dialog open={!!fullScreenImage} onOpenChange={closeFullScreen}>
-                <DialogContent className="max-w-[95vw] max-h-[95vh] w-auto h-auto p-0 bg-transparent border-0 flex items-center justify-center z-[60]">
-                    <Image
-                        src={fullScreenImage.url}
-                        alt={fullScreenImage.title}
-                        width={1920}
-                        height={1080}
-                        className="max-w-full max-h-[95vh] object-contain rounded-lg"
-                    />
-                </DialogContent>
-            </Dialog>
-        )}
+      {fullScreenImage && (
+        <div 
+          className="fixed inset-0 bg-black/80 flex items-center justify-center z-[99]"
+          onClick={closeFullScreen}
+        >
+            <Button variant="ghost" size="icon" className="absolute top-4 right-4 text-white hover:text-white/80" onClick={closeFullScreen}>
+                <X className="w-8 h-8"/>
+                <span className="sr-only">Close</span>
+            </Button>
+            <Image
+                src={fullScreenImage.url}
+                alt={fullScreenImage.title}
+                width={1920}
+                height={1080}
+                className="max-w-[95vw] max-h-[95vh] object-contain rounded-lg"
+                onClick={(e) => e.stopPropagation()} 
+            />
+        </div>
+      )}
     </>
   );
 }
