@@ -15,7 +15,7 @@
     {
       "id": "logo-lux",
       "description": "Logo for Earth Lux Mines",
-      "imageUrl": "https://i.postimg.cc/B6139bM5/Generated_Image_November_14_2025_8_13PM.png",
+      "imageUrl": "https://i.postimg.cc/tgcbMWtp/Generated_Image_November_14_2025_8_19PM_1.png",
       "imageHint": "company logo"
     },
     {
@@ -27,13 +27,13 @@
     {
       "id": "gallery-durr-1",
       "description": "Mining equipment at a Durr site",
-      "imageUrl": "https://images.unsplash.com/photo-1682268294146-13a263ae7224?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxtaW5pbmclMjBlcXVpcG1lbnR8ZW58MHx8fHwxNzU4ODEyNDc5fDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1682268294146-13a263ae7224?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxtaW5pbmclMjBlcXVpcG1lbnR8ZW58MHx8fHwxNzU4ODEyNDc5fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "mining equipment"
     },
     {
       "id": "gallery-durr-2",
       "description": "Geological survey at a Durr site",
-      "imageUrl": "https://images.unsplash.com/photo-1673079600239-188d85f3b886?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxnZW9sb2dpY2FsJTIwc3VydmV5fGVufDB8fHx8MTc1ODgxMTc0OHww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1673079600239-188d85f3b886?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxnZW9sb2dpY2FsJTIwc3VydmV5fGVufDB8fHx8MTc1ODgxMTc0OHww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "geological survey"
     },
     {
@@ -45,13 +45,13 @@
     {
       "id": "gallery-lux-2",
       "description": "Mineral sample from Earth Lux Mines",
-      "imageUrl": "https://images.unsplash.com/photo-1614272284054-2422b1a528c2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxtaW5lcmFsJTIwc2FtcGxlfGVufDB8fHx8MTc1ODgxNTg0NHww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1614272284054-2422b1a528c2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxtaW5lcmFsJTIwc2FtcGxlfGVufDB8fHx8MTc1ODgxNTg0NHww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "mineral sample"
     },
     {
       "id": "gallery-himalayan-1",
       "description": "Himalayan Minerals mountain range view",
-      "imageUrl": "https://images.unsplash.com/photo-1622172322044-ffd81d677d32?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxtb3VudGFpbiUyMHJhbmdlfGVufDB8fHx8MTc1ODY5ODk4N3ww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1622172322044-ffd81d677d32?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxtb3VudGFpbiUyMHJhbmdlfGVufDB8fHx8MTc1ODY5ODk4N3ww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "mountain range"
     },
     {
@@ -75,7 +75,7 @@
     {
       "id": "news-3",
       "description": "Image for news article about environmental regulations",
-      "imageUrl": "https://images.unsplash.com/photo-1758518730037-a16581a040e8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxlbnZpcm9ubWVudGFsJTIwcG9saWN5fGVufDB8fHx8MTc1ODgxNTg0NXww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1758518730037-a16581a040e8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxlbnZpcm9ubWVudGFsJTIwcG9saWN5fGVufDB8fHx8MTc1ODgxNTg0NXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "environmental policy"
     }
   ]
