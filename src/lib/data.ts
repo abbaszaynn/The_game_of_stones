@@ -58,6 +58,7 @@ const earthLuxDeposits: Deposit[] = [
         location: "Jutial Nala, Gilgit",
         type: "Polymetallic structures.",
         details: [
+            "Area: 10 sq km.",
             "Primary Minerals: Copper, Iron, Silver, Lead.",
             "Trace Minerals: Antimony."
         ]
@@ -141,7 +142,7 @@ const companies: Omit<Company, 'images'> & { images: (string | GalleryImage)[] }
     ],
     projects: [
       { name: 'Jutial Nala, Gilgit' },
-      { name: 'Opposite Gupis Mine, Ghizer' },
+      { name: 'Gupis, Ghizer' },
     ],
     status: 'Operational',
     investorContacts: [{ name: 'Public Relations', email: 'pr@earthlux.com', phone: '+1-202-555-0182' }],
@@ -158,7 +159,7 @@ const companies: Omit<Company, 'images'> & { images: (string | GalleryImage)[] }
         ],
       },
       {
-        name: 'Opposite Gupis Mine, Ghizer (10 sq km)',
+        name: 'Gupis, Ghizer (10 sq km)',
         polygon: [
           { lat: 36.264768, lng: 73.461140 },
           { lat: 36.254223, lng: 73.495540 },
