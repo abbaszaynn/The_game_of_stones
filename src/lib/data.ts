@@ -4,8 +4,6 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { galleryImages } from '@/lib/gallery-images-data';
 import { companies as companiesData } from '@/lib/companies-data';
 
-const findImage = (id: string) => PlaceHolderImages.find((img) => img.id === id)?.imageUrl || '';
-
 const documents: Document[] = [
   { id: 'doc-1', companyId: 'durr-mines-and-minerals', title: 'Copper Ore at Skardu,  Tehsil Gultari', type: 'Geological Report', url: 'https://mega.nz/file/gIZRxJZY#iumoVJkKeejUdux1fQz-Y31o0lAMDcMhJ3X-KnDNyL0' },
   { id: 'doc-7', companyId: 'durr-mines-and-minerals', title: 'Marble Ore at Bagicha', type: 'Geological Report', url: 'https://mega.nz/file/4UhxmTKY#AzFv7Jc3IE11OhBKdGSbaRYKM85UhmtwrOKc96f9vcI' },
@@ -319,6 +317,11 @@ Tahirkheli, 1994).
 ● Northern Suture Zone (NSZ) or Main Karakoram Thrust (MKT)  
 Main Karakoram Thrust or NSZ is a fault contact which separates the rocks of 
 Eurasian plate from the KIA. This sutures zone is formed as a result of collision 
+of KIA with Eurasian plate. NSZ is comprised of ophiolitic mélange containing 
+rocks like serpentinite, volcanics and marine sediments in a slate.  
+The 
+different 
+types 
 of 
 sedimentary and volcanic 
 rocks present on the northern 
@@ -328,12 +331,7 @@ the Eurasian plate by this
 mélange. The rock bodies are 
 present along this 4km thick 
 mélange 
-of KIA with Eurasian plate. NSZ is comprised of ophiolitic mélange containing 
-rocks like serpentinite, volcanics and marine sediments in a slate.  
-The 
-different 
 are 
-types 
 limestone, 
 quartzite, volcanic greenstone 
 and 
@@ -407,9 +405,9 @@ by this series along E-W direction is
 this 
 batholith are granodiorite, 
 diorite, 
+hornblend 
 hornblendite, 
 grabbro and lecogranite.   
-hornblend 
 ● Dir Group 
 The volcano-sedimentary rocks are exposed in the western KIA around Dir and 
 Swat areas. These were named as Dir group. This group further divided into 
@@ -686,7 +684,7 @@ Wheel Loader Komatsu EW-200 Front End
 Loader Machine For Mining 
 Japanese Origin, Model 2012, 
 Diesel Powered, Good Condition 
-1 
+1
 Generator Diesel Powered 100 KVA  
 (Mine Site Power Supply) 
 Cummins Company, Semi-Used 
@@ -739,32 +737,36 @@ Points
 1.0 
 Hydrological Studies, Water Channel Assessment For 
 Power          
+0.5 
 Extraction, Blasting, Collection, Tagging Of Bulk Samples 
 For Mineral Processing & Metallurgical Separation 
 Studies Etc.            
+2.0 
 Shallow Depth/ Near Surface Core Drilling (Grid Wise)  
+1.0 
 Metallurgical & Processing Studies Cost & Other 
 Expenses 
+1.0 
 Additional Geological Survey In The Nearby Adjacent 
 Areas.  
+1.0 
 Social & Economic Uplift Of The Local Community 
 (Works)   
+1.0 
 Cost for Salary of Staff and Technical Consultants 
+3.0 
 Costs For Hotels, Accommodations For Foreign 
 Consultants   
+1.0 
 Costs For Vehicles Rentals , Fuels, Maintenance & 
 Guests.  
-Miscellaneous  Charges & Unforseen Expenses   
-Total Cost In Millions (PKR) 
-0.5 
-2.0 
-1.0 
-1.0 
-1.0 
-1.0 
-3.0 
-1.0 
 1.5 
+Miscellaneous  Charges & Unforseen Expenses   
 1.0 
+Total Cost In Millions (PKR) 
 43.0 
 29
+companies is not defined
+ReferenceError: companies is not defined
+    at getCompanies (./src/lib/data.ts:814:3)
+    at async Home (./src/app/page.tsx:13:21)
