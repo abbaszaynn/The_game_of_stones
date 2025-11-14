@@ -10,7 +10,7 @@ import { FirebaseClientProvider } from '@/firebase';
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
 export const metadata: Metadata = {
-  title: 'GB MINES',
+  title: 'Game of Stones',
   description: 'A global dashboard for mining companies, investors, and the public.',
 };
 

@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -33,7 +34,7 @@ export function Header() {
             <span className={cn(
               "hidden font-bold sm:inline-block",
               isScrolled ? 'text-white' : 'text-white'
-              )}>GB MINES</span>
+              )}>Game of Stones</span>
           </Link>
 
           {/* Desktop Nav */}
@@ -59,7 +60,7 @@ export function Header() {
               <SheetContent side="left" className="pr-0 bg-primary text-primary-foreground">
                 <Link href="/" className="flex items-center">
                   <Logo className="mr-2 h-6 w-6" />
-                  <span className="font-bold">GB MINES</span>
+                  <span className="font-bold">Game of Stones</span>
                 </Link>
                 <div className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
                   <div className="flex flex-col space-y-3">
