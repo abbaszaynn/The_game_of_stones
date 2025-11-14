@@ -154,7 +154,7 @@ export default function ImageGrid({ images }: ImageGridProps) {
       </Dialog>
       {fullScreenImage && (
         <div 
-          className="fixed inset-0 bg-black/80 flex items-center justify-center z-[99]"
+          className="fixed inset-0 bg-black/80 flex items-center justify-center z-[100]"
           onClick={closeFullScreen}
         >
             <Button variant="ghost" size="icon" className="absolute top-4 right-4 text-white hover:text-white/80" onClick={closeFullScreen}>
