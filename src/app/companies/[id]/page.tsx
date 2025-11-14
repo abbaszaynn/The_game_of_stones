@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
-import { Briefcase, Download, Globe, Mail, MapPin, Phone, User, Gem, Layers } from 'lucide-react';
+import { Briefcase, Download, Globe, Mail, MapPin, Phone, User, Gem } from 'lucide-react';
 import Link from 'next/link';
 import ImageGrid from '@/components/image-grid';
 
@@ -54,22 +54,12 @@ export default async function CompanyDetailPage({ params }: { params: { id: stri
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <p className="text-muted-foreground">{company.description}</p>
-                  <h3 className="font-semibold text-foreground text-xl mt-4">Founding and Incorporation</h3>
-                  <p className="text-muted-foreground">{company.history}</p>
-                  <h3 className="font-semibold text-foreground text-xl mt-4">Vision and Early Objectives</h3>
-                  <p className="text-muted-foreground">The company’s core vision is to explore, extract, and process a diverse array of minerals and ores, including precious and base metals, industrial minerals, and construction materials. Its registered mission indicates a focus on responsible resource development, local economic empowerment, and the creation of sustainable value through innovative mining practices.</p>
-                  <h3 className="font-semibold text-foreground text-xl mt-4">Growth and Development</h3>
-                  <p className="text-muted-foreground">DURR MINE & MINERALS (PRIVATE) LIMITED was capitalized at 2,000,000 PKR with shareholders each subscribing 10,000 ordinary shares, symbolizing a commitment to long-term investment and steady expansion. The company was structured with both subscribers/directors being professionally active in business—bringing management expertise and entrepreneurial energy to the venture.</p>
-                  <h3 className="font-semibold text-foreground text-xl mt-4">Operations and Activities</h3>
-                  <ul className="list-disc pl-5 text-muted-foreground space-y-2">
-                    <li>Mineral exploration, extraction, and processing of a variety of ores and valuable materials.</li>
-                    <li>Handling and transportation of minerals for local and international markets.</li>
-                    <li>Acting as agents, consultants, contractors, and distributors in the mining sector.</li>
-                  </ul>
-                   <h3 className="font-semibold text-foreground text-xl mt-4">Commitment to Community and Compliance</h3>
-                  <p className="text-muted-foreground">DURR MINE & MINERALS (PRIVATE) LIMITED adheres to Pakistan’s legal and regulatory frameworks for corporate responsibility. The company’s founding declaration indicates that all relevant compliance, including beneficial ownership transparency, and legal formalities, was strictly observed at incorporation.</p>
-                   <h3 className="font-semibold text-foreground text-xl mt-4">Looking Forward</h3>
-                  <p className="text-muted-foreground">Building on the geological promise of Gilgit-Baltistan, the company’s leadership envisions sustainable growth, community engagement, and technological advancement as keys to expanding operations. DURR MINE & MINERALS (PRIVATE) LIMITED aims to be a leading regional player, pursuing excellence in mineral resource development while upholding environmental and ethical standards.</p>
+                   {company.history && (
+                    <>
+                        <h3 className="font-semibold text-foreground text-xl mt-4">History & Vision</h3>
+                        <p className="text-muted-foreground">{company.history}</p>
+                    </>
+                   )}
                 </CardContent>
               </Card>
             </div>
@@ -78,20 +68,18 @@ export default async function CompanyDetailPage({ params }: { params: { id: stri
                 <CardHeader className="pb-1">
                   <CardTitle className="text-2xl font-semibold text-foreground">Status</CardTitle>
                   <div className="pt-1">
-                    <Badge className="bg-green-600 text-white hover:bg-green-600/90">Operational</Badge>
+                    <Badge className={company.status === 'Operational' ? "bg-green-600 text-white hover:bg-green-600/90" : "bg-amber-500 text-white hover:bg-amber-500/90"}>{company.status}</Badge>
                   </div>
                 </CardHeader>
                 <CardContent className="pt-2">
-                  <h2 className="text-2xl font-semibold text-foreground mb-3">Projects</h2>
+                  <h2 className="text-2xl font-semibold text-foreground my-3">Projects</h2>
                   <ul className="space-y-3">
-                    <li className="flex items-center gap-3">
-                      <MapPin className="h-5 w-5 text-muted-foreground" />
-                      <span className="font-medium text-foreground">Skardu Topaz Project</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <MapPin className="h-5 w-5 text-muted-foreground" />
-                      <span className="font-medium text-foreground">Gultari Project</span>
-                    </li>
+                    {company.projects.map((project, index) => (
+                         <li key={index} className="flex items-center gap-3">
+                            <MapPin className="h-5 w-5 text-muted-foreground" />
+                            <span className="font-medium text-foreground">{project.name}</span>
+                        </li>
+                    ))}
                   </ul>
                 </CardContent>
               </Card>
@@ -113,41 +101,38 @@ export default async function CompanyDetailPage({ params }: { params: { id: stri
                   ))}
                 </CardContent>
               </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle>Deposits</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <div>
-                    <h3 className="font-semibold text-foreground flex items-center gap-2 mb-2">
-                      <Gem className="w-5 h-5 text-accent" /> Marble Deposits (Bagicha, Skardu)
-                    </h3>
-                    <p className="text-sm text-muted-foreground mb-2"><strong>Location:</strong> Bagicha, District Skardu, Gilgit-Baltistan</p>
-                    <p className="text-sm text-muted-foreground mb-2"><strong>Deposit Type:</strong> Extensive Marble body with significant quartz-rich zones and block/vein formations.</p>
-                    <div className="text-sm text-muted-foreground">
-                      <p><strong>Dimensions:</strong></p>
-                      <ul className="list-disc pl-5 mt-1 space-y-1">
-                        <li>Sheets/Blocks: 1–4 feet thick; strike length 200–350 meters in various exposures.</li>
-                        <li>Strike Continuity: Exposures and blocks observed continuously along strike lengths of 1 to 5 kilometers.</li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground flex items-center gap-2 mb-2">
-                      <Layers className="w-5 h-5 text-accent" /> Copper & Polymetallic Deposits (Gultari, Skardu)
-                    </h3>
-                    <p className="text-sm text-muted-foreground mb-2"><strong>Location:</strong> Gultari, Tehsil Gultari, District Skardu, Gilgit-Baltistan</p>
-                    <p className="text-sm text-muted-foreground mb-2"><strong>Deposit Type:</strong> Copper ore in polymetallic settings, with iron and silica quartz.</p>
-                    <div className="text-sm text-muted-foreground">
-                      <p><strong>Ore Body:</strong></p>
-                       <ul className="list-disc pl-5 mt-1 space-y-1">
-                        <li>Exposed as mineralized veins; thicknesses from 1–5 feet and visually mapped along strike lengths of 200–350 meters at different locations.</li>
-                        <li>Veins and deposits traceable for 3 to 5 kilometers.</li>
-                      </ul>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+              {company.deposits && company.deposits.length > 0 && (
+                <Card>
+                    <CardHeader>
+                    <CardTitle>Deposits</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-6">
+                    {company.deposits.map((deposit, index) => (
+                        <div key={index}>
+                        <h3 className="font-semibold text-foreground flex items-center gap-2 mb-2">
+                            <Gem className="w-5 h-5 text-accent" /> {deposit.name}
+                        </h3>
+                        {deposit.location && (
+                            <p className="text-sm text-muted-foreground mb-2"><strong>Location:</strong> {deposit.location}</p>
+                        )}
+                        {deposit.type && (
+                             <p className="text-sm text-muted-foreground mb-2"><strong>Deposit Type:</strong> {deposit.type}</p>
+                        )}
+                        {deposit.details && (
+                            <div className="text-sm text-muted-foreground">
+                                <p><strong>Details:</strong></p>
+                                <ul className="list-disc pl-5 mt-1 space-y-1">
+                                    {deposit.details.map((detail, i) => (
+                                        <li key={i}>{detail}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+                        </div>
+                    ))}
+                    </CardContent>
+                </Card>
+              )}
                <Button asChild size="lg" className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
                 <Link href="/map">
                   <Globe className="mr-2 h-5 w-5" /> Visit the Mines

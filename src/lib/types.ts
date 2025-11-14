@@ -29,6 +29,13 @@ export interface GalleryImage {
     properties?: string;
 }
 
+export interface Deposit {
+    name: string;
+    location?: string;
+    type?: string;
+    details?: string[];
+}
+
 export interface Company {
   id: string;
   name: string;
@@ -37,13 +44,15 @@ export interface Company {
   description: string;
   history: string;
   leadership: { name: string; title: string }[];
-  projects: { name: string; status: string }[];
+  projects: { name: string }[];
+  status: 'Operational' | 'Exploratory Phase';
   investorContacts: { name: string; email: string; phone: string }[];
   locations: MineLocation[];
   images: GalleryImage[];
   videos: Video[];
   virtualTourUrl: string;
   documents: Document[];
+  deposits: Deposit[];
 }
 
 export interface NewsArticle {

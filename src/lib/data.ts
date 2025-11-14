@@ -1,5 +1,5 @@
 
-import type { Company, NewsArticle, Document, GalleryImage } from '@/lib/types';
+import type { Company, NewsArticle, Document, GalleryImage, Deposit } from '@/lib/types';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const findImage = (id: string) => PlaceHolderImages.find((img) => img.id === id)?.imageUrl || '';
@@ -15,20 +15,61 @@ const documents: Document[] = [
 ];
 
 const galleryImages: GalleryImage[] = [
-    { id: 'gal-1', url: 'https://images.unsplash.com/photo-1588152763435-0de3c7bf35f6?q=80&w=1974&auto=format&fit=crop', title: 'Raw Amethyst Geode', description: 'A stunning, vibrant purple amethyst geode formation.', companyName: 'Durr Mines and Minerals', mineral: 'Amethyst', properties: 'Quartz variety, known for its violet color.' },
-    { id: 'gal-2', url: 'https://images.unsplash.com/photo-1617393439972-8501a2434a93?q=80&w=1964&auto=format&fit=crop', title: 'Rough Azurite Mineral', description: 'Deep blue azurite crystals on a rock matrix.', companyName: 'Durr Mines and Minerals', mineral: 'Azurite', properties: 'A soft, deep-blue copper mineral.' },
-    { id: 'gal-3', url: 'https://images.unsplash.com/photo-1620188460115-d72b07f8a964?q=80&w=1974&auto=format&fit=crop', title: 'Crystalline Bismuth', description: 'Iridescent, staircase-like bismuth crystals.', companyName: 'Durr Mines and Minerals', mineral: 'Bismuth', properties: 'Brittle metal with a silvery-white color and an iridescent oxide tarnish.' },
-    { id: 'gal-4', url: 'https://images.unsplash.com/photo-1590422157596-f6c6a666f272?q=80&w=1974&auto=format&fit=crop', title: 'Pyrite Cluster', description: 'A dense cluster of metallic golden pyrite crystals.', companyName: 'Durr Mines and Minerals', mineral: 'Pyrite', properties: 'Iron sulfide mineral, also known as "Fool\'s Gold".' },
-    { id: 'gal-5', url: 'https://images.unsplash.com/photo-1620188526398-9e579934e23c?q=80&w=1974&auto=format&fit=crop', title: 'Polished Malachite', description: 'A polished slice of malachite with intricate banding.', companyName: 'Durr Mines and Minerals', mineral: 'Malachite', properties: 'A green copper carbonate hydroxide mineral.' },
-    { id: 'gal-6', url: 'https://images.unsplash.com/photo-1604187351543-03e583489851?q=80&w=1974&auto=format&fit=crop', title: 'Rose Quartz', description: 'A large, translucent piece of raw rose quartz.', companyName: 'Durr Mines and Minerals', mineral: 'Rose Quartz', properties: 'A variety of quartz with a pale pink to rose red hue.' },
-    { id: 'gal-7', url: 'https://images.unsplash.com/photo-1589935447047-bf37b37f3747?q=80&w=1974&auto=format&fit=crop', title: 'Tourmaline Crystals', description: 'Black tourmaline crystals embedded in a quartz matrix.', companyName: 'Durr Mines and Minerals', mineral: 'Tourmaline', properties: 'A crystalline boron silicate mineral.' },
-    { id: 'gal-8', url: 'https://images.unsplash.com/photo-1616450639910-3c22b97f9c2d?q=80&w=1974&auto=format&fit=crop', title: 'Labradorite Slab', description: 'A slab of labradorite showing its characteristic labradorescence.', companyName: 'Durr Mines and Minerals', mineral: 'Labradorite', properties: 'Feldspar mineral known for its iridescent optical effect.' },
-    { id: 'gal-9', url: 'https://images.unsplash.com/photo-1629814467368-a4e320ab1621?q=80&w=1968&auto=format&fit=crop', title: 'Raw Fluorite Octahedron', description: 'A natural, unpolished fluorite crystal with an octahedron shape.', companyName: 'Durr Mines and Minerals', mineral: 'Fluorite', properties: 'A halide mineral composed of calcium fluoride.' },
-    { id: 'gal-10', url: 'https://images.unsplash.com/photo-1588152755160-4f964a2c14c5?q=80&w=1974&auto=format&fit=crop', title: 'Chrysocolla Specimen', description: 'A vibrant blue and green chrysocolla mineral specimen.', companyName: 'Durr Mines and Minerals', mineral: 'Chrysocolla', properties: 'A hydrated copper phyllosilicate mineral.' },
-    { id: 'gal-11', url: 'https://images.unsplash.com/photo-1525542813454-b336369e8557?q=80&w=1974&auto=format&fit=crop', title: 'Citrine Crystal', description: 'A yellow citrine quartz crystal.', companyName: 'Durr Mines and Minerals', mineral: 'Citrine', properties: 'A variety of quartz whose color ranges from a pale yellow to brown.' },
-    { id: 'gal-12', url: 'https://images.unsplash.com/photo-1615147321523-a5539c362058?q=80&w=2070&auto=format&fit=crop', title: 'Opal', description: 'A colorful precious opal.', companyName: 'Durr Mines and Minerals', mineral: 'Opal' },
-    { id: 'gal-13', url: 'https://images.unsplash.com/photo-1610486036899-7901b0f5854b?q=80&w=1974&auto=format&fit=crop', title: 'Garnet', description: 'A red garnet crystal.', companyName: 'Durr Mines and Minerals', mineral: 'Garnet' },
+    { id: 'gal-1', url: 'https://i.postimg.cc/wyntqhLK/IMG-20250921-WA0004.jpg', title: 'Raw Amethyst Geode', description: 'A stunning, vibrant purple amethyst geode formation.', companyName: 'Durr Mines and Minerals', mineral: 'Amethyst', properties: 'Quartz variety, known for its violet color.' },
+    { id: 'gal-2', url: 'https://i.postimg.cc/K4gk9HhF/IMG-20250921-WA0005.jpg', title: 'Rough Azurite Mineral', description: 'Deep blue azurite crystals on a rock matrix.', companyName: 'Durr Mines and Minerals', mineral: 'Azurite', properties: 'A soft, deep-blue copper mineral.' },
+    { id: 'gal-3', url: 'https://i.postimg.cc/DJRWvqLT/IMG-20250921-WA0006.jpg', title: 'Crystalline Bismuth', description: 'Iridescent, staircase-like bismuth crystals.', companyName: 'Durr Mines and Minerals', mineral: 'Bismuth', properties: 'Brittle metal with a silvery-white color and an iridescent oxide tarnish.' },
+    { id: 'gal-4', url: 'https://i.postimg.cc/9zqRxnH2/IMG-20250921-WA0007.jpg', title: 'Pyrite Cluster', description: 'A dense cluster of metallic golden pyrite crystals.', companyName: 'Durr Mines and Minerals', mineral: 'Pyrite', properties: 'Iron sulfide mineral, also known as "Fool\'s Gold".' },
+    { id: 'gal-5', url: 'https://i.postimg.cc/ZWJW5YBy/IMG-20250921-WA0008.jpg', title: 'Polished Malachite', description: 'A polished slice of malachite with intricate banding.', companyName: 'Durr Mines and Minerals', mineral: 'Malachite', properties: 'A green copper carbonate hydroxide mineral.' },
+    { id: 'gal-6', url: 'https://i.postimg.cc/MnznpZMZ/IMG-20250921-WA0010.jpg', title: 'Rose Quartz', description: 'A large, translucent piece of raw rose quartz.', companyName: 'Durr Mines and Minerals', mineral: 'Rose Quartz', properties: 'A variety of quartz with a pale pink to rose red hue.' },
+    { id: 'gal-7', url: 'https://i.postimg.cc/1fhgbryM/IMG-20250921-WA0011.jpg', title: 'Tourmaline Crystals', description: 'Black tourmaline crystals embedded in a quartz matrix.', companyName: 'Durr Mines and Minerals', mineral: 'Tourmaline', properties: 'A crystalline boron silicate mineral.' },
+    { id: 'gal-8', url: 'https://i.postimg.cc/LJmJ84Yg/IMG-20250921-WA0012.jpg', title: 'Labradorite Slab', description: 'A slab of labradorite showing its characteristic labradorescence.', companyName: 'Durr Mines and Minerals', mineral: 'Labradorite', properties: 'Feldspar mineral known for its iridescent optical effect.' },
+    { id: 'gal-9', url: 'https://i.postimg.cc/G4b4m38z/IMG-20250921-WA0013.jpg', title: 'Raw Fluorite Octahedron', description: 'A natural, unpolished fluorite crystal with an octahedron shape.', companyName: 'Durr Mines and Minerals', mineral: 'Fluorite', properties: 'A halide mineral composed of calcium fluoride.' },
+    { id: 'gal-10', url: 'https://i.postimg.cc/68zy2snb/IMG-20250921-WA0014.jpg', title: 'Chrysocolla Specimen', description: 'A vibrant blue and green chrysocolla mineral specimen.', companyName: 'Durr Mines and Minerals', mineral: 'Chrysocolla', properties: 'A hydrated copper phyllosilicate mineral.' },
+    { id: 'gal-11', url: 'https://i.postimg.cc/w1F7yKDp/IMG-20250921-WA0015.jpg', title: 'Citrine Crystal', description: 'A yellow citrine quartz crystal.', companyName: 'Durr Mines and Minerals', mineral: 'Citrine', properties: 'A variety of quartz whose color ranges from a pale yellow to brown.' },
+    { id: 'gal-12', url: 'https://i.postimg.cc/GB29vMjb/IMG-20250921-WA0016.jpg', title: 'Opal', description: 'A colorful precious opal.', companyName: 'Durr Mines and Minerals', mineral: 'Opal' },
+    { id: 'gal-13', url: 'https://i.postimg.cc/cKH6fDcS/IMG-20250921-WA0017.jpg', title: 'Garnet', description: 'A red garnet crystal.', companyName: 'Durr Mines and Minerals', mineral: 'Garnet' },
     { id: 'gal-14', url: 'https://images.unsplash.com/photo-1598585461494-0a619861e8a3?q=80&w=2070&auto=format&fit=crop', title: 'Agate', description: 'A slice of agate with beautiful banding.', companyName: 'Durr Mines and Minerals', mineral: 'Agate' }
+];
+
+const durrDeposits: Deposit[] = [
+    {
+        name: "Marble Deposits (Bagicha, Skardu)",
+        location: "Bagicha, District Skardu, Gilgit-Baltistan",
+        type: "Extensive Marble body with significant quartz-rich zones and block/vein formations.",
+        details: [
+            "Sheets/Blocks: 1–4 feet thick; strike length 200–350 meters in various exposures.",
+            "Strike Continuity: Exposures and blocks observed continuously along strike lengths of 1 to 5 kilometers."
+        ]
+    },
+    {
+        name: "Copper & Polymetallic Deposits (Gultari, Skardu)",
+        location: "Gultari, Tehsil Gultari, District Skardu, Gilgit-Baltistan",
+        type: "Copper ore in polymetallic settings, with iron and silica quartz.",
+        details: [
+            "Exposed as mineralized veins; thicknesses from 1–5 feet and visually mapped along strike lengths of 200–350 meters at different locations.",
+            "Veins and deposits traceable for 3 to 5 kilometers."
+        ]
+    }
+];
+
+const earthLuxDeposits: Deposit[] = [
+    {
+        name: "Jutial Nala Deposits",
+        location: "Jutial Nala, Gilgit",
+        type: "Polymetallic structures.",
+        details: [
+            "Primary Minerals: Copper, Iron, Silver, Lead.",
+            "Trace Minerals: Antimony."
+        ]
+    },
+    {
+        name: "Opposite Gupis Mine Deposits",
+        location: "Gupis, Tehsil Yasin, District Ghizer",
+        type: "Copper deposits.",
+        details: [
+            "Area spans 10 Sq/Km (2,471 Acres)."
+        ]
+    }
 ];
 
 const companies: Omit<Company, 'images'> & { images: (string | GalleryImage)[] }[] = [
@@ -43,7 +84,8 @@ const companies: Omit<Company, 'images'> & { images: (string | GalleryImage)[] }
       { name: 'Tabish Hassan', title: 'CEO & Founder' },
       { name: 'Daniyal Ali', title: 'Director' },
     ],
-    projects: [{ name: 'Skardu Topaz Project', status: 'Operational' }],
+    projects: [{ name: 'Skardu Topaz Project' }],
+    status: 'Operational',
     investorContacts: [{ name: 'Investor Relations Dept.', email: 'invest@durrmines.com', phone: '+1-202-555-0175' }],
     locations: [
       {
@@ -82,30 +124,47 @@ const companies: Omit<Company, 'images'> & { images: (string | GalleryImage)[] }
     videos: [{id: 'vid-1', url: 'https://www.youtube.com/embed/dQw4w9WgXcQ', title: 'Drone Flyover of Skardu Site'}],
     virtualTourUrl: 'https://earth.google.com/web/@35.586,-75.367,2712a,15000d,35y,0h,0t,0r',
     documents: documents.filter(d => d.companyId === 'durr-mines-and-minerals'),
+    deposits: durrDeposits,
   },
   {
     id: 'earth-lux-mines',
-    name: 'Earth Lux Mines',
+    name: 'Earth Lux Mines & Minerals (Pvt) Ltd.',
     tagline: 'Unearthing the Planet\'s Hidden Treasures.',
     logoUrl: findImage('logo-lux'),
-    description: 'Earth Lux Mines focuses on the ethical sourcing of precious metals and gemstones. Our operations in the Gilgit region are renowned for their efficiency and community engagement, ensuring shared prosperity.',
-    history: 'Established in 2012, Earth Lux Mines quickly identified and secured promising sites in Jutial Nala. We pride ourselves on a modern approach to mining that respects local heritage and ecosystems.',
+    description: 'Earth Lux Mines & Minerals (Pvt) Ltd. is a mining company committed to the exploration, extraction, and processing of high-quality minerals and metals. Established in 2023, our company has built a strong reputation for innovation, sustainability, and operational excellence in the mining industry. With a presence in key mineral-rich regions, we leverage cutting-edge technology and industry best practices to ensure efficient and responsible mining operations. Our expertise lies in extracting ore and supplying vital raw ore to industries across the globe. In order to maximize resource efficiency and maintain the highest safety and environmental standards, our skilled team of geologists, engineers, and environmental specialists works tirelessly.',
+    history: 'The company wants to start mining in the area, which will benefit the locals\' social standing and infrastructure development while also generating income for the Gilgit-Baltistan government in the form of royalties. For the first three years of its E/L validity period, the company also plans to invest an additional Rs. 43.0 million in the relevant heads of expenditures for the mining and development of this potential, which is already described in the enclosed budget proposals as a risk capital investment.',
     leadership: [
-      { name: 'Bilal Ahmed', title: 'Managing Director' },
-      { name: 'Sana Javed', title: 'Head of Operations' },
+      { name: 'Tabish Hassan', title: 'CEO' },
+      { name: 'Wajid Khan', title: 'Director' },
+      { name: 'Sabi-ud-din', title: 'Director' },
+      { name: 'Saqlain Alam', title: 'Director' },
     ],
-    projects: [{ name: 'Jutial Nala Gold Vein', status: 'Exploratory Phase' }],
+    projects: [
+      { name: 'Jutial Nala, Gilgit' },
+      { name: 'Opposite Gupis Mine, Ghizer' },
+    ],
+    status: 'Operational',
     investorContacts: [{ name: 'Public Relations', email: 'pr@earthlux.com', phone: '+1-202-555-0182' }],
     locations: [
-       {
-        name: 'Jutial Nala, Gilgit',
+      {
+        name: 'Jutial Nala, Gilgit (10 sq km)',
         polygon: [
-          { lat: 35.90578, lng: 74.35305 },
-          { lat: 35.90750, lng: 74.34940 },
-          { lat: 35.90900, lng: 74.34800 },
-          { lat: 35.90800, lng: 74.35500 },
-          { lat: 35.90600, lng: 74.35700 },
-          { lat: 35.90578, lng: 74.35305 }
+          { lat: 35.856249, lng: 74.294070 },
+          { lat: 35.882175, lng: 74.27519 },
+          { lat: 35.875314, lng: 74.321451 },
+          { lat: 35.865186, lng: 74.354147 },
+          { lat: 35.860098, lng: 74.328441 },
+          { lat: 35.849004, lng: 74.316212 },
+        ],
+      },
+      {
+        name: 'Opposite Gupis Mine, Ghizer (10 sq km)',
+        polygon: [
+          { lat: 36.264768, lng: 73.461140 },
+          { lat: 36.254223, lng: 73.495540 },
+          { lat: 36.244428, lng: 73.466853 },
+          { lat: 36.233142, lng: 73.459915 },
+          { lat: 36.246712, lng: 73.423405 },
         ],
       },
     ],
@@ -113,6 +172,7 @@ const companies: Omit<Company, 'images'> & { images: (string | GalleryImage)[] }
     videos: [{id: 'vid-2', url: 'https://www.youtube.com/embed/dQw4w9WgXcQ', title: 'Community Projects in Gilgit'}],
     virtualTourUrl: 'https://earth.google.com/web/@35.907,-74.352,2465a,2000d,35y,0h,0t,0r',
     documents: documents.filter(d => d.companyId === 'earth-lux-mines'),
+    deposits: earthLuxDeposits,
   },
   {
     id: 'himalayan-minerals',
@@ -125,7 +185,8 @@ const companies: Omit<Company, 'images'> & { images: (string | GalleryImage)[] }
       { name: 'Zoya Ali', title: 'Chairperson' },
       { name: 'Usman Beg', title: 'Chief Engineer' },
     ],
-    projects: [{ name: 'Kargah Nala Industrial Minerals', status: 'Operational' }],
+    projects: [{ name: 'Kargah Nala Industrial Minerals' }],
+    status: 'Operational',
     investorContacts: [{ name: 'Shareholder Services', email: 'shares@himalayanmin.com', phone: '+1-202-555-0199' }],
     locations: [
       {
@@ -143,6 +204,7 @@ const companies: Omit<Company, 'images'> & { images: (string | GalleryImage)[] }
     videos: [{id: 'vid-3', url: 'https://www.youtube.com/embed/dQw4w9WgXcQ', title: 'High-Altitude Operations'}],
     virtualTourUrl: 'https://earth.google.com/web/@35.922,-74.309,2400a,2000d,35y,0h,0t,0r',
     documents: documents.filter(d => d.companyId === 'himalayan-minerals'),
+    deposits: [],
   },
 ];
 
@@ -161,7 +223,7 @@ const news: NewsArticle[] = [
     companyId: 'earth-lux-mines',
     title: 'Earth Lux Mines Announces New Green Technology Initiative',
     excerpt: 'In a move towards greater sustainability, Earth Lux Mines has partnered with leading tech firms to implement a new water recycling system at its Gilgit operations.',
-    content: 'The new system is expected to reduce water consumption by 40% and will be fully operational by Q4 2024. "This is a major step in our commitment to responsible mining," said Managing Director Bilal Ahmed. The initiative has been praised by environmental groups.',
+    content: 'The new system is expected to reduce water consumption by 40% and will be fully operational by Q4 2024. "This is a major step in our commitment to responsible mining," said CEO Tabish Hassan. The initiative has been praised by environmental groups.',
     imageUrl: findImage('news-2'),
     publishDate: '2024-05-10T14:30:00Z',
   },
