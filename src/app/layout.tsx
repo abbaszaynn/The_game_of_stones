@@ -5,7 +5,6 @@ import { cn } from '@/lib/utils';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { Toaster } from '@/components/ui/toaster';
-import AIChatButton from '@/components/ai-chat/ai-chat-button';
 import { FirebaseClientProvider } from '@/firebase';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
@@ -28,7 +27,6 @@ export default function RootLayout({
           <main className='-mt-14'>{children}</main>
           <Footer />
           <Toaster />
-          <AIChatButton />
         </FirebaseClientProvider>
       </body>
     </html>
