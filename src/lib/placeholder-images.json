@@ -21,7 +21,7 @@
     {
       "id": "logo-himalayan",
       "description": "Logo for Himalayan Minerals",
-      "imageUrl": "https://images.unsplash.com/photo-1562783912-21ad31ee2a83?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxjb21wYW55JTIwbG9nb3xlbnwwfHx8fDE3NTg3ODg0NDF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://i.postimg.cc/tRxWRHTC/Generated-Image-November-14-2025-8-28PM.png",
       "imageHint": "company logo"
     },
     {
@@ -45,13 +45,13 @@
     {
       "id": "gallery-lux-2",
       "description": "Mineral sample from Earth Lux Mines",
-      "imageUrl": "https://images.unsplash.com/photo-1614272284054-2422b1a528c2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxtaW5lcmFsJTIwc2FtcGxlfGVufDB8fHx8MTc1ODgxNTg0NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1614272284054-2422b1a528c2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxtaW5lcmFsJTIwc2FtcGxlfGVufDB8fHx8MTc1ODgxNTg0NHww&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "mineral sample"
     },
     {
       "id": "gallery-himalayan-1",
       "description": "Himalayan Minerals mountain range view",
-      "imageUrl": "https://images.unsplash.com/photo-1622172322044-ffd81d677d32?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxtb3VudGFpbiUyMHJhbmdlfGVufDB8fHx8MTc1ODY5ODk4N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1622172322044-ffd81d677d32?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxtb3VudGFpbiUyMHJhbmdlfGVufDB8fHx8MTc1ODY5ODk4N3ww&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "mountain range"
     },
     {
@@ -75,7 +75,7 @@
     {
       "id": "news-3",
       "description": "Image for news article about environmental regulations",
-      "imageUrl": "https://images.unsplash.com/photo-1758518730037-a16581a040e8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxlbnZpcm9ubWVudGFsJTIwcG9saWN5fGVufDB8fHx8MTc1ODgxNTg0NXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1758518730037-a16581a040e8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxlbnZpcm9ubWVudGFsJTIwcG9saWN5fGVufDB8fHx8MTc1ODgxNTg0NXww&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "environmental policy"
     }
   ]
