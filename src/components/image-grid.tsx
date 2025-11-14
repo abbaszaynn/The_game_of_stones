@@ -154,7 +154,7 @@ export default function ImageGrid({ images }: ImageGridProps) {
       </Dialog>
         {fullScreenImage && (
             <Dialog open={!!fullScreenImage} onOpenChange={closeFullScreen}>
-                <DialogContent className="max-w-[95vw] max-h-[95vh] w-auto h-auto p-0 bg-transparent border-0 flex items-center justify-center">
+                <DialogContent className="max-w-[95vw] max-h-[95vh] w-auto h-auto p-0 bg-transparent border-0 flex items-center justify-center z-[60]">
                     <Image
                         src={fullScreenImage.url}
                         alt={fullScreenImage.title}
