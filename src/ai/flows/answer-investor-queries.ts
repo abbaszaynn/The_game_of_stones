@@ -29,7 +29,7 @@ const getCompanyInfo = ai.defineTool(
   {
     name: 'getCompanyInfo',
     description:
-      'Get information about a specific mining company. Use this to answer questions about company details, projects, leadership, and documents.',
+      'Get information about a specific mining company. Use this to answer questions about company details, projects, leadership, and documents. This tool can also access the text content of available reports.',
     inputSchema: z.object({
       companyName: z
         .string()
@@ -50,7 +50,14 @@ const getCompanyInfo = ai.defineTool(
     if (company) {
       // Use getCompanyById to get the full details, which is more robust
       const fullCompanyDetails = await getCompanyById(company.id);
-      return fullCompanyDetails || {error: 'Company details not found.'};
+      // We only want to return serializable data.
+      // The `images` property can contain placeholder IDs which get resolved to full image objects
+      // with non-serializable data. Let's just remove it.
+      if (fullCompanyDetails) {
+        const { images, ...rest } = fullCompanyDetails;
+        return rest || {error: 'Company details not found.'};
+      }
+      return {error: 'Company details not found.'};
     }
 
     return {
@@ -67,10 +74,10 @@ const prompt = ai.definePrompt({
   output: {schema: AnswerInvestorQueryOutputSchema},
   tools: [getCompanyInfo],
   prompt: `You are an AI assistant specialized in answering investor queries about mining companies.
-You have access to a tool called 'getCompanyInfo' that can retrieve detailed information about the companies in this application.
+You have access to a tool called 'getCompanyInfo' that can retrieve detailed information about the companies in this application, including the text from their documents and reports.
 
 When a user asks a question about a specific company, use the 'getCompanyInfo' tool to fetch the data.
-Then, use that data to formulate your answer. Be concise and helpful.
+Then, use that data, including any relevant text from documents, to formulate your answer. Be concise and helpful.
 
 If the user asks a general question, answer it as a regular AI assistant.
 

@@ -11,6 +11,7 @@ export interface Document {
   url: string;
   companyId: string;
   companyName?: string;
+  contentText?: string;
 }
 
 export interface Video {

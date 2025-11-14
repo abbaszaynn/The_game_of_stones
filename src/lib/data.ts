@@ -8,7 +8,25 @@ const documents: Document[] = [
   { id: 'doc-1', companyId: 'durr-mines-and-minerals', title: 'Copper Ore at Skardu,  Tehsil Gultari', type: 'Geological Report', url: 'https://mega.nz/file/gIZRxJZY#iumoVJkKeejUdux1fQz-Y31o0lAMDcMhJ3X-KnDNyL0' },
   { id: 'doc-7', companyId: 'durr-mines-and-minerals', title: 'Marble Ore at Bagicha', type: 'Geological Report', url: 'https://mega.nz/file/4UhxmTKY#AzFv7Jc3IE11OhBKdGSbaRYKM85UhmtwrOKc96f9vcI' },
   { id: 'doc-2', companyId: 'durr-mines-and-minerals', title: 'MINING LICENSE', type: 'License', url: '#' },
-  { id: 'doc-8', companyId: 'earth-lux-mines', title: 'Incorporation Letter', type: 'License', url: 'https://mega.nz/file/NAY3GaQZ#igzi5X3SNFZkZAGjLZ-a5rWd-qcfVyL65Ks1zcPeyQQ' },
+  { 
+    id: 'doc-8', 
+    companyId: 'earth-lux-mines', 
+    title: 'Incorporation Letter', 
+    type: 'License', 
+    url: 'https://mega.nz/file/NAY3GaQZ#igzi5X3SNFZkZAGjLZ-a5rWd-qcfVyL65Ks1zcPeyQQ',
+    contentText: `SECURITIES AND EXCHANGE COMMISSION OF PAKISTAN
+ Company Registration Office
+ CERTIFICATE OF INCORPORATION
+ [Under section 16 of the Companies Act, 2017 (XIX of 2017)]
+ Corporate Unique Identification No. 0238137
+         I hereby certify that EARTH LUX MINES & MINERALS (PRIVATE)
+ LIMITED is this day incorporated under the Companies Act, 2017 (XIX of
+ 2017) and that the company is limited by shares.
+ Given at Gilgit this Twenty Eighth day of August, Two Thousand and
+ Twenty Three
+ Muhammad Shoaib Khan
+ Assistant Registrar`
+  },
   { id: 'doc-9', companyId: 'earth-lux-mines', title: 'Geological Report - Gupis, Ghizer', type: 'Geological Report', url: 'https://mega.nz/file/BQhDEIJL#JXvUAfDZsxfiWlTOWGHEP64WQWvArnKuwEseFZX6UBU' },
   { id: 'doc-4', companyId: 'earth-lux-mines', title: 'Annual Financial Summary 2023', type: 'Financial Summary', url: '#' },
   { id: 'doc-5', companyId: 'himalayan-minerals', title: 'Kargah Nala Concession Paper', type: 'Concession Paper', url: '#' },
@@ -160,7 +178,7 @@ const companies: Omit<Company, 'images'> & { images: (string | GalleryImage)[] }
         ],
       },
       {
-        name: 'Gupis, Ghizer (10 sq km)',
+        name: 'Gupis, Ghizer',
         polygon: [
           { lat: 36.264768, lng: 73.461140 },
           { lat: 36.254223, lng: 73.495540 },
