@@ -766,7 +766,4 @@ Miscellaneous  Charges & Unforseen Expenses
 Total Cost In Millions (PKR) 
 43.0 
 29
-companies is not defined
-ReferenceError: companies is not defined
-    at getCompanies (./src/lib/data.ts:814:3)
-    at async Home (./src/app/page.tsx:13:21)
+`
