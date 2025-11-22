@@ -11,14 +11,14 @@ declare global {
   namespace JSX {
     interface IntrinsicElements {
       'gmp-map': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement> & {
-        'api-key': string;
+        'api-key'?: string;
         'map-id': string;
-        center: string;
-        zoom: string;
-        tilt: string;
-        heading: string;
+        center?: string;
+        zoom?: string;
+        tilt?: string;
+        heading?: string;
         style?: React.CSSProperties;
-      }, HTMLElement>;
+      }, HTMLElement & { center: { lat: number; lng: number } }>;
       'gmp-advanced-marker': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement> & {
         position: string;
         title: string;
@@ -41,7 +41,7 @@ interface Map3DContainerProps {
 }
 
 export default function Map3DContainer({ companies, mapId }: Map3DContainerProps) {
-    const mapRef = useRef<HTMLElement>(null);
+    const mapRef = useRef<HTMLElement & { center: { lat: number; lng: number } }>(null);
     const [selected, setSelected] = useState<{ company: Company; location: Company['locations'][0] } | null>(null);
     const infoBoxRef = useRef<HTMLDivElement>(null);
 
@@ -49,6 +49,8 @@ export default function Map3DContainer({ companies, mapId }: Map3DContainerProps
         const map = mapRef.current;
         if (!map || typeof window === 'undefined' || !window.google) return;
         
+        map.center = { lat: 35.6, lng: 75.0 };
+
         const gme = (window.google.maps as any).maps3d;
         if (!gme) {
             console.error("Google Maps 3D library not loaded.");
@@ -143,7 +145,6 @@ export default function Map3DContainer({ companies, mapId }: Map3DContainerProps
     <gmp-map
         ref={mapRef}
         map-id={mapId}
-        center="35.6,75.0"
         zoom="8"
         tilt="60"
         heading="45"
