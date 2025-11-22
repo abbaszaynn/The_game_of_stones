@@ -1,22 +1,23 @@
 
 import { getCompanies } from '@/lib/data';
-import MapContainer from '@/components/map/map-container';
 import { Suspense } from 'react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { AlertTriangle } from 'lucide-react';
+import Map3DContainer from '@/components/map/map-3d-container';
 
 export default async function MapPage() {
   const companies = await getCompanies();
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+  const mapId = process.env.NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID;
 
-  if (!apiKey) {
+  if (!apiKey || !mapId) {
     return (
       <div className="container mx-auto px-4 py-24 md:px-6">
          <Alert variant="destructive">
           <AlertTriangle className="h-4 w-4" />
           <AlertTitle>Configuration Error</AlertTitle>
           <AlertDescription>
-            The Google Maps API key is missing. Please add it to your environment variables in a <code>.env.local</code> file to enable the map feature. Until then, this page will be disabled.
+            The Google Maps API key or Map ID is missing. Please add <code>NEXT_PUBLIC_GOOGLE_MAPS_API_KEY</code> and <code>NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID</code> to your environment variables in a <code>.env.local</code> file to enable the map feature. Until then, this page will be disabled.
           </AlertDescription>
         </Alert>
       </div>
@@ -24,18 +25,18 @@ export default async function MapPage() {
   }
 
   return (
-    <div className="relative h-[calc(100vh-3.5rem)] w-full">
-       <div className="absolute top-4 left-4 z-10 max-w-md">
+    <div className="relative h-screen w-full">
+       <div className="absolute top-20 left-4 z-10 max-w-md">
         <Alert variant="destructive">
            <AlertTriangle className="h-4 w-4" />
           <AlertTitle>Map Loading Issue?</AlertTitle>
           <AlertDescription>
-            If you see a "Something went wrong" or "This page can't load Google Maps correctly" error, please ensure that billing is enabled for your Google Cloud project. This is required by Google Maps Platform.
+            If you see a "Something went wrong" or "This page can't load Google Maps correctly" error, please ensure that billing is enabled for your Google Cloud project and that the Maps JavaScript API and Map 3D API are enabled.
           </AlertDescription>
         </Alert>
       </div>
       <Suspense fallback={<div className="bg-muted w-full h-full animate-pulse" />}>
-        <MapContainer companies={companies} apiKey={apiKey} />
+        <Map3DContainer companies={companies} mapId={mapId} />
       </Suspense>
     </div>
   );
