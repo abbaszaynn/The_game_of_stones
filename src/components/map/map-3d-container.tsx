@@ -13,12 +13,13 @@ declare global {
       'gmp-map': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement> & {
         'api-key'?: string;
         'map-id': string;
-        center?: string;
-        zoom?: string;
-        tilt?: string;
-        heading?: string;
         style?: React.CSSProperties;
-      }, HTMLElement & { center: { lat: number; lng: number } }>;
+      }, HTMLElement & { 
+          center: { lat: number; lng: number };
+          zoom: number;
+          tilt: number;
+          heading: number;
+        }>;
       'gmp-advanced-marker': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement> & {
         position: string;
         title: string;
@@ -41,7 +42,12 @@ interface Map3DContainerProps {
 }
 
 export default function Map3DContainer({ companies, mapId }: Map3DContainerProps) {
-    const mapRef = useRef<HTMLElement & { center: { lat: number; lng: number } }>(null);
+    const mapRef = useRef<HTMLElement & { 
+        center: { lat: number; lng: number };
+        zoom: number;
+        tilt: number;
+        heading: number;
+    }>(null);
     const [selected, setSelected] = useState<{ company: Company; location: Company['locations'][0] } | null>(null);
     const infoBoxRef = useRef<HTMLDivElement>(null);
 
@@ -50,6 +56,9 @@ export default function Map3DContainer({ companies, mapId }: Map3DContainerProps
         if (!map || typeof window === 'undefined' || !window.google) return;
         
         map.center = { lat: 35.6, lng: 75.0 };
+        map.zoom = 8;
+        map.tilt = 60;
+        map.heading = 45;
 
         const gme = (window.google.maps as any).maps3d;
         if (!gme) {
@@ -145,9 +154,6 @@ export default function Map3DContainer({ companies, mapId }: Map3DContainerProps
     <gmp-map
         ref={mapRef}
         map-id={mapId}
-        zoom="8"
-        tilt="60"
-        heading="45"
         style={{ width: '100%', height: '100vh' }}
     >
     </gmp-map>
