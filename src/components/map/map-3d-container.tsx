@@ -1,40 +1,8 @@
 
 'use client';
 
-import { useEffect, useRef, useState, use } from 'react';
+import { useEffect, useRef } from 'react';
 import type { Company } from '@/lib/types';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
-
-// Define types for the Google Maps 3D Web Components
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'gmp-map': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement> & {
-        'api-key'?: string;
-        'map-id': string;
-        style?: React.CSSProperties;
-      }, HTMLElement & { 
-          center: { lat: number; lng: number };
-          zoom: number;
-          tilt: number;
-          heading: number;
-        }>;
-      'gmp-advanced-marker': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement> & {
-        position: string;
-        title: string;
-      }, HTMLElement>;
-      'gmp-polygon': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement> & {
-        paths: string;
-        'stroke-color': string;
-        'stroke-opacity': string;
-        'stroke-weight': string;
-        'fill-color': string;
-        'fill-opacity': string;
-      }, HTMLElement>;
-    }
-  }
-}
 
 interface Map3DContainerProps {
   companies: Company[];
@@ -42,32 +10,36 @@ interface Map3DContainerProps {
 }
 
 export default function Map3DContainer({ companies, mapId }: Map3DContainerProps) {
-    const mapRef = useRef<HTMLElement & { 
-        center: { lat: number; lng: number };
-        zoom: number;
-        tilt: number;
-        heading: number;
-    }>(null);
-    const [selected, setSelected] = useState<{ company: Company; location: Company['locations'][0] } | null>(null);
-    const infoBoxRef = useRef<HTMLDivElement>(null);
+    const mapDivRef = useRef<HTMLDivElement>(null);
+    const mapRef = useRef<google.maps.Map | null>(null);
+    const polygonsRef = useRef<any[]>([]);
+    const infoBoxesRef = useRef<any[]>([]);
 
     useEffect(() => {
-        const map = mapRef.current;
-        if (!map || typeof window === 'undefined' || !window.google) return;
-        
-        map.center = { lat: 35.6, lng: 75.0 };
-        map.zoom = 8;
-        map.tilt = 60;
-        map.heading = 45;
-
-        const gme = (window.google.maps as any).maps3d;
-        if (!gme) {
-            console.error("Google Maps 3D library not loaded.");
+        if (!mapDivRef.current || typeof window === 'undefined' || !window.google || !window.google.maps?.maps3d) {
+            console.warn('Google Maps or 3D API not ready yet.');
             return;
         }
 
-        const polygons: any[] = [];
-        const infoBoxes: any[] = [];
+        const gme = window.google.maps.maps3d;
+
+        if (!mapRef.current) {
+            mapRef.current = new window.google.maps.Map(mapDivRef.current, {
+                mapId: mapId,
+                center: { lat: 35.6, lng: 75.0 },
+                zoom: 8,
+                tilt: 60,
+                heading: 45,
+                mapTypeControl: false,
+                streetViewControl: false,
+            });
+        }
+        const map = mapRef.current;
+
+        polygonsRef.current.forEach(p => p.setMap(null));
+        polygonsRef.current = [];
+        infoBoxesRef.current.forEach(ib => ib.setMap(null));
+        infoBoxesRef.current = [];
 
         companies.forEach(company => {
             company.locations.forEach(location => {
@@ -81,7 +53,7 @@ export default function Map3DContainer({ companies, mapId }: Map3DContainerProps
                     altitudeMode: 'clampToGround',
                 });
                 polygon.setMap(map);
-                polygons.push(polygon);
+                polygonsRef.current.push(polygon);
                 
                 const bounds = new window.google.maps.LatLngBounds();
                 location.polygon.forEach(p => bounds.extend(p));
@@ -92,30 +64,26 @@ export default function Map3DContainer({ companies, mapId }: Map3DContainerProps
                     content: createInfoBoxContent(company, location),
                 });
                 
-                infoBoxes.push(infoBox);
+                infoBoxesRef.current.push(infoBox);
 
                 polygon.addListener('click', () => {
-                   infoBoxes.forEach(ib => ib.setMap(null)); // Close all other infoboxes
+                   infoBoxesRef.current.forEach(ib => ib.setMap(null));
                    infoBox.setMap(map);
                 });
             });
         });
         
-        map.addEventListener('click', (event: any) => {
-            // Check if the click was on the map itself and not a polygon or infobox
-            if (event.target === map) {
-                infoBoxes.forEach(ib => ib.setMap(null));
-            }
+        const mapClickListener = map.addListener('click', () => {
+            infoBoxesRef.current.forEach(ib => ib.setMap(null));
         });
 
-
-        // Cleanup function
         return () => {
-            polygons.forEach(p => p.setMap(null));
-            infoBoxes.forEach(ib => ib.setMap(null));
+            polygonsRef.current.forEach(p => p.setMap(null));
+            infoBoxesRef.current.forEach(ib => ib.setMap(null));
+            window.google.maps.event.removeListener(mapClickListener);
         };
 
-    }, [companies]);
+    }, [companies, mapId]);
 
     const createInfoBoxContent = (company: Company, location: Company['locations'][0]): HTMLElement => {
         const container = document.createElement('div');
@@ -148,14 +116,7 @@ export default function Map3DContainer({ companies, mapId }: Map3DContainerProps
         return container;
     };
 
-
   return (
-    // @ts-ignore
-    <gmp-map
-        ref={mapRef}
-        map-id={mapId}
-        style={{ width: '100%', height: '100vh' }}
-    >
-    </gmp-map>
+    <div ref={mapDivRef} style={{ width: '100%', height: '100vh' }} />
   );
 }
