@@ -192,41 +192,46 @@ export const companies: Company[] = [
     id: 'zircon-mines',
     name: 'Zircon Mines',
     tagline: 'Precision Mining for Rare Earth Elements.',
-    logoUrl: PlaceHolderImages.find(p => p.id === 'logo-himalayan')?.imageUrl || 'https://placehold.co/128x128',
-    description: 'Zircon Mines is a venture-focused company targeting high-altitude, large-scale mineral systems in the Karakoram and Himalayan ranges. Our primary focus is on identifying and extracting rare earth elements and zircon deposits essential for modern technology.',
-    history: 'Established to explore the untapped potential of the highest mountain ranges in the world, Zircon Mines has quickly become a key player in the region.',
+    logoUrl: '/images/zircon-logo.png',
+    description: 'Zircon Mines is a forward-thinking mining enterprise incorporated on January 30, 2026. Strategically located in Hilal Abad, Gilgit-Baltistan, we focus on the exploration and extraction of Copper and other high-value polymetallic structures. Our mission is to leverage modern extraction technologies to unlock the true mineral potential of the region.',
+    history: 'Zircon Mines was established to capitalize on the rich metallogenic belts of Northern Pakistan. With a leadership team rooted in both geological expertise and strategic management, the company has quickly moved to secure key exploration sites. Our incorporation in early 2026 marks the beginning of a dedicated effort to bring world-class mining standards to our operations in Hilal Abad.',
     leadership: [
-      { name: 'Dr. Sarah Ahmed', title: 'Chief Geologist' },
-      { name: 'Mr. Ali Raza', title: 'Operations Director' },
+      { name: 'Zain Abbas', title: 'Chief Executive Officer (CEO)' },
+      { name: 'Zain Abbas', title: 'Director' },
+      { name: 'Tabish Hassan', title: 'Director' },
     ],
     projects: [
-      { name: 'Karakoram Reconnaissance' },
-      { name: 'Himalayan Foothills Survey' },
+      { name: 'Hilal Abad Copper Project' },
+      { name: 'Polymetallic Exploration Zone' },
     ],
     status: 'Exploratory Phase',
     investorContacts: [
-      { name: 'Investor Relations', email: 'invest@zirconmines.com', phone: '+92-51-9876543' },
+      { name: 'Zain Abbas', email: 'ceo@zirconmines.com', phone: '+92-300-1234567' }, // Placeholder phone, update if provided
     ],
     locations: [
       {
-        name: 'Karakoram Site 1',
+        name: 'Hilal Abad Site',
         polygon: [
-          { lat: 35.920834, lng: 75.149722 },
-          { lat: 35.925000, lng: 75.155000 },
-          { lat: 35.930556, lng: 75.150278 },
-          { lat: 35.926389, lng: 75.145000 },
+          { lat: 35.088692, lng: 76.039939 },
+          { lat: 35.088201, lng: 76.040512 },
+          { lat: 35.089571, lng: 76.0456 },
+          { lat: 35.072599, lng: 76.050061 },
+          { lat: 35.076076, lng: 76.064473 },
+          { lat: 35.072071, lng: 76.083283 },
+          { lat: 35.099896, lng: 76.075174 },
+          { lat: 35.107625, lng: 76.049661 },
+          { lat: 35.091198, lng: 76.039591 },
+          { lat: 35.088692, lng: 76.039939 },
         ],
       },
     ],
-    images: galleryImages.filter(img => img.companyName === 'Himalayan Minerals Corp.'),
-    videos: [
-      { id: 'vid-4', url: 'https://www.youtube.com/embed/9bZkp7q19f0', title: 'High-Altitude Exploration Tech' }
-    ],
+    images: galleryImages.filter(img => img.companyName === 'Himalayan Minerals Corp.').map(img => ({ ...img, companyName: 'Zircon Mines' })),
+    videos: [],
     virtualTourUrl: '#',
     documents: [],
     deposits: [
-      { name: 'Zircon', location: 'Karakoram', details: ['High purity Zircon sands'] },
-      { name: 'Rare Earths', location: 'Himalayas', details: ['Pegmatite hosted REEs'] }
+      { name: 'Copper', location: 'Hilal Abad', details: ['Potential high-grade copper deposits'] },
+      { name: 'Polymetallic Structures', location: 'Gilgit-Baltistan', details: ['Complex ore bodies containing multiple extractable metals'] }
     ]
   },
 ];
