@@ -24,9 +24,11 @@ export function Header() {
 
   return (
     <header className={cn(
-      "sticky top-0 z-50 w-full transition-colors duration-300",
-      isScrolled ? 'bg-primary/90 backdrop-blur-sm' : 'bg-transparent'
-      )}>
+      "sticky top-0 z-50 w-full transition-all duration-300",
+      isScrolled
+        ? 'bg-background/60 backdrop-blur-md border-b border-white/5'
+        : 'bg-transparent'
+    )}>
       <div className="container flex h-14 max-w-screen-2xl items-center">
         <div className="flex flex-1 items-center justify-between">
           <Link href="/" className="flex items-center space-x-2">
@@ -34,7 +36,7 @@ export function Header() {
             <span className={cn(
               "hidden font-bold sm:inline-block",
               isScrolled ? 'text-white' : 'text-white'
-              )}>Game of Stones</span>
+            )}>Game of Stones</span>
           </Link>
 
           {/* Desktop Nav */}
@@ -51,7 +53,7 @@ export function Header() {
                   className={cn(
                     "px-0 text-base focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0",
                     isScrolled ? 'text-white hover:text-white/80' : 'text-white hover:text-white/80'
-                    )}
+                  )}
                 >
                   <Menu className="h-5 w-5" />
                   <span className="sr-only">Toggle Menu</span>

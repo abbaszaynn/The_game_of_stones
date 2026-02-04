@@ -4,7 +4,9 @@ import CompanyCard from '@/components/company-card';
 import { Camera } from 'lucide-react';
 import ImageGallery from '@/components/image-gallery';
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 import GlobeHeroWrapper from '@/components/globe-hero-wrapper';
+import { StarBackground } from '@/components/ui/star-background';
 
 export default async function Home() {
   const companies = await getCompanies();
@@ -18,18 +20,25 @@ export default async function Home() {
       </section>
 
       {/* Featured Companies Section */}
-      <section className="py-12 md:py-24 lg:py-32 bg-background">
-        <div className="container mx-auto px-4 md:px-6">
+      <section className="relative py-12 md:py-24 lg:py-32 overflow-hidden">
+        {/* Starfield Background */}
+        <div className="absolute inset-0 bg-black">
+          <StarBackground className="opacity-100" count={200} />
+          {/* Subtle Blue Gradient Overlay for seamless transition */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black via-blue-950/30 to-black" />
+        </div>
+
+        <div className="container relative z-10 mx-auto px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-2 rounded-full bg-accent/10 border border-accent/30 px-4 py-1.5 text-sm font-medium text-accent">
-                <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+              <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 border border-primary/30 px-4 py-1.5 text-sm font-medium text-primary shadow-[0_0_15px_rgba(212,175,55,0.3)]">
+                <span className="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_10px_#D4AF37]" />
                 Featured Companies
               </div>
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
                 Leaders in Mineral Exploration
               </h2>
-              <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+              <p className="max-w-[900px] text-zinc-400 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                 Discover the pioneers shaping the future of the mining industry in Gilgit Baltistan.
               </p>
             </div>
@@ -43,26 +52,44 @@ export default async function Home() {
       </section>
 
       {/* Gallery Section */}
-      <section
-        className="w-full py-16 md:py-32 lg:py-40 relative bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('https://i.postimg.cc/TYNGkP6M/image-1.png')" }}
-      >
-        <div className="absolute inset-0 bg-black/60" />
-        <div className="container relative grid items-center justify-center gap-4 px-4 text-center md:px-6">
-          <div className="space-y-3">
-            <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight font-headline text-white">
-              THE GAME OF STONES
-            </h2>
-            <p className="mx-auto max-w-[600px] text-white/80 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              Our platform offers immersive 3D virtual tours of mine sites. Explore the terrain and infrastructure from anywhere in the world.
-            </p>
-          </div>
-          <div className="mx-auto w-full max-w-sm space-y-2">
-            <ImageGallery images={galleryImages}>
-              <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
-                View Gallery <Camera className="ml-2 h-5 w-5" />
-              </Button>
-            </ImageGallery>
+      <section className="relative w-full py-20 lg:py-32 bg-black overflow-hidden">
+
+        <div className="container relative z-10 px-4 md:px-6 mx-auto">
+          {/* Framed Image Container */}
+          <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_100px_rgba(212,175,55,0.15)] mx-auto max-w-6xl group">
+
+            {/* Background Image */}
+            <div
+              className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105"
+              style={{ backgroundImage: "url('https://i.postimg.cc/TYNGkP6M/image-1.png')" }}
+            />
+
+            {/* Overlays */}
+            <div className="absolute inset-0 bg-black/60 group-hover:bg-black/50 transition-colors duration-500" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/80" />
+
+            {/* Content */}
+            <div className="relative z-10 flex flex-col items-center justify-center px-4 py-24 text-center md:px-12 md:py-32">
+              <div className="inline-block p-4 rounded-full bg-white/5 backdrop-blur-md border border-white/10 mb-8 shadow-2xl">
+                <Camera className="w-10 h-10 text-primary drop-shadow-[0_0_10px_rgba(212,175,55,0.5)]" />
+              </div>
+
+              <h2 className="text-4xl font-bold tracking-tighter md:text-6xl font-headline text-white mb-6 drop-shadow-2xl">
+                THE GAME OF STONES
+              </h2>
+
+              <p className="mx-auto max-w-2xl text-lg text-zinc-200 md:text-xl leading-relaxed mb-10 drop-shadow-lg">
+                Our platform offers immersive 3D virtual tours of mine sites. Explore the terrain and infrastructure from anywhere in the world.
+              </p>
+
+              <div className="w-full max-w-md">
+                <ImageGallery images={galleryImages}>
+                  <Button size="lg" className="w-full h-14 text-lg bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_0_30px_rgba(212,175,55,0.4)] transition-all hover:scale-105 rounded-full border border-white/20">
+                    View Gallery <Camera className="ml-2 h-5 w-5" />
+                  </Button>
+                </ImageGallery>
+              </div>
+            </div>
           </div>
         </div>
       </section>
