@@ -1,17 +1,16 @@
-'use client';
-
 import { useState } from 'react';
+import dynamic from 'next/dynamic';
 import type { Company } from '@/lib/types';
+
+// Dynamically import LeafletMap to avoid SSR issues
+const LeafletMap = dynamic(() => import('./leaflet-map'), {
+    ssr: false,
+    loading: () => <div className="w-full h-full flex items-center justify-center bg-slate-900 text-white">Loading Map...</div>
+});
 
 // Gold color for mines
 const GOLD_COLOR = '#D4AF37';
 const GOLD_GLOW = 'rgba(212, 175, 55, 0.6)';
-
-// Gilgit Baltistan coordinates
-const GILGIT_BALTISTAN = {
-    lat: 35.8,
-    lng: 74.5,
-};
 
 interface Map3DContainerProps {
     companies: Company[];
@@ -20,40 +19,23 @@ interface Map3DContainerProps {
 export default function Map3DContainer({ companies }: Map3DContainerProps) {
     const [selectedMine, setSelectedMine] = useState<{ company: Company; location: Company['locations'][0] } | null>(null);
 
-    // Generate Google Maps embed URL centered on selected mine or region
-    const getMapUrl = () => {
-        if (selectedMine) {
-            const center = selectedMine.location.polygon.reduce(
-                (acc, p) => ({
-                    lat: acc.lat + p.lat / selectedMine.location.polygon.length,
-                    lng: acc.lng + p.lng / selectedMine.location.polygon.length,
-                }),
-                { lat: 0, lng: 0 }
-            );
-            return `https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d50000!2d${center.lng}!3d${center.lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2s!4v1704000000000!5m2!1sen!2s`;
-        }
-        // Default: Gilgit Baltistan region
-        return `https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d800000!2d${GILGIT_BALTISTAN.lng}!3d${GILGIT_BALTISTAN.lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2s!4v1704000000000!5m2!1sen!2s`;
+    const handleMineSelect = (company: Company, location: Company['locations'][0]) => {
+        setSelectedMine({ company, location });
     };
 
     return (
         <div className="relative w-full h-full bg-gradient-to-b from-slate-900 to-slate-800">
-            {/* Embedded Google Map (Free, no API key required for embeds) */}
-            <div className="absolute inset-0">
-                <iframe
-                    src={getMapUrl()}
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="Gilgit Baltistan Mining Sites"
+            {/* Interactive Leaflet Map */}
+            <div className="absolute inset-0 z-0">
+                <LeafletMap
+                    companies={companies}
+                    selectedMine={selectedMine}
+                    onMineSelect={handleMineSelect}
                 />
             </div>
 
-            {/* Custom overlay with mine markers */}
-            <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-slate-900/80 to-transparent pointer-events-none" />
+            {/* Custom overlay with fixed header */}
+            <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-slate-900/80 to-transparent pointer-events-none z-10" />
 
             {/* Mine Sidebar */}
             <div className="absolute top-20 left-4 z-10 w-80 max-h-[calc(100vh-120px)] overflow-y-auto">
@@ -80,8 +62,8 @@ export default function Map3DContainer({ companies }: Map3DContainerProps) {
                             company.locations.map((location, idx) => (
                                 <button
                                     key={`${company.id}-${idx}`}
-                                    onClick={() => setSelectedMine({ company, location })}
-                                    className={`w-full text-left p-3 rounded-lg border transition-all ${selectedMine?.location.name === location.name
+                                    onClick={() => handleMineSelect(company, location)}
+                                    className={`w-full text-left p-3 rounded-lg border transition-all ${selectedMine?.location.name === location.name && selectedMine?.company.id === company.id
                                             ? 'bg-accent/20 border-accent'
                                             : 'bg-card hover:bg-accent/10 border-transparent hover:border-accent/50'
                                         }`}
