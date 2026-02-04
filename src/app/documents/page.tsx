@@ -10,7 +10,7 @@ export default async function DocumentsPage() {
   const documents = await getDocuments();
 
   return (
-    <div className="container mx-auto px-4 py-12 md:px-6">
+    <div className="container mx-auto px-4 pt-24 pb-16 md:px-6 md:pt-28 md:pb-20">
       <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
         <div className="space-y-2">
           <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">
@@ -42,7 +42,7 @@ export default async function DocumentsPage() {
               {documents.map((doc: any) => (
                 <TableRow key={doc.id}>
                   <TableCell className="font-medium">{doc.title}</TableCell>
-                   <TableCell>{doc.companyName}</TableCell>
+                  <TableCell>{doc.companyName}</TableCell>
                   <TableCell>
                     <Badge variant="secondary">{doc.type}</Badge>
                   </TableCell>

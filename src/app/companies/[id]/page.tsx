@@ -19,7 +19,7 @@ export default async function CompanyDetailPage({ params }: { params: { id: stri
   }
 
   return (
-    <div className="container mx-auto px-4 py-12 md:px-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
+    <div className="container mx-auto px-4 pt-24 pb-16 md:px-6 md:pt-28 md:pb-20 animate-in fade-in slide-in-from-bottom-4 duration-700">
       <header className="mb-12 relative overflow-hidden rounded-3xl p-8 md:p-12 border border-white/5 bg-gradient-to-br from-white/5 to-transparent backdrop-blur-sm">
         <div className="absolute inset-0 bg-grid-white/5 [mask-image:linear-gradient(0deg,transparent,black)]" />
         <div className="relative z-10 flex flex-col items-center gap-8 text-center md:flex-row md:text-left">

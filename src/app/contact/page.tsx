@@ -54,7 +54,7 @@ export default function ContactPage() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     if (!firestore) return;
     const inquiriesCollection = collection(firestore, 'inquiries');
-    
+
     try {
       await addDocumentNonBlocking(inquiriesCollection, {
         ...values,
@@ -67,7 +67,7 @@ export default function ContactPage() {
       });
       form.reset();
     } catch (error) {
-       toast({
+      toast({
         variant: 'destructive',
         title: 'Submission Failed',
         description: 'There was a problem submitting your inquiry. Please try again.',
@@ -76,8 +76,8 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-24 md:px-6">
-       <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
+    <div className="container mx-auto px-4 pt-24 pb-16 md:px-6 md:pt-28 md:pb-20">
+      <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
         <div className="space-y-2">
           <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">
             Contact Us
