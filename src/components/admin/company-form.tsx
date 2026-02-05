@@ -5,172 +5,367 @@ import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Label } from '@/components/ui/label';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Loader2, ArrowLeft, Save } from 'lucide-react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Loader2, Plus, Trash2, Save, ArrowLeft } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
 import Link from 'next/link';
 
-export default function CompanyForm({ companyId }: { companyId?: string }) {
-    const router = useRouter();
-    const [loading, setLoading] = useState(false);
-    const [fetching, setFetching] = useState(!!companyId);
+interface CompanyFormProps {
+    companyId?: string; // Slug
+}
 
-    const [formData, setFormData] = useState({
-        slug: '',
-        name: '',
-        tagline: '',
-        description: '',
-        history: '',
-        status: 'Exploratory Phase',
-        logo_url: '',
-    });
+export default function CompanyForm({ companyId }: CompanyFormProps) {
+    const router = useRouter();
+    const { toast } = useToast();
+    const [isLoading, setIsLoading] = useState(false);
+    const [activeTab, setActiveTab] = useState('general');
+
+    // General Fields
+    const [name, setName] = useState('');
+    const [tagline, setTagline] = useState('');
+    const [description, setDescription] = useState('');
+    const [history, setHistory] = useState('');
+    const [logoUrl, setLogoUrl] = useState('');
+    const [status, setStatus] = useState('Exploratory Phase');
+    const [dbId, setDbId] = useState<string | null>(null); // Real UUID
+
+    // Related Data States
+    const [media, setMedia] = useState<{ id?: string; url: string; type: 'image' | 'video'; title?: string }[]>([]);
+    const [documents, setDocuments] = useState<{ id?: string; title: string; type: string; url: string }[]>([]);
+    const [contacts, setContacts] = useState<{ id?: string; name: string; email: string; phone: string }[]>([]);
+    const [leadership, setLeadership] = useState<{ id?: string; name: string; title: string }[]>([]);
 
     useEffect(() => {
         if (companyId) {
             const fetchCompany = async () => {
-                const { data, error } = await supabase
+                setIsLoading(true);
+                // Fetch Company
+                const { data: company, error } = await supabase
                     .from('companies')
                     .select('*')
                     .eq('slug', companyId)
                     .single();
 
                 if (error) {
-                    console.error(error);
-                    alert('Error fetching company');
-                    router.push('/admin/companies');
-                } else if (data) {
-                    setFormData({
-                        slug: data.slug,
-                        name: data.name,
-                        tagline: data.tagline || '',
-                        description: data.description || '',
-                        history: data.history || '',
-                        status: data.status || 'Exploratory Phase',
-                        logo_url: data.logo_url || '',
-                    });
+                    console.error('Error fetching company:', error);
+                    toast({ title: 'Error', description: 'Failed to fetch company.', variant: 'destructive' });
+                    return;
                 }
-                setFetching(false);
+
+                setDbId(company.id);
+                setName(company.name);
+                setTagline(company.tagline || '');
+                setDescription(company.description || '');
+                setHistory(company.history || '');
+                setLogoUrl(company.logo_url || '');
+                setStatus(company.status || 'Exploratory Phase');
+
+                // Fetch Related Data in Parallel
+                const [mediaRes, docsRes, contactsRes, leadRes] = await Promise.all([
+                    supabase.from('media_assets').select('*').eq('company_id', company.id),
+                    supabase.from('documents').select('*').eq('company_id', company.id),
+                    supabase.from('contacts').select('*').eq('company_id', company.id),
+                    supabase.from('leadership').select('*').eq('company_id', company.id)
+                ]);
+
+                if (mediaRes.data) setMedia(mediaRes.data);
+                if (docsRes.data) setDocuments(docsRes.data);
+                if (contactsRes.data) setContacts(contactsRes.data);
+                if (leadRes.data) setLeadership(leadRes.data);
+
+                setIsLoading(false);
             };
+
             fetchCompany();
         }
-    }, [companyId, router]);
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
-
-    const handleStatusChange = (value: string) => {
-        setFormData({ ...formData, status: value });
-    };
+    }, [companyId, toast]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setLoading(true);
+        setIsLoading(true);
 
         try {
-            if (companyId) {
+            let currentCompanyId = dbId;
+
+            // 1. Upsert Company
+            const companyData = {
+                name,
+                slug: name.toLowerCase().replace(/ /g, '-').replace(/[^\w-]/g, ''),
+                tagline,
+                description,
+                history,
+                logo_url: logoUrl,
+                status,
+            };
+
+            if (dbId) {
                 // Update
-                const { error } = await supabase
-                    .from('companies')
-                    .update(formData)
-                    .eq('slug', companyId);
+                const { error } = await supabase.from('companies').update(companyData).eq('id', dbId);
                 if (error) throw error;
             } else {
-                // Create
-                // Auto-generate slug if empty (simple version)
-                const slug = formData.slug || formData.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-                const { error } = await supabase
-                    .from('companies')
-                    .insert([{ ...formData, slug }]);
+                // Insert
+                const { data, error } = await supabase.from('companies').insert([companyData]).select().single();
                 if (error) throw error;
+                currentCompanyId = data.id;
+                setDbId(data.id);
             }
 
-            router.push('/admin/companies');
+            if (!currentCompanyId) throw new Error('Failed to get Company ID');
+
+            // 2. Handle Related Data (Simple Strategy: Delete All & Re-Insert)
+
+            // Documents
+            await supabase.from('documents').delete().eq('company_id', currentCompanyId);
+            if (documents.length > 0) {
+                await supabase.from('documents').insert(documents.map(d => ({
+                    company_id: currentCompanyId,
+                    title: d.title,
+                    type: d.type,
+                    url: d.url
+                })));
+            }
+
+            // Media
+            await supabase.from('media_assets').delete().eq('company_id', currentCompanyId);
+            if (media.length > 0) {
+                await supabase.from('media_assets').insert(media.map(m => ({
+                    company_id: currentCompanyId,
+                    type: m.type,
+                    url: m.url,
+                    title: m.title
+                })));
+            }
+
+            // Contacts
+            await supabase.from('contacts').delete().eq('company_id', currentCompanyId);
+            if (contacts.length > 0) {
+                await supabase.from('contacts').insert(contacts.map(c => ({
+                    company_id: currentCompanyId,
+                    name: c.name,
+                    email: c.email,
+                    phone: c.phone
+                })));
+            }
+
+            // Leadership
+            await supabase.from('leadership').delete().eq('company_id', currentCompanyId);
+            if (leadership.length > 0) {
+                await supabase.from('leadership').insert(leadership.map(l => ({
+                    company_id: currentCompanyId,
+                    name: l.name,
+                    title: l.title
+                })));
+            }
+
+            toast({ title: 'Success', description: 'Company and related data saved.' });
             router.refresh();
+            if (!companyId) {
+                router.push('/admin/companies');
+            }
+
         } catch (error: any) {
-            alert('Error saving company: ' + error.message);
+            console.error('Error saving:', error);
+            toast({ title: 'Error', description: error.message, variant: 'destructive' });
         } finally {
-            setLoading(false);
+            setIsLoading(false);
         }
     };
 
-    if (fetching) {
-        return <div className="flex justify-center p-12 text-primary"><Loader2 className="animate-spin w-8 h-8" /></div>;
-    }
+    // Helper Functions for Arrays
+    const addMedia = () => setMedia([...media, { url: '', type: 'image', title: '' }]);
+    const removeMedia = (index: number) => setMedia(media.filter((_, i) => i !== index));
+    const updateMedia = (index: number, field: string, value: string) => {
+        const newMedia = [...media];
+        newMedia[index] = { ...newMedia[index], [field]: value };
+        setMedia(newMedia);
+    };
+
+    const addDocument = () => setDocuments([...documents, { title: '', type: 'Geological Report', url: '' }]);
+    const removeDocument = (index: number) => setDocuments(documents.filter((_, i) => i !== index));
+    const updateDocument = (index: number, field: string, value: string) => {
+        const newDocs = [...documents];
+        newDocs[index] = { ...newDocs[index], [field]: value };
+        setDocuments(newDocs);
+    };
+
+    const addContact = () => setContacts([...contacts, { name: '', email: '', phone: '' }]);
+    const removeContact = (index: number) => setContacts(contacts.filter((_, i) => i !== index));
+    const updateContact = (index: number, field: string, value: string) => {
+        const newContacts = [...contacts];
+        newContacts[index] = { ...newContacts[index], [field]: value };
+        setContacts(newContacts);
+    };
+
+    const addLeader = () => setLeadership([...leadership, { name: '', title: '' }]);
+    const removeLeader = (index: number) => setLeadership(leadership.filter((_, i) => i !== index));
+    const updateLeader = (index: number, field: string, value: string) => {
+        const newLeaders = [...leadership];
+        newLeaders[index] = { ...newLeaders[index], [field]: value };
+        setLeadership(newLeaders);
+    };
 
     return (
-        <div className="max-w-4xl mx-auto space-y-6">
-            <div className="flex items-center gap-4">
-                <Button variant="ghost" size="icon" asChild>
-                    <Link href="/admin/companies"><ArrowLeft className="w-4 h-4" /></Link>
+        <div className="w-full max-w-5xl mx-auto space-y-6">
+            <div className="flex items-center justify-between gap-4">
+                <div className="flex items-center gap-4">
+                    <Button variant="ghost" size="icon" asChild>
+                        <Link href="/admin/companies"><ArrowLeft className="w-4 h-4" /></Link>
+                    </Button>
+                    <h1 className="text-3xl font-bold tracking-tight text-white">{companyId ? `Edit ${name}` : 'New Company'}</h1>
+                </div>
+
+                <Button onClick={handleSubmit} disabled={isLoading} className="bg-amber-500 hover:bg-amber-600 text-black">
+                    {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Save className="mr-2 h-4 w-4" />}
+                    Save Changes
                 </Button>
-                <h1 className="text-2xl font-bold font-headline text-white">
-                    {companyId ? 'Edit Company' : 'New Company'}
-                </h1>
             </div>
 
-            <form onSubmit={handleSubmit}>
-                <Card className="bg-card/30 backdrop-blur-sm border-white/10">
-                    <CardHeader>
-                        <CardTitle className="text-primary">Company Details</CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-6">
-                        <div className="grid md:grid-cols-2 gap-6">
-                            <div className="space-y-2">
-                                <Label htmlFor="name">Company Name</Label>
-                                <Input id="name" name="name" value={formData.name} onChange={handleChange} required className="bg-white/5 border-white/10" />
+            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+                <TabsList className="grid w-full grid-cols-5 bg-zinc-900 border border-white/10">
+                    <TabsTrigger value="general">General</TabsTrigger>
+                    <TabsTrigger value="media">Multimedia</TabsTrigger>
+                    <TabsTrigger value="documents">Documents</TabsTrigger>
+                    <TabsTrigger value="contacts">Contacts</TabsTrigger>
+                    <TabsTrigger value="leadership">Leadership</TabsTrigger>
+                </TabsList>
+
+                {/* --- GENERAL TAB --- */}
+                <TabsContent value="general" className="space-y-6 mt-6">
+                    <Card className="bg-zinc-900 border-white/10">
+                        <CardHeader><CardTitle className="text-white">Company Details</CardTitle><CardDescription>Basic information about the company.</CardDescription></CardHeader>
+                        <CardContent className="space-y-4">
+                            <div className="grid gap-2"><Label>Company Name</Label><Input value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. Durr Mines" className="bg-zinc-800 border-white/10" required /></div>
+                            <div className="grid gap-2"><Label>Tagline</Label><Input value={tagline} onChange={(e) => setTagline(e.target.value)} placeholder="Short catchphrase" className="bg-zinc-800 border-white/10" /></div>
+                            <div className="grid grid-cols-2 gap-4">
+                                <div className="grid gap-2"><Label>Status</Label>
+                                    <Select value={status} onValueChange={setStatus}>
+                                        <SelectTrigger className="bg-zinc-800 border-white/10"><SelectValue placeholder="Select status" /></SelectTrigger>
+                                        <SelectContent>
+                                            <SelectItem value="Operational">Operational</SelectItem>
+                                            <SelectItem value="Exploratory Phase">Exploratory Phase</SelectItem>
+                                            <SelectItem value="Maintenance">Maintenance</SelectItem>
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+                                <div className="grid gap-2"><Label>Logo URL</Label><Input value={logoUrl} onChange={(e) => setLogoUrl(e.target.value)} placeholder="https://..." className="bg-zinc-800 border-white/10" /></div>
                             </div>
-                            <div className="space-y-2">
-                                <Label htmlFor="slug">Slug (ID)</Label>
-                                <Input id="slug" name="slug" value={formData.slug} onChange={handleChange} placeholder="auto-generated-if-empty" disabled={!!companyId} className="bg-white/5 border-white/10" />
-                            </div>
-                        </div>
+                            <div className="grid gap-2"><Label>Description</Label><Textarea value={description} onChange={(e) => setDescription(e.target.value)} rows={5} className="bg-zinc-800 border-white/10" /></div>
+                            <div className="grid gap-2"><Label>History</Label><Textarea value={history} onChange={(e) => setHistory(e.target.value)} rows={5} className="bg-zinc-800 border-white/10" /></div>
+                        </CardContent>
+                    </Card>
+                </TabsContent>
 
-                        <div className="space-y-2">
-                            <Label htmlFor="tagline">Tagline</Label>
-                            <Input id="tagline" name="tagline" value={formData.tagline} onChange={handleChange} className="bg-white/5 border-white/10" />
-                        </div>
+                {/* --- MULTIMEDIA TAB --- */}
+                <TabsContent value="media" className="space-y-6 mt-6">
+                    <Card className="bg-zinc-900 border-white/10">
+                        <CardHeader className="flex flex-row items-center justify-between">
+                            <div><CardTitle className="text-white">Images & Videos</CardTitle><CardDescription>Manage gallery images and video links.</CardDescription></div>
+                            <Button size="sm" onClick={addMedia} variant="outline" className="text-black"><Plus className="w-4 h-4 mr-2" /> Add Item</Button>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                            {media.map((item, index) => (
+                                <div key={index} className="flex gap-4 items-start p-4 border border-white/5 rounded-lg bg-white/5">
+                                    <div className="grid gap-4 flex-1 md:grid-cols-12">
+                                        <div className="md:col-span-2">
+                                            <Select value={item.type} onValueChange={(val: any) => updateMedia(index, 'type', val)}>
+                                                <SelectTrigger className="bg-zinc-800 border-white/10"><SelectValue /></SelectTrigger>
+                                                <SelectContent><SelectItem value="image">Image</SelectItem><SelectItem value="video">Video</SelectItem></SelectContent>
+                                            </Select>
+                                        </div>
+                                        <div className="md:col-span-6"><Input value={item.url} onChange={(e) => updateMedia(index, 'url', e.target.value)} placeholder="URL (https://...)" className="bg-zinc-800 border-white/10" /></div>
+                                        <div className="md:col-span-4"><Input value={item.title || ''} onChange={(e) => updateMedia(index, 'title', e.target.value)} placeholder="Title / Caption" className="bg-zinc-800 border-white/10" /></div>
+                                    </div>
+                                    <Button size="icon" variant="destructive" onClick={() => removeMedia(index)}><Trash2 className="w-4 h-4" /></Button>
+                                </div>
+                            ))}
+                            {media.length === 0 && <p className="text-muted-foreground text-center py-8">No media assets added.</p>}
+                        </CardContent>
+                    </Card>
+                </TabsContent>
 
-                        <div className="grid md:grid-cols-2 gap-6">
-                            <div className="space-y-2">
-                                <Label htmlFor="status">Status</Label>
-                                <Select value={formData.status} onValueChange={handleStatusChange}>
-                                    <SelectTrigger className="bg-white/5 border-white/10">
-                                        <SelectValue placeholder="Select status" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectItem value="Operational">Operational</SelectItem>
-                                        <SelectItem value="Exploratory Phase">Exploratory Phase</SelectItem>
-                                    </SelectContent>
-                                </Select>
-                            </div>
-                            <div className="space-y-2">
-                                <Label htmlFor="logo_url">Logo URL</Label>
-                                <Input id="logo_url" name="logo_url" value={formData.logo_url} onChange={handleChange} placeholder="/images/logos/..." className="bg-white/5 border-white/10" />
-                            </div>
-                        </div>
+                {/* --- DOCUMENTS TAB --- */}
+                <TabsContent value="documents" className="space-y-6 mt-6">
+                    <Card className="bg-zinc-900 border-white/10">
+                        <CardHeader className="flex flex-row items-center justify-between">
+                            <div><CardTitle className="text-white">Documents</CardTitle><CardDescription>Reports, Licenses, and Certificates.</CardDescription></div>
+                            <Button size="sm" onClick={addDocument} variant="outline" className="text-black"><Plus className="w-4 h-4 mr-2" /> Add Document</Button>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                            {documents.map((doc, index) => (
+                                <div key={index} className="flex gap-4 items-start p-4 border border-white/5 rounded-lg bg-white/5">
+                                    <div className="grid gap-4 flex-1 md:grid-cols-12">
+                                        <div className="md:col-span-4"><Input value={doc.title} onChange={(e) => updateDocument(index, 'title', e.target.value)} placeholder="Document Title" className="bg-zinc-800 border-white/10" /></div>
+                                        <div className="md:col-span-3">
+                                            <Select value={doc.type} onValueChange={(val) => updateDocument(index, 'type', val)}>
+                                                <SelectTrigger className="bg-zinc-800 border-white/10"><SelectValue /></SelectTrigger>
+                                                <SelectContent>
+                                                    <SelectItem value="Geological Report">Geological Report</SelectItem>
+                                                    <SelectItem value="License">License</SelectItem>
+                                                    <SelectItem value="Financial Summary">Financial Summary</SelectItem>
+                                                    <SelectItem value="Other">Other</SelectItem>
+                                                </SelectContent>
+                                            </Select>
+                                        </div>
+                                        <div className="md:col-span-5"><Input value={doc.url} onChange={(e) => updateDocument(index, 'url', e.target.value)} placeholder="File URL" className="bg-zinc-800 border-white/10" /></div>
+                                    </div>
+                                    <Button size="icon" variant="destructive" onClick={() => removeDocument(index)}><Trash2 className="w-4 h-4" /></Button>
+                                </div>
+                            ))}
+                            {documents.length === 0 && <p className="text-muted-foreground text-center py-8">No documents added.</p>}
+                        </CardContent>
+                    </Card>
+                </TabsContent>
 
-                        <div className="space-y-2">
-                            <Label htmlFor="description">Description</Label>
-                            <Textarea id="description" name="description" value={formData.description} onChange={handleChange} rows={5} className="bg-white/5 border-white/10" />
-                        </div>
+                {/* --- CONTACTS TAB --- */}
+                <TabsContent value="contacts" className="space-y-6 mt-6">
+                    <Card className="bg-zinc-900 border-white/10">
+                        <CardHeader className="flex flex-row items-center justify-between">
+                            <div><CardTitle className="text-white">Investor Relations</CardTitle><CardDescription>Public contacts for investors.</CardDescription></div>
+                            <Button size="sm" onClick={addContact} variant="outline" className="text-black"><Plus className="w-4 h-4 mr-2" /> Add Contact</Button>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                            {contacts.map((contact, index) => (
+                                <div key={index} className="flex gap-4 items-start p-4 border border-white/5 rounded-lg bg-white/5">
+                                    <div className="grid gap-4 flex-1 md:grid-cols-12">
+                                        <div className="md:col-span-4"><Input value={contact.name} onChange={(e) => updateContact(index, 'name', e.target.value)} placeholder="Contact Name" className="bg-zinc-800 border-white/10" /></div>
+                                        <div className="md:col-span-4"><Input value={contact.email} onChange={(e) => updateContact(index, 'email', e.target.value)} placeholder="Email" className="bg-zinc-800 border-white/10" /></div>
+                                        <div className="md:col-span-4"><Input value={contact.phone} onChange={(e) => updateContact(index, 'phone', e.target.value)} placeholder="Phone" className="bg-zinc-800 border-white/10" /></div>
+                                    </div>
+                                    <Button size="icon" variant="destructive" onClick={() => removeContact(index)}><Trash2 className="w-4 h-4" /></Button>
+                                </div>
+                            ))}
+                            {contacts.length === 0 && <p className="text-muted-foreground text-center py-8">No contacts added.</p>}
+                        </CardContent>
+                    </Card>
+                </TabsContent>
 
-                        <div className="space-y-2">
-                            <Label htmlFor="history">History</Label>
-                            <Textarea id="history" name="history" value={formData.history} onChange={handleChange} rows={5} className="bg-white/5 border-white/10" />
-                        </div>
+                {/* --- LEADERSHIP TAB --- */}
+                <TabsContent value="leadership" className="space-y-6 mt-6">
+                    <Card className="bg-zinc-900 border-white/10">
+                        <CardHeader className="flex flex-row items-center justify-between">
+                            <div><CardTitle className="text-white">Leadership Team</CardTitle><CardDescription>Key executives and directors.</CardDescription></div>
+                            <Button size="sm" onClick={addLeader} variant="outline" className="text-black"><Plus className="w-4 h-4 mr-2" /> Add Leader</Button>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                            {leadership.map((leader, index) => (
+                                <div key={index} className="flex gap-4 items-start p-4 border border-white/5 rounded-lg bg-white/5">
+                                    <div className="grid gap-4 flex-1 md:grid-cols-2">
+                                        <Input value={leader.name} onChange={(e) => updateLeader(index, 'name', e.target.value)} placeholder="Name" className="bg-zinc-800 border-white/10" />
+                                        <Input value={leader.title} onChange={(e) => updateLeader(index, 'title', e.target.value)} placeholder="Job Title" className="bg-zinc-800 border-white/10" />
+                                    </div>
+                                    <Button size="icon" variant="destructive" onClick={() => removeLeader(index)}><Trash2 className="w-4 h-4" /></Button>
+                                </div>
+                            ))}
+                            {leadership.length === 0 && <p className="text-muted-foreground text-center py-8">No leadership team added.</p>}
+                        </CardContent>
+                    </Card>
+                </TabsContent>
 
-                        <div className="flex justify-end pt-4">
-                            <Button type="submit" disabled={loading} className="bg-primary hover:bg-primary/90 text-primary-foreground min-w-[150px]">
-                                {loading ? <Loader2 className="animate-spin w-4 h-4 mr-2" /> : <Save className="w-4 h-4 mr-2" />}
-                                Save Company
-                            </Button>
-                        </div>
-                    </CardContent>
-                </Card>
-            </form>
+            </Tabs>
         </div>
     );
 }
