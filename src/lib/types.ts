@@ -7,9 +7,9 @@ export interface MineLocation {
 export interface Document {
   id: string;
   title: string;
-  type: 'Geological Report' | 'License' | 'Concession Paper' | 'Financial Summary';
+  type: 'Geological Report' | 'License' | 'Concession Paper' | 'Financial Summary' | 'Map';
   url: string;
-  companyId: string;
+  companyId?: string;
   companyName?: string;
   contentText?: string;
 }
@@ -21,20 +21,20 @@ export interface Video {
 }
 
 export interface GalleryImage {
-    id: string;
-    url: string;
-    title: string;
-    description: string;
-    companyName: string;
-    mineral?: string;
-    properties?: string;
+  id: string;
+  url: string;
+  title: string;
+  description: string;
+  companyName: string;
+  mineral?: string;
+  properties?: string;
 }
 
 export interface Deposit {
-    name: string;
-    location?: string;
-    type?: string;
-    details?: string[];
+  name: string;
+  location?: string;
+  type?: string;
+  details?: string[];
 }
 
 export interface Company {

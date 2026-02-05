@@ -8,11 +8,11 @@ const allDocuments: Document[] = [
   { id: 'doc-1', companyId: 'durr-mines-and-minerals', title: 'Copper Ore at Skardu,  Tehsil Gultari', type: 'Geological Report', url: 'https://mega.nz/file/gIZRxJZY#iumoVJkKeejUdux1fQz-Y31o0lAMDcMhJ3X-KnDNyL0' },
   { id: 'doc-7', companyId: 'durr-mines-and-minerals', title: 'Marble Ore at Bagicha', type: 'Geological Report', url: 'https://mega.nz/file/4UhxmTKY#AzFv7Jc3IE11OhBKdGSbaRYKM85UhmtwrOKc96f9vcI' },
   { id: 'doc-2', companyId: 'durr-mines-and-minerals', title: 'MINING LICENSE', type: 'License', url: '#' },
-  { 
-    id: 'doc-8', 
-    companyId: 'earth-lux-mines', 
-    title: 'Incorporation Letter', 
-    type: 'License', 
+  {
+    id: 'doc-8',
+    companyId: 'earth-lux-mines',
+    title: 'Incorporation Letter',
+    type: 'License',
     url: 'https://mega.nz/file/NAY3GaQZ#igzi5X3SNFZkZAGjLZ-a5rWd-qcfVyL65Ks1zcPeyQQ',
     contentText: `SECURITIES AND EXCHANGE COMMISSION OF PAKISTAN
  Company Registration Office
@@ -27,11 +27,11 @@ const allDocuments: Document[] = [
  Muhammad Shoaib Khan
  Assistant Registrar`
   },
-  { 
+  {
     id: 'doc-9',
-    companyId: 'earth-lux-mines', 
-    title: 'Geological Report - Gupis, Ghizer', 
-    type: 'Geological Report', 
+    companyId: 'earth-lux-mines',
+    title: 'Geological Report - Gupis, Ghizer',
+    type: 'Geological Report',
     url: 'https://mega.nz/file/BQhDEIJL#JXvUAfDZsxfiWlTOWGHEP64WQWvArnKuwEseFZX6UBU',
     contentText: `Geological Field Report of Copper Ore at Gupis, 
 Tehsil Yasin, District Ghizer, Gilgit-Baltistan, Pakistan 
@@ -770,64 +770,67 @@ Total Cost In Millions (PKR)
 ]
 
 export const news: NewsArticle[] = [
-    {
-      id: 'news-1',
-      title: 'Global Copper Demand Surges Amidst Green Energy Transition',
-      excerpt: 'Analysts predict a continued rise in copper prices as the global push for renewable energy and electric vehicles intensifies demand for the versatile metal.',
-      content: 'The global transition to green energy is creating unprecedented demand for copper. As a critical component in electric vehicles (EVs), solar panels, and wind turbines, copper is at the forefront of the shift away from fossil fuels. Major investment banks have revised their price forecasts upwards, citing a potential supply deficit in the coming years. Mining companies are under pressure to increase production, but new projects face lengthy approval processes and significant capital investment requirements. This supply-demand imbalance is expected to support high copper prices for the foreseeable future.',
-      imageUrl: PlaceHolderImages.find(p => p.id === 'news-1')?.imageUrl || 'https://placehold.co/600x400',
-      publishDate: '2024-05-15T12:00:00Z',
-      companyId: 'durr-mines-and-minerals',
-    },
-    {
-      id: 'news-2',
-      title: 'New Autonomous Haulage Technology Revolutionizes Mine Safety',
-      excerpt: 'The introduction of fully autonomous trucks at several major mine sites is drastically reducing accidents and improving operational efficiency.',
-      content: 'A new wave of autonomous haulage technology is transforming the mining industry. Companies that have adopted these self-driving trucks report a significant decrease in on-site accidents and a noticeable improvement in productivity. The technology allows for 24/7 operation without driver fatigue, optimizing routes and reducing fuel consumption. While the initial investment is substantial, the long-term benefits in safety and efficiency are proving to be a game-changer for the industry.',
-      imageUrl: PlaceHolderImages.find(p => p.id === 'news-2')?.imageUrl || 'https://placehold.co/600x400',
-      publishDate: '2024-05-10T09:00:00Z',
-      companyId: 'earth-lux-mines',
-    },
-    {
-        id: 'news-3',
-        title: 'Stricter Environmental Regulations Proposed for Mining Operations',
-        excerpt: 'Governments worldwide are considering new legislation to enforce stricter environmental controls on mining activities, focusing on water usage and tailings management.',
-        content: 'In response to growing environmental concerns, several governments are drafting new regulations aimed at the mining sector. The proposed laws focus on two key areas: reducing water consumption in water-scarce regions and improving the safety and management of tailings dams. Environmental groups have lauded the move, while industry associations have expressed concerns about the potential operational costs and the need for a phased implementation to allow companies to adapt.',
-        imageUrl: PlaceHolderImages.find(p => p.id === 'news-3')?.imageUrl || 'https://placehold.co/600x400',
-        publishDate: '2024-05-02T14:00:00Z',
-        companyId: 'himalayan-minerals-corp',
-    },
-  ];
+  {
+    id: 'news-1',
+    title: 'Global Copper Demand Surges Amidst Green Energy Transition',
+    excerpt: 'Analysts predict a continued rise in copper prices as the global push for renewable energy and electric vehicles intensifies demand for the versatile metal.',
+    content: 'The global transition to green energy is creating unprecedented demand for copper. As a critical component in electric vehicles (EVs), solar panels, and wind turbines, copper is at the forefront of the shift away from fossil fuels. Major investment banks have revised their price forecasts upwards, citing a potential supply deficit in the coming years. Mining companies are under pressure to increase production, but new projects face lengthy approval processes and significant capital investment requirements. This supply-demand imbalance is expected to support high copper prices for the foreseeable future.',
+    imageUrl: PlaceHolderImages.find(p => p.id === 'news-1')?.imageUrl || 'https://placehold.co/600x400',
+    publishDate: '2024-05-15T12:00:00Z',
+    companyId: 'durr-mines-and-minerals',
+  },
+  {
+    id: 'news-2',
+    title: 'New Autonomous Haulage Technology Revolutionizes Mine Safety',
+    excerpt: 'The introduction of fully autonomous trucks at several major mine sites is drastically reducing accidents and improving operational efficiency.',
+    content: 'A new wave of autonomous haulage technology is transforming the mining industry. Companies that have adopted these self-driving trucks report a significant decrease in on-site accidents and a noticeable improvement in productivity. The technology allows for 24/7 operation without driver fatigue, optimizing routes and reducing fuel consumption. While the initial investment is substantial, the long-term benefits in safety and efficiency are proving to be a game-changer for the industry.',
+    imageUrl: PlaceHolderImages.find(p => p.id === 'news-2')?.imageUrl || 'https://placehold.co/600x400',
+    publishDate: '2024-05-10T09:00:00Z',
+    companyId: 'earth-lux-mines',
+  },
+  {
+    id: 'news-3',
+    title: 'Stricter Environmental Regulations Proposed for Mining Operations',
+    excerpt: 'Governments worldwide are considering new legislation to enforce stricter environmental controls on mining activities, focusing on water usage and tailings management.',
+    content: 'In response to growing environmental concerns, several governments are drafting new regulations aimed at the mining sector. The proposed laws focus on two key areas: reducing water consumption in water-scarce regions and improving the safety and management of tailings dams. Environmental groups have lauded the move, while industry associations have expressed concerns about the potential operational costs and the need for a phased implementation to allow companies to adapt.',
+    imageUrl: PlaceHolderImages.find(p => p.id === 'news-3')?.imageUrl || 'https://placehold.co/600x400',
+    publishDate: '2024-05-02T14:00:00Z',
+    companyId: 'himalayan-minerals-corp',
+  },
+];
 
-  
-  const companies: Company[] = companiesData.map(company => ({
-    ...company,
-    // Add documents to the company based on companyId
-    documents: allDocuments.filter(doc => doc.companyId === company.id)
+
+const companies: Company[] = companiesData.map(company => ({
+  ...company,
+  // Add documents to the company based on companyId
+  documents: [
+    ...(company.documents || []),
+    ...allDocuments.filter(doc => doc.companyId === company.id)
+  ]
 }));
-  
-  export async function getCompanies(): Promise<Company[]> {
-    // This function simulates fetching data. In a real app, this would be an API call.
-    return companies;
-  }
-  
-  export async function getCompanyById(id: string): Promise<Company | undefined> {
-    const companies = await getCompanies();
-    return companies.find((company) => company.id === id);
-  }
-  
-  export async function getNews(): Promise<NewsArticle[]> {
-    return news;
-  }
 
-  export async function getDocuments(): Promise<Document[]> {
-    const companies = await getCompanies();
-    return companies.flatMap(company => 
-      company.documents.map(doc => ({ ...doc, companyName: company.name }))
-    );
-  }
-  
-  export async function getGalleryImages(): Promise<GalleryImage[]> {
-    return galleryImages;
-  }
-  
+export async function getCompanies(): Promise<Company[]> {
+  // This function simulates fetching data. In a real app, this would be an API call.
+  return companies;
+}
+
+export async function getCompanyById(id: string): Promise<Company | undefined> {
+  const companies = await getCompanies();
+  return companies.find((company) => company.id === id);
+}
+
+export async function getNews(): Promise<NewsArticle[]> {
+  return news;
+}
+
+export async function getDocuments(): Promise<Document[]> {
+  const companies = await getCompanies();
+  return companies.flatMap(company =>
+    company.documents.map(doc => ({ ...doc, companyName: company.name }))
+  );
+}
+
+export async function getGalleryImages(): Promise<GalleryImage[]> {
+  return galleryImages;
+}
+

@@ -150,7 +150,10 @@ export const companies: Company[] = [
       { id: 'vid-2', url: 'https://www.youtube.com/embed/9bZkp7q19f0', title: 'Community Water Project Launch' }
     ],
     virtualTourUrl: '#',
-    documents: [],
+    documents: [
+      { id: 'doc-topography-bagicha', title: 'Topography Map - Bagicha', url: 'https://mega.nz/file/MEJFnChR#1WB-2XkqCyYkhoX55zoMsaiKZr6C5yKkBOiwSr4l27Q', type: 'Map' },
+      { id: 'doc-topography-gultari', title: 'Topography Map - Gultari', url: 'https://mega.nz/file/9RQlxCIY#wBlkzySRZj_bx0SgmlkTaAndSYVLqGbus18uiX7XD8o', type: 'Map' }
+    ],
     deposits: [
       { name: 'Copper', location: 'Skardu', type: 'Copper Ore', details: ['20 Sq/Km - 4,942 Acres Applied Area', 'High-grade copper potential'] },
       { name: 'Marble', location: 'Bagicha, Skardu', type: 'Marble Ore', details: ['20 Sq/Km Applied Area', 'Premium Marble deposits'] },
@@ -208,7 +211,9 @@ export const companies: Company[] = [
       { id: 'vid-3', url: 'https://www.youtube.com/embed/9bZkp7q19f0', title: 'Gupis Project: A New Frontier' }
     ],
     virtualTourUrl: '#',
-    documents: [],
+    documents: [
+      { id: 'doc-topography-jutial', title: 'Topography Map - Jutial Nala', url: 'https://mega.nz/file/NV4E3I5Q#u9raTiI-ojj2qn_UcrO64xpQQfZgfqdfHwDfBYrnbkw', type: 'Map' }
+    ],
     deposits: [
       { name: 'Copper & Minerals', location: 'Jutial Nala, Gilgit', type: 'Copper Ore', details: ['10 Sq/Km - 2,471 Acres Applied Area', 'Tehsil Gilgit, District Gilgit'] },
       { name: 'Copper & Minerals', location: 'Gupis, Ghizer', type: 'Copper Ore', details: ['10 Sq/Km - 2,471 Acres Applied Area', 'Tehsil Yasin, District Ghizer'] }

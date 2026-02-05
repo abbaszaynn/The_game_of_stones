@@ -4,24 +4,7 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 export const galleryImages: GalleryImage[] = [
 
-  {
-    id: 'gal-3',
-    url: PlaceHolderImages.find(p => p.id === 'gallery-lux-1')?.imageUrl || 'https://placehold.co/600x400',
-    title: 'Gupis Site Preparation',
-    description: 'Initial earthworks for the Gupis exploration project.',
-    companyName: 'Earth Lux Mines',
-    mineral: 'Copper',
-    properties: 'Malachite, Azurite'
-  },
-  {
-    id: 'gal-4',
-    url: PlaceHolderImages.find(p => p.id === 'gallery-lux-2')?.imageUrl || 'https://placehold.co/600x400',
-    title: 'High-Grade Copper Ore',
-    description: 'A sample of high-grade copper ore recovered from a test pit in Gupis.',
-    companyName: 'Earth Lux Mines',
-    mineral: 'Copper',
-    properties: 'Native Copper, Cuprite'
-  },
+
   {
     id: 'gal-5',
     url: PlaceHolderImages.find(p => p.id === 'gallery-himalayan-1')?.imageUrl || 'https://placehold.co/600x400',
@@ -120,5 +103,258 @@ export const galleryImages: GalleryImage[] = [
     companyName: 'Zircon Mines',
     mineral: 'Quartz Generative Pieces',
     properties: 'Quartz, Gemstone'
+  },
+  {
+    id: 'gal-durr-qz-1',
+    url: '/images/durr-quartz-1.jpg',
+    title: 'Quartz Specimen - Gultari & Bagicha',
+    description: 'High-quality Quartz crystal. These gemstones are found in Gultari, Bagicha, and other mines.',
+    companyName: 'Durr Mines and Minerals',
+    mineral: 'Quartz',
+    properties: 'Quartz, Gemstone'
+  },
+  {
+    id: 'gal-durr-qz-2',
+    url: '/images/durr-quartz-2.jpg',
+    title: 'Quartz Specimen - Gultari & Bagicha',
+    description: 'High-quality Quartz crystal. These gemstones are found in Gultari, Bagicha, and other mines.',
+    companyName: 'Durr Mines and Minerals',
+    mineral: 'Quartz',
+    properties: 'Quartz, Gemstone'
+  },
+  {
+    id: 'gal-durr-qz-3',
+    url: '/images/durr-quartz-3.jpg',
+    title: 'Quartz Specimen - Gultari & Bagicha',
+    description: 'High-quality Quartz crystal. These gemstones are found in Gultari, Bagicha, and other mines.',
+    companyName: 'Durr Mines and Minerals',
+    mineral: 'Quartz',
+    properties: 'Quartz, Gemstone'
+  },
+  {
+    id: 'gal-durr-qz-4',
+    url: '/images/durr-quartz-4.jpg',
+    title: 'Quartz Specimen - Gultari & Bagicha',
+    description: 'High-quality Quartz crystal. These gemstones are found in Gultari, Bagicha, and other mines.',
+    companyName: 'Durr Mines and Minerals',
+    mineral: 'Quartz',
+    properties: 'Quartz, Gemstone'
+  },
+  {
+    id: 'gal-durr-qz-5',
+    url: '/images/durr-quartz-5.jpg',
+    title: 'Quartz Specimen - Gultari & Bagicha',
+    description: 'High-quality Quartz crystal. These gemstones are found in Gultari, Bagicha, and other mines.',
+    companyName: 'Durr Mines and Minerals',
+    mineral: 'Quartz',
+    properties: 'Quartz, Gemstone'
+  },
+  {
+    id: 'gal-durr-qz-6',
+    url: '/images/durr-quartz-6.jpg',
+    title: 'Quartz Specimen - Gultari & Bagicha',
+    description: 'High-quality Quartz crystal. These gemstones are found in Gultari, Bagicha, and other mines.',
+    companyName: 'Durr Mines and Minerals',
+    mineral: 'Quartz',
+    properties: 'Quartz, Gemstone'
+  },
+  {
+    id: 'gal-durr-qz-7',
+    url: '/images/durr-quartz-7.jpg',
+    title: 'Quartz Specimen - Gultari & Bagicha',
+    description: 'High-quality Quartz crystal. These gemstones are found in Gultari, Bagicha, and other mines.',
+    companyName: 'Durr Mines and Minerals',
+    mineral: 'Quartz',
+    properties: 'Quartz, Gemstone'
+  },
+  {
+    id: 'gal-durr-qz-8',
+    url: '/images/durr-quartz-8.jpg',
+    title: 'Quartz Specimen - Gultari & Bagicha',
+    description: 'High-quality Quartz crystal. These gemstones are found in Gultari, Bagicha, and other mines.',
+    companyName: 'Durr Mines and Minerals',
+    mineral: 'Quartz',
+    properties: 'Quartz, Gemstone'
+  },
+  {
+    id: 'gal-durr-qz-9',
+    url: '/images/durr-quartz-9.jpg',
+    title: 'Quartz Specimen - Gultari & Bagicha',
+    description: 'High-quality Quartz crystal. These gemstones are found in Gultari, Bagicha, and other mines.',
+    companyName: 'Durr Mines and Minerals',
+    mineral: 'Quartz',
+    properties: 'Quartz, Gemstone'
+  },
+  {
+    id: 'gal-nephrite-1',
+    url: '/images/nephrite-1.jpg',
+    title: 'Nephrite Specimen - Hilal Abad',
+    description: 'Nephrite gemstone. Found in Hilal Abad site mine.',
+    companyName: 'Zircon Mines',
+    mineral: 'Nephrite',
+    properties: 'Nephrite, Gemstone'
+  },
+  {
+    id: 'gal-nephrite-2',
+    url: '/images/nephrite-2.jpg',
+    title: 'Nephrite Specimen - Hilal Abad',
+    description: 'Nephrite gemstone. Found in Hilal Abad site mine.',
+    companyName: 'Zircon Mines',
+    mineral: 'Nephrite',
+    properties: 'Nephrite, Gemstone'
+  },
+  {
+    id: 'gal-nephrite-3',
+    url: '/images/nephrite-3.jpg',
+    title: 'Nephrite Specimen - Hilal Abad',
+    description: 'Nephrite gemstone. Found in Hilal Abad site mine.',
+    companyName: 'Zircon Mines',
+    mineral: 'Nephrite',
+    properties: 'Nephrite, Gemstone'
+  },
+  // Ruby - Bagicha
+  {
+    id: 'gal-ruby-bagicha',
+    url: '/images/ruby-bagicha.jpg',
+    title: 'Ruby Specimen - Bagicha',
+    description: 'Precious Ruby gemstone found in the Bagicha mine.',
+    companyName: 'Durr Mines and Minerals',
+    mineral: 'Ruby',
+    properties: 'Ruby, Gemstone'
+  },
+  // Lithium - Bagicha
+  {
+    id: 'gal-lithium-bagicha',
+    url: '/images/lithium-bagicha.jpg',
+    title: 'Lithium Ore - Bagicha',
+    description: 'Lithium deposits found in the Bagicha mine.',
+    companyName: 'Durr Mines and Minerals',
+    mineral: 'Lithium',
+    properties: 'Lithium, Spodumene'
+  },
+  // Copper - Jutial (Earth Lux)
+  {
+    id: 'gal-copper-jutial',
+    url: '/images/copper-generic-1.jpg',
+    title: 'Copper Ore - Jutial',
+    description: 'Copper ore extracted from the Jutial Nala mine.',
+    companyName: 'Earth Lux Mines',
+    mineral: 'Copper',
+    properties: 'Copper Ore'
+  },
+  // Copper - Gupis (Earth Lux)
+  {
+    id: 'gal-copper-gupis',
+    url: '/images/copper-generic-2.jpg',
+    title: 'Copper Ore - Gupis',
+    description: 'High-quality copper deposits from the Gupis site.',
+    companyName: 'Earth Lux Mines',
+    mineral: 'Copper',
+    properties: 'Copper Ore'
+  },
+  // Copper - Mehdiabad & Kharmang (Durr Mines)
+  {
+    id: 'gal-copper-mehdiabad',
+    url: '/images/copper-generic-3.jpg',
+    title: 'Copper Ore - Mehdiabad & Kharmang',
+    description: 'Copper ore found in Mehdiabad and Kharmang mines.',
+    companyName: 'Durr Mines and Minerals',
+    mineral: 'Copper',
+    properties: 'Copper Ore'
+  },
+  // Copper - Hilal Abad (Zircon Mines)
+  {
+    id: 'gal-copper-hilalabad',
+    url: '/images/copper-generic-1.jpg',
+    title: 'Copper Ore - Hilal Abad',
+    description: 'Copper deposits explored at the Hilal Abad site.',
+    companyName: 'Zircon Mines',
+    mineral: 'Copper',
+    properties: 'Copper Ore'
+  },
+  // Nephrite - Gupis (Earth Lux)
+  {
+    id: 'gal-nephrite-gupis-1',
+    url: '/images/nephrite-gupis-1.jpg',
+    title: 'Nephrite Specimen - Gupis',
+    description: 'Nephrite gemstone. Found in Gupis mine.',
+    companyName: 'Earth Lux Mines',
+    mineral: 'Nephrite',
+    properties: 'Nephrite, Gemstone'
+  },
+  {
+    id: 'gal-nephrite-gupis-2',
+    url: '/images/nephrite-gupis-2.jpg',
+    title: 'Nephrite Specimen - Gupis',
+    description: 'Nephrite gemstone. Found in Gupis mine.',
+    companyName: 'Earth Lux Mines',
+    mineral: 'Nephrite',
+    properties: 'Nephrite, Gemstone'
+  },
+  {
+    id: 'gal-nephrite-gupis-3',
+    url: '/images/nephrite-gupis-3.jpg',
+    title: 'Nephrite Specimen - Gupis',
+    description: 'Nephrite gemstone. Found in Gupis mine.',
+    companyName: 'Earth Lux Mines',
+    mineral: 'Nephrite',
+    properties: 'Nephrite, Gemstone'
+  },
+  {
+    id: 'gal-nephrite-gupis-4',
+    url: '/images/nephrite-gupis-4.jpg',
+    title: 'Nephrite Specimen - Gupis',
+    description: 'Nephrite gemstone. Found in Gupis mine.',
+    companyName: 'Earth Lux Mines',
+    mineral: 'Nephrite',
+    properties: 'Nephrite, Gemstone'
+  },
+  // Lithium - Bagicha (Additional)
+  {
+    id: 'gal-lithium-bagicha-2',
+    url: '/images/lithium-bagicha-2.jpg',
+    title: 'Lithium Ore - Bagicha',
+    description: 'Additional Lithium ore sample from Bagicha mine.',
+    companyName: 'Durr Mines and Minerals',
+    mineral: 'Lithium',
+    properties: 'Lithium, Spodumene'
+  },
+  // Lead - Gultari (Durr Mines)
+  {
+    id: 'gal-lead-gultari-1',
+    url: '/images/lead-gultari-1.jpg',
+    title: 'Lead Ore - Gultari',
+    description: 'High-grade Lead ore found in Gultari mine.',
+    companyName: 'Durr Mines and Minerals',
+    mineral: 'Lead',
+    properties: 'Galena, Lead'
+  },
+  {
+    id: 'gal-lead-gultari-2',
+    url: '/images/lead-gultari-2.jpg',
+    title: 'Lead Ore - Gultari',
+    description: 'High-grade Lead ore found in Gultari mine.',
+    companyName: 'Durr Mines and Minerals',
+    mineral: 'Lead',
+    properties: 'Galena, Lead'
+  },
+  // Lead - Jutial (Earth Lux)
+  {
+    id: 'gal-lead-jutial-1',
+    url: '/images/lead-jutial-1.jpg',
+    title: 'Lead Ore - Jutial',
+    description: 'Lead ore deposits explored at Jutial site.',
+    companyName: 'Earth Lux Mines',
+    mineral: 'Lead',
+    properties: 'Galena, Lead'
+  },
+  {
+    id: 'gal-lead-jutial-2',
+    url: '/images/lead-jutial-2.jpg',
+    title: 'Lead Ore - Jutial',
+    description: 'Lead ore deposits explored at Jutial site.',
+    companyName: 'Earth Lux Mines',
+    mineral: 'Lead',
+    properties: 'Galena, Lead'
   }
 ];
