@@ -248,6 +248,7 @@ export default async function CompanyDetailPage({ params }: { params: { id: stri
             <CardContent className="space-y-6">
               {company.investorContacts.map((contact, index) => (
                 <div key={index} className="p-6 border border-white/10 rounded-2xl bg-gradient-to-br from-background via-background/80 to-transparent shadow-lg text-center md:text-left flex flex-col md:flex-row items-center gap-6">
+                  {/* ... existing card content ... */}
                   <div className="p-4 rounded-full bg-primary/10 border border-primary/20 shrink-0">
                     <Briefcase className="w-8 h-8 text-primary" />
                   </div>
@@ -274,6 +275,6 @@ export default async function CompanyDetailPage({ params }: { params: { id: stri
         </TabsContent>
 
       </Tabs>
-    </div>
+    </div >
   );
 }

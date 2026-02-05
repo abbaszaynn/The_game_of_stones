@@ -1,6 +1,6 @@
 
 import { supabase } from './supabase';
-import type { Company, Location, Leadership, Deposit, InvestorContact, GalleryImage, Video } from './types';
+import type { Company, MineLocation, Document, GalleryImage, Video, InvestorContact, Leadership } from './types';
 
 // Helper to map Supabase results to our app's types
 const mapCompanyData = (data: any): Company => {
@@ -46,7 +46,12 @@ const mapCompanyData = (data: any): Company => {
             title: m.title,
         })) || [],
         virtualTourUrl: '#', // Placeholder
-        documents: [], // We need a documents table if we want dynamic docs, for now returning empty or we could add a table.
+        documents: data.documents?.map((d: any) => ({
+            id: d.id,
+            title: d.title,
+            type: d.type,
+            url: d.url,
+        })) || [],
     };
 };
 
@@ -59,7 +64,8 @@ export async function getCompanies(): Promise<Company[]> {
       locations(*),
       deposits(*),
       contacts(*),
-      media_assets(*)
+      media_assets(*),
+      documents(*)
     `);
 
     if (error) {
@@ -79,7 +85,8 @@ export async function getCompanyById(id: string): Promise<Company | undefined> {
       locations(*),
       deposits(*),
       contacts(*),
-      media_assets(*)
+      media_assets(*),
+      documents(*)
     `)
         .eq('slug', id)
         .single();

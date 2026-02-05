@@ -116,50 +116,34 @@ export default function CompanyForm({ companyId }: CompanyFormProps) {
 
             if (!currentCompanyId) throw new Error('Failed to get Company ID');
 
-            // 2. Handle Related Data (Simple Strategy: Delete All & Re-Insert)
+            // 2. Handle Related Data using Smart Reconcile (Upsert + Delete Removed)
 
-            // Documents
-            await supabase.from('documents').delete().eq('company_id', currentCompanyId);
-            if (documents.length > 0) {
-                await supabase.from('documents').insert(documents.map(d => ({
-                    company_id: currentCompanyId,
-                    title: d.title,
-                    type: d.type,
-                    url: d.url
-                })));
-            }
+            const reconcile = async (table: string, items: any[]) => {
+                // 1. Upsert current items
+                if (items.length > 0) {
+                    const { error: upsertError } = await supabase.from(table).upsert(items.map(item => ({
+                        ...item,
+                        company_id: currentCompanyId
+                    })));
+                    if (upsertError) throw upsertError;
+                }
 
-            // Media
-            await supabase.from('media_assets').delete().eq('company_id', currentCompanyId);
-            if (media.length > 0) {
-                await supabase.from('media_assets').insert(media.map(m => ({
-                    company_id: currentCompanyId,
-                    type: m.type,
-                    url: m.url,
-                    title: m.title
-                })));
-            }
+                // 2. Delete items not in current list
+                const currentIds = items.map(i => i.id).filter(Boolean);
+                let query = supabase.from(table).delete().eq('company_id', currentCompanyId);
 
-            // Contacts
-            await supabase.from('contacts').delete().eq('company_id', currentCompanyId);
-            if (contacts.length > 0) {
-                await supabase.from('contacts').insert(contacts.map(c => ({
-                    company_id: currentCompanyId,
-                    name: c.name,
-                    email: c.email,
-                    phone: c.phone
-                })));
-            }
+                if (currentIds.length > 0) {
+                    query = query.not('id', 'in', `(${currentIds.join(',')})`);
+                }
 
-            // Leadership
-            await supabase.from('leadership').delete().eq('company_id', currentCompanyId);
-            if (leadership.length > 0) {
-                await supabase.from('leadership').insert(leadership.map(l => ({
-                    company_id: currentCompanyId,
-                    name: l.name,
-                    title: l.title
-                })));
-            }
+                const { error: deleteError } = await query;
+                if (deleteError) throw deleteError;
+            };
+
+            await reconcile('documents', documents);
+            await reconcile('media_assets', media);
+            await reconcile('contacts', contacts);
+            await reconcile('leadership', leadership);
 
             toast({ title: 'Success', description: 'Company and related data saved.' });
             router.refresh();
