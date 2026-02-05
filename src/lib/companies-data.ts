@@ -7,7 +7,7 @@ export const companies: Company[] = [
     id: 'durr-mines-and-minerals',
     name: 'Durr Mines and Minerals',
     tagline: 'Unearthing the Future, Responsibly.',
-    logoUrl: 'https://i.postimg.cc/Qd9XpC3X/durr-logo.png', // Keep existing or update if provided
+    logoUrl: '/images/durr-mines-logo.png', // Updated local logo
     description: 'Durr Mines and Minerals is a leading exploration and development company incorporated under the Securities and Exchange Commission of Pakistan. We are focused on critical and precious metals including Copper, Marble, and Gold in the mineral-rich Gilgit-Baltistan region. With a commitment to sustainable practices and community engagement, we are at the forefront of unlocking the mineral wealth of Pakistan.',
     history: 'Durr Mines & Minerals (Private) Limited was incorporated on the 13th of June, 2025, under the Companies Act, 2017 (Corporate Unique ID: 0297552). Since our inception, we have secured multiple mining leases in key strategic locations. Our journey began with a vision to modernize mining in Northern Pakistan, leveraging local expertise and adhering to international safety and environmental standards. We have rapidly expanded our portfolio to include Copper Ore at Skardu, Marble Ore at Bagicha, and Placer Gold deposits.',
     leadership: [
@@ -161,12 +161,14 @@ export const companies: Company[] = [
     id: 'earth-lux-mines',
     name: 'Earth Lux Mines & Minerals (Pvt) Ltd.',
     tagline: 'Sustainable Mining for a Brighter Future',
-    logoUrl: PlaceHolderImages.find(p => p.id === 'logo-lux')?.imageUrl || 'https://placehold.co/128x128',
+    logoUrl: '/images/earth-lux-logo.jpg', // Updated local logo
     description: 'Earth Lux Mines & Minerals is dedicated to the ethical and environmentally conscious exploration of Pakistan\'s rich mineral resources. We specialize in identifying and developing high-value deposits while ensuring minimal ecological impact and maximum benefit for local communities.',
-    history: 'Incorporated in 2023, Earth Lux Mines is a new-generation mining company with a fresh approach. Our foundational projects in Gilgit-Baltistan were selected for their high copper potential and the opportunity to implement modern, sustainable mining techniques from the ground up.',
+    history: 'Earth Lux Mines & Minerals (Private) Limited was incorporated on the 28th of August, 2023, under the Companies Act, 2017 (Corporate Unique ID: 0238137). We are a new-generation mining company with a fresh approach. Our foundational projects in Gilgit-Baltistan were selected for their high copper potential and the opportunity to implement modern, sustainable mining techniques from the ground up.',
     leadership: [
-      { name: 'Mr. Muhammad Iqbal', title: 'Founder & Chief Geologist' },
-      { name: 'Ms. Ayesha Khan', title: 'Director, Environmental & Social Governance' },
+      { name: 'Tabish Hassan', title: 'Chief Executive Officer (CEO)' },
+      { name: 'Sabih Uddin', title: 'Director' },
+      { name: 'Wajid Khan', title: 'Director' },
+      { name: 'Saqlain Alam', title: 'Director' },
     ],
     projects: [
       { name: 'Jutial Nala Mine' },
@@ -216,7 +218,7 @@ export const companies: Company[] = [
     id: 'zircon-mines',
     name: 'Zircon Mines',
     tagline: 'Precision Mining for Rare Earth Elements.',
-    logoUrl: '/images/zircon-logo.png',
+    logoUrl: '/images/zircon-mines-logo.jpg', // Updated local logo
     description: 'Zircon Mines is a forward-thinking mining enterprise incorporated on January 30, 2026. Strategically located in Hilal Abad, Gilgit-Baltistan, we focus on the exploration and extraction of Copper and other high-value polymetallic structures. Our mission is to leverage modern extraction technologies to unlock the true mineral potential of the region.',
     history: 'Zircon Mines was established to capitalize on the rich metallogenic belts of Northern Pakistan. With a leadership team rooted in both geological expertise and strategic management, the company has quickly moved to secure key exploration sites. Our incorporation in early 2026 marks the beginning of a dedicated effort to bring world-class mining standards to our operations in Hilal Abad.',
     leadership: [
