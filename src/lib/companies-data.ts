@@ -163,20 +163,43 @@ export const companies: Company[] = [
     tagline: 'Sustainable Mining for a Brighter Future',
     logoUrl: PlaceHolderImages.find(p => p.id === 'logo-lux')?.imageUrl || 'https://placehold.co/128x128',
     description: 'Earth Lux Mines & Minerals is dedicated to the ethical and environmentally conscious exploration of Pakistan\'s rich mineral resources. We specialize in identifying and developing high-value deposits while ensuring minimal ecological impact and maximum benefit for local communities.',
-    history: 'Incorporated in 2023, Earth Lux Mines is a new-generation mining company with a fresh approach. Our foundational project in Gupis, Ghizer, was selected for its high copper potential and the opportunity to implement modern, sustainable mining techniques from the ground up. We are committed to transparency and building lasting partnerships with all stakeholders.',
+    history: 'Incorporated in 2023, Earth Lux Mines is a new-generation mining company with a fresh approach. Our foundational projects in Gilgit-Baltistan were selected for their high copper potential and the opportunity to implement modern, sustainable mining techniques from the ground up.',
     leadership: [
       { name: 'Mr. Muhammad Iqbal', title: 'Founder & Chief Geologist' },
       { name: 'Ms. Ayesha Khan', title: 'Director, Environmental & Social Governance' },
     ],
     projects: [
-      { name: 'Gupis Copper Project' },
+      { name: 'Jutial Nala Mine' },
+      { name: 'Opposite Gupis Mine' },
     ],
     status: 'Exploratory Phase',
     investorContacts: [
       { name: 'Corporate Office', email: 'contact@earthlux.com', phone: '+92-322-9876543' }
     ],
     locations: [
-      { name: 'Gupis Exploration Area', polygon: [{ lat: 36.26, lng: 73.46 }, { lat: 36.25, lng: 73.49 }, { lat: 36.24, lng: 73.46 }, { lat: 36.24, lng: 73.42 }, { lat: 36.26, lng: 73.46 }] }
+      {
+        name: 'Jutial Nala Mine',
+        polygon: [
+          { lat: 35.856249, lng: 74.294070 }, // A
+          { lat: 35.882175, lng: 74.317519 }, // B
+          { lat: 35.868325, lng: 74.358017 }, // C
+          { lat: 35.856166, lng: 74.354147 }, // D
+          { lat: 35.865098, lng: 74.325441 }, // E
+          { lat: 35.849004, lng: 74.316212 }, // F
+          { lat: 35.856249, lng: 74.294070 }, // Close loop (A)
+        ]
+      },
+      {
+        name: 'Opposite Gupis Mine',
+        polygon: [
+          { lat: 36.264768, lng: 73.461140 }, // A
+          { lat: 36.254223, lng: 73.495540 }, // B
+          { lat: 36.244428, lng: 73.466853 }, // C
+          { lat: 36.233142, lng: 73.459915 }, // D
+          { lat: 36.246712, lng: 73.423405 }, // E
+          { lat: 36.264768, lng: 73.461140 }, // Close loop (A)
+        ]
+      }
     ],
     images: galleryImages.filter(img => img.companyName === 'Earth Lux Mines'),
     videos: [
@@ -185,7 +208,8 @@ export const companies: Company[] = [
     virtualTourUrl: '#',
     documents: [],
     deposits: [
-      { name: 'Gupis Polymetallic Deposit', location: 'Gupis, Tehsil Yasin, District Ghizer', type: 'Polymetallic (Copper, Silica Quartz, Iron)', details: ['Mineralized vein deposit with thickness 1-6 feet', 'Strike length of 200m-400m visually assessed', 'High-grade sulfide mineralization observed'] }
+      { name: 'Copper & Minerals', location: 'Jutial Nala, Gilgit', type: 'Copper Ore', details: ['10 Sq/Km - 2,471 Acres Applied Area', 'Tehsil Gilgit, District Gilgit'] },
+      { name: 'Copper & Minerals', location: 'Gupis, Ghizer', type: 'Copper Ore', details: ['10 Sq/Km - 2,471 Acres Applied Area', 'Tehsil Yasin, District Ghizer'] }
     ]
   },
   {
