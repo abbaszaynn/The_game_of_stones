@@ -7,7 +7,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from '@/components/ui/carousel';
 import { Card } from '@/components/ui/card';
 import type { GalleryImage } from '@/lib/types';
-import { Gem, Building, Info, Maximize, X } from 'lucide-react';
+import { Gem, Building, Info, Maximize, X, Download } from 'lucide-react';
 import { Button } from './ui/button';
 
 interface ImageGridProps {
@@ -88,7 +88,7 @@ export default function ImageGrid({ images }: ImageGridProps) {
             </DialogDescription>
           </DialogHeader>
           <div className="md:w-2/3 h-full flex flex-col">
-            <Carousel setApi={setApi} opts={{ startIndex }} className="w-full h-full">
+            <Carousel setApi={setApi} opts={{ startIndex }} className="w-full h-full [&>.overflow-hidden]:h-full">
               <CarouselContent className="h-full">
                 {images.map((image) => (
                   <CarouselItem key={image.id} className="h-full">
@@ -101,12 +101,17 @@ export default function ImageGrid({ images }: ImageGridProps) {
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 1000px"
                       />
                       <div
-                        className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer"
-                        onClick={() => openFullScreen(image)}
+                        className="absolute top-2 right-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity z-10"
                       >
-                        <Button variant="outline" size="icon">
-                          <Maximize className="w-6 h-6" />
+                        <Button variant="secondary" size="icon" className="h-8 w-8 hover:bg-white/90 shadow-md" onClick={() => openFullScreen(image)} title="View Full Screen">
+                          <Maximize className="w-4 h-4 text-black" />
                           <span className="sr-only">View full screen</span>
+                        </Button>
+                        <Button variant="secondary" size="icon" className="h-8 w-8 hover:bg-white/90 shadow-md" asChild title="Download Image">
+                          <a href={image.url} download target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
+                            <Download className="w-4 h-4 text-black" />
+                            <span className="sr-only">Download</span>
+                          </a>
                         </Button>
                       </div>
                     </div>
@@ -152,25 +157,36 @@ export default function ImageGrid({ images }: ImageGridProps) {
           </div>
         </DialogContent>
       </Dialog>
-      {fullScreenImage && (
-        <div
-          className="fixed inset-0 bg-black/80 flex items-center justify-center z-[100]"
-          onClick={closeFullScreen}
-        >
-          <Button variant="ghost" size="icon" className="absolute top-4 right-4 text-white hover:text-white/80" onClick={closeFullScreen}>
-            <X className="w-8 h-8" />
-            <span className="sr-only">Close</span>
-          </Button>
-          <NextImage
-            src={fullScreenImage.url}
-            alt={fullScreenImage.title}
-            width={1920}
-            height={1080}
-            className="max-w-[95vw] max-h-[95vh] object-contain rounded-lg"
-            onClick={(e) => e.stopPropagation()}
-          />
-        </div>
-      )}
+      <Dialog open={!!fullScreenImage} onOpenChange={() => closeFullScreen()}>
+        <DialogContent className="max-w-[100vw] h-[100vh] border-none bg-black/80 flex items-center justify-center p-0 m-0 z-[150] [&>button]:hidden">
+          <DialogHeader className="hidden">
+            <DialogTitle>Full Screen Image</DialogTitle>
+            <DialogDescription>Full screen preview</DialogDescription>
+          </DialogHeader>
+          <div className="relative w-full h-full flex items-center justify-center" onClick={closeFullScreen}>
+            <Button variant="secondary" size="icon" className="absolute top-4 right-16 text-black bg-white/80 hover:bg-white z-[110]" asChild title="Download Image">
+              <a href={fullScreenImage?.url} download target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
+                <Download className="w-6 h-6" />
+                <span className="sr-only">Download</span>
+              </a>
+            </Button>
+            <Button variant="secondary" size="icon" className="absolute top-4 right-4 text-black bg-white/80 hover:bg-white z-[110]" onClick={closeFullScreen}>
+              <X className="w-6 h-6" />
+              <span className="sr-only">Close</span>
+            </Button>
+            {fullScreenImage && (
+              <NextImage
+                src={fullScreenImage.url}
+                alt={fullScreenImage.title}
+                width={1920}
+                height={1080}
+                className="max-w-[95vw] max-h-[95vh] object-contain rounded-lg"
+                onClick={(e) => e.stopPropagation()}
+              />
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
     </>
   );
 }

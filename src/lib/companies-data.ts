@@ -251,7 +251,7 @@ export const companies: Company[] = [
         ],
       },
     ],
-    images: galleryImages.filter(img => img.companyName === 'Himalayan Minerals Corp.').map(img => ({ ...img, companyName: 'Zircon Mines' })),
+    images: galleryImages.filter(img => img.companyName === 'Zircon Mines'),
     videos: [],
     virtualTourUrl: '#',
     documents: [],
