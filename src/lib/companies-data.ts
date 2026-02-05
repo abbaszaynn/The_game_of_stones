@@ -212,7 +212,9 @@ export const companies: Company[] = [
     ],
     virtualTourUrl: '#',
     documents: [
-      { id: 'doc-topography-jutial', title: 'Topography Map - Jutial Nala', url: 'https://mega.nz/file/NV4E3I5Q#u9raTiI-ojj2qn_UcrO64xpQQfZgfqdfHwDfBYrnbkw', type: 'Map' }
+      { id: 'doc-topography-jutial', title: 'Topography Map - Jutial Nala', url: 'https://mega.nz/file/NV4E3I5Q#u9raTiI-ojj2qn_UcrO64xpQQfZgfqdfHwDfBYrnbkw', type: 'Map' },
+      { id: 'doc-report-jutial', title: 'Geological Report - Jutial Nala', url: 'https://mega.nz/file/BJ5UiKRB#KYKyTV9pBWtJw5ilFDGHewz16jPwYTmoEA6_ortHuaA', type: 'Geological Report' },
+      { id: 'doc-report-gupis', title: 'Geological Report - Gupis', url: 'https://mega.nz/file/5Ih2ARZQ#JXvUAfDZsxfiWlTOWGHEP64WQWvArnKuwEseFZX6UBU', type: 'Geological Report' }
     ],
     deposits: [
       { name: 'Copper & Minerals', location: 'Jutial Nala, Gilgit', type: 'Copper Ore', details: ['10 Sq/Km - 2,471 Acres Applied Area', 'Tehsil Gilgit, District Gilgit'] },
@@ -259,7 +261,9 @@ export const companies: Company[] = [
     images: galleryImages.filter(img => img.companyName === 'Zircon Mines'),
     videos: [],
     virtualTourUrl: '#',
-    documents: [],
+    documents: [
+      { id: 'doc-zircon-incorporation', title: 'Incorporation Letter', url: 'https://mega.nz/file/NEZRzaoS#2IhACOBZZ9bDi5ty3sPWzxtyIBLuh650iu3cIfhcS9w', type: 'License' }
+    ],
     deposits: [
       { name: 'Copper', location: 'Hilal Abad', details: ['Potential high-grade copper deposits'] },
       { name: 'Polymetallic Structures', location: 'Gilgit-Baltistan', details: ['Complex ore bodies containing multiple extractable metals'] }
