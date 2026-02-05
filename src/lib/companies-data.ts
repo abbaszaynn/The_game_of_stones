@@ -5,7 +5,7 @@ import { galleryImages } from '@/lib/gallery-images-data';
 export const companies: Company[] = [
   {
     id: 'durr-mines-and-minerals',
-    name: 'Durr Mines and Minerals',
+    name: 'Durr Mines and Minerals (PVT) LTD',
     tagline: 'Unearthing the Future, Responsibly.',
     logoUrl: '/images/durr-mines-logo.png', // Updated local logo
     description: 'Durr Mines and Minerals is a leading exploration and development company incorporated under the Securities and Exchange Commission of Pakistan. We are focused on critical and precious metals including Copper, Marble, and Gold in the mineral-rich Gilgit-Baltistan region. With a commitment to sustainable practices and community engagement, we are at the forefront of unlocking the mineral wealth of Pakistan.',
@@ -159,7 +159,7 @@ export const companies: Company[] = [
   },
   {
     id: 'earth-lux-mines',
-    name: 'Earth Lux Mines & Minerals (Pvt) Ltd.',
+    name: 'Earth Lux Mines & Minerals (PVT) LTD',
     tagline: 'Sustainable Mining for a Brighter Future',
     logoUrl: '/images/earth-lux-logo.jpg', // Updated local logo
     description: 'Earth Lux Mines & Minerals is dedicated to the ethical and environmentally conscious exploration of Pakistan\'s rich mineral resources. We specialize in identifying and developing high-value deposits while ensuring minimal ecological impact and maximum benefit for local communities.',
@@ -216,7 +216,7 @@ export const companies: Company[] = [
   },
   {
     id: 'zircon-mines',
-    name: 'Zircon Mines',
+    name: 'Zircon Mines (PVT) LTD',
     tagline: 'Precision Mining for Rare Earth Elements.',
     logoUrl: '/images/zircon-mines-logo.jpg', // Updated local logo
     description: 'Zircon Mines is a forward-thinking mining enterprise incorporated on January 30, 2026. Strategically located in Hilal Abad, Gilgit-Baltistan, we focus on the exploration and extraction of Copper and other high-value polymetallic structures. Our mission is to leverage modern extraction technologies to unlock the true mineral potential of the region.',
