@@ -5,24 +5,7 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 export const galleryImages: GalleryImage[] = [
 
 
-  {
-    id: 'gal-5',
-    url: PlaceHolderImages.find(p => p.id === 'gallery-himalayan-1')?.imageUrl || 'https://placehold.co/600x400',
-    title: 'Karakoram Range',
-    description: 'The breathtaking and challenging terrain of our Karakoram project area.',
-    companyName: 'Himalayan Minerals Corp.',
-    mineral: 'Molybdenum',
-    properties: 'Molybdenite'
-  },
-  {
-    id: 'gal-6',
-    url: PlaceHolderImages.find(p => p.id === 'gallery-himalayan-2')?.imageUrl || 'https://placehold.co/600x400',
-    title: 'Core Sample Drilling',
-    description: 'A drilling team extracting core samples at high altitude.',
-    companyName: 'Himalayan Minerals Corp.',
-    mineral: 'Rare Earth Elements',
-    properties: 'Bastnäsite, Monazite'
-  },
+
   {
     id: 'gal-mo-1',
     url: '/images/mo-1.jpg',
