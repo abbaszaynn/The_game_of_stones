@@ -2,10 +2,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { Inter } from 'next/font/google';
 import { cn } from '@/lib/utils';
-import { Header } from '@/components/layout/header';
-import { Footer } from '@/components/layout/footer';
 import { Toaster } from '@/components/ui/toaster';
-import { FirebaseClientProvider } from '@/firebase';
+import { FirebaseClientProvider } from '@/firebase'; // Keeping for now to avoid breakages if still used
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -29,7 +27,7 @@ export const metadata: Metadata = {
     siteName: 'Game of Stones',
     images: [
       {
-        url: '/images/og-image.jpg', // Ensure this image exists in public folder or remove if not ready
+        url: '/images/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'Game of Stones Dashboard',
@@ -40,7 +38,6 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Game of Stones | Global Mining Dashboard',
     description: 'Explore the future of mining in Gilgit Baltistan with our immersive 3D dashboard.',
-    // images: ['/images/twitter-image.jpg'], // Add when available
   },
   robots: {
     index: true,
@@ -64,9 +61,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={cn('min-h-screen bg-background font-sans antialiased', inter.variable)}>
         <FirebaseClientProvider>
-          <Header />
-          <main className='-mt-14'>{children}</main>
-          <Footer />
+          {children}
           <Toaster />
         </FirebaseClientProvider>
       </body>
