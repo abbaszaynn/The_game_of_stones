@@ -1,5 +1,8 @@
 
+
 import { getCompanies, getGalleryImages } from '@/lib/data';
+
+export const dynamic = 'force-dynamic';
 import CompanyCard from '@/components/company-card';
 import { Camera } from 'lucide-react';
 import NextImage from 'next/image';

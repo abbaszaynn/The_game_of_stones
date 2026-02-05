@@ -7,4 +7,13 @@ if (!supabaseUrl || !supabaseKey) {
     throw new Error('Missing Supabase Environment Variables');
 }
 
-export const supabase = createClient(supabaseUrl, supabaseKey);
+export const supabase = createClient(supabaseUrl, supabaseKey, {
+    auth: {
+        persistSession: false, // simpler for server-side usage if needed
+    },
+    global: {
+        fetch: (url, options) => {
+            return fetch(url, { ...options, cache: 'no-store' });
+        },
+    },
+});

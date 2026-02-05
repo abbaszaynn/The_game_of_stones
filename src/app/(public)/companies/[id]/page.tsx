@@ -9,7 +9,11 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Button } from '@/components/ui/button';
 import { Briefcase, Download, Globe, Mail, MapPin, Phone, User, Gem, Camera } from 'lucide-react';
 import Link from 'next/link';
+
 import ImageGrid from '@/components/image-grid';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export default async function CompanyDetailPage({ params }: { params: { id: string } }) {
   const company = await getCompanyById(params.id);

@@ -1,6 +1,8 @@
 import { getCompanies } from '@/lib/data';
 import CompanyCard from '@/components/company-card';
 
+export const dynamic = 'force-dynamic';
+
 export default async function CompaniesPage() {
   const companies = await getCompanies();
 
