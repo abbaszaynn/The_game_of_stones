@@ -67,43 +67,46 @@ export default function AdminCompaniesPage() {
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
-                                {companies.map((company) => (
-                                    <TableRow key={company.id} className="border-white/10 hover:bg-white/5 transition-colors">
-                                        <TableCell className="font-medium text-white pl-6">
-                                            <div className="flex items-center gap-3">
-                                                {company.logoUrl && (
-                                                    <img src={company.logoUrl} alt={company.name} className="w-8 h-8 rounded-full object-cover bg-white/10" />
-                                                )}
-                                                {company.name}
-                                            </div>
-                                        </TableCell>
-                                        <TableCell>
-                                            <Badge variant="outline" className={company.status === 'Operational' ? 'border-green-500/50 text-green-400 bg-green-500/10' : 'border-blue-500/50 text-blue-400 bg-blue-500/10'}>
-                                                {company.status}
-                                            </Badge>
-                                        </TableCell>
-                                        <TableCell className="text-muted-foreground max-w-xs truncate">
-                                            {company.tagline}
-                                        </TableCell>
-                                        <TableCell className="text-right pr-6">
-                                            <div className="flex justify-end gap-2">
-                                                <Button variant="ghost" size="icon" asChild className="hover:text-primary hover:bg-primary/10">
-                                                    <Link href={`/companies/${company.id}`} target="_blank">
-                                                        <Eye className="w-4 h-4" />
-                                                    </Link>
-                                                </Button>
-                                                <Button variant="ghost" size="icon" asChild className="hover:text-amber-400 hover:bg-amber-400/10">
-                                                    <Link href={`/admin/companies/${company.id}`}>
-                                                        <Edit className="w-4 h-4" />
-                                                    </Link>
-                                                </Button>
-                                                <Button variant="ghost" size="icon" onClick={() => deleteCompany(company.id)} className="hover:text-destructive hover:bg-destructive/10">
-                                                    <Trash2 className="w-4 h-4" />
-                                                </Button>
-                                            </div>
-                                        </TableCell>
-                                    </TableRow>
-                                ))}
+                                {companies.map((company) => {
+                                    const slug = (company as any).slug; // Access raw slug from Supabase
+                                    return (
+                                        <TableRow key={company.id} className="border-white/10 hover:bg-white/5 transition-colors">
+                                            <TableCell className="font-medium text-white pl-6">
+                                                <div className="flex items-center gap-3">
+                                                    {company.logoUrl && (
+                                                        <img src={company.logoUrl} alt={company.name} className="w-8 h-8 rounded-full object-cover bg-white/10" />
+                                                    )}
+                                                    {company.name}
+                                                </div>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Badge variant="outline" className={company.status === 'Operational' ? 'border-green-500/50 text-green-400 bg-green-500/10' : 'border-blue-500/50 text-blue-400 bg-blue-500/10'}>
+                                                    {company.status}
+                                                </Badge>
+                                            </TableCell>
+                                            <TableCell className="text-muted-foreground max-w-xs truncate">
+                                                {company.tagline}
+                                            </TableCell>
+                                            <TableCell className="text-right pr-6">
+                                                <div className="flex justify-end gap-2">
+                                                    <Button variant="ghost" size="icon" asChild className="hover:text-primary hover:bg-primary/10">
+                                                        <Link href={`/companies/${slug || company.id}`} target="_blank">
+                                                            <Eye className="w-4 h-4" />
+                                                        </Link>
+                                                    </Button>
+                                                    <Button variant="ghost" size="icon" asChild className="hover:text-amber-400 hover:bg-amber-400/10">
+                                                        <Link href={`/admin/companies/${slug}`}>
+                                                            <Edit className="w-4 h-4" />
+                                                        </Link>
+                                                    </Button>
+                                                    <Button variant="ghost" size="icon" onClick={() => deleteCompany(slug)} className="hover:text-destructive hover:bg-destructive/10">
+                                                        <Trash2 className="w-4 h-4" />
+                                                    </Button>
+                                                </div>
+                                            </TableCell>
+                                        </TableRow>
+                                    )
+                                })}
                             </TableBody>
                         </Table>
                     )}

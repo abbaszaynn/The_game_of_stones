@@ -31,7 +31,7 @@ export default async function Home() {
     <>
       <JsonLd data={jsonLd} />
       {/* 3D Globe Hero Section */}
-      <section className="relative w-full h-screen -mt-14">
+      <section className="relative w-full h-screen">
         <GlobeHeroWrapper companies={companies} />
       </section>
 
