@@ -85,7 +85,7 @@ export default async function Home() {
 
             {/* Overlays */}
             <div className="absolute inset-0 bg-black/60 group-hover:bg-black/50 transition-colors duration-500" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/80" />
+
 
             {/* Content */}
             <div className="relative z-10 flex flex-col items-center justify-center px-4 py-24 text-center md:px-12 md:py-32">
