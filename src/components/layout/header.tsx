@@ -27,7 +27,7 @@ export function Header() {
       "sticky top-0 z-50 w-full transition-all duration-300",
       isScrolled
         ? 'bg-background/60 backdrop-blur-md border-b border-white/5'
-        : 'bg-transparent'
+        : 'bg-transparent border-b border-transparent'
     )}>
       <div className="container flex h-14 max-w-screen-2xl items-center">
         <div className="flex flex-1 items-center justify-between">

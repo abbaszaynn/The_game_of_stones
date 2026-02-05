@@ -31,10 +31,7 @@ export default async function Home() {
         <div className="container relative z-10 mx-auto px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 border border-primary/30 px-4 py-1.5 text-sm font-medium text-primary shadow-[0_0_15px_rgba(212,175,55,0.3)]">
-                <span className="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_10px_#D4AF37]" />
-                Featured Companies
-              </div>
+
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
                 Leaders in Mineral Exploration
               </h2>
