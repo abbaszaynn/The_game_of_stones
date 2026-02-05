@@ -2,18 +2,34 @@
 import { getCompanies, getGalleryImages } from '@/lib/data';
 import CompanyCard from '@/components/company-card';
 import { Camera } from 'lucide-react';
+import NextImage from 'next/image';
 import ImageGallery from '@/components/image-gallery';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import GlobeHeroWrapper from '@/components/globe-hero-wrapper';
 import { StarBackground } from '@/components/ui/star-background';
+import JsonLd from '@/components/seo/json-ld';
 
 export default async function Home() {
   const companies = await getCompanies();
   const galleryImages = await getGalleryImages();
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Game of Stones',
+    url: 'https://gameofstones.world',
+    logo: 'https://gameofstones.world/logo.png',
+    description: 'A global dashboard for mining companies, investors, and the public.',
+    sameAs: [
+      'https://twitter.com/gameofstones',
+      'https://linkedin.com/company/gameofstones'
+    ]
+  };
+
   return (
     <>
+      <JsonLd data={jsonLd} />
       {/* 3D Globe Hero Section */}
       <section className="relative w-full h-screen -mt-14">
         <GlobeHeroWrapper companies={companies} />
@@ -32,9 +48,9 @@ export default async function Home() {
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
 
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
+              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
                 Leaders in Mineral Exploration
-              </h2>
+              </h1>
               <p className="max-w-[900px] text-zinc-400 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                 Discover the pioneers shaping the future of the mining industry in Gilgit Baltistan.
               </p>
@@ -56,10 +72,16 @@ export default async function Home() {
           <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_100px_rgba(212,175,55,0.15)] mx-auto max-w-6xl group">
 
             {/* Background Image */}
-            <div
-              className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105"
-              style={{ backgroundImage: "url('https://i.postimg.cc/TYNGkP6M/image-1.png')" }}
-            />
+            <div className="absolute inset-0">
+              <NextImage
+                src="https://i.postimg.cc/TYNGkP6M/image-1.png"
+                alt="Mining exploration site gallery background"
+                fill
+                className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
+                priority={false}
+              />
+            </div>
 
             {/* Overlays */}
             <div className="absolute inset-0 bg-black/60 group-hover:bg-black/50 transition-colors duration-500" />

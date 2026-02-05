@@ -1,7 +1,7 @@
 
 import { getCompanyById } from '@/lib/data';
 import { notFound } from 'next/navigation';
-import Image from 'next/image';
+import NextImage from 'next/image';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -25,7 +25,7 @@ export default async function CompanyDetailPage({ params }: { params: { id: stri
         <div className="relative z-10 flex flex-col items-center gap-8 text-center md:flex-row md:text-left">
           <div className="relative group">
             <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-primary via-primary/50 to-transparent opacity-50 blur group-hover:opacity-100 transition duration-500" />
-            <Image
+            <NextImage
               src={company.logoUrl}
               alt={`${company.name} logo`}
               width={140}

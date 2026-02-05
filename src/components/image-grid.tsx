@@ -2,7 +2,7 @@
 'use client';
 
 import * as React from 'react';
-import Image from 'next/image';
+import NextImage from 'next/image';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from '@/components/ui/carousel';
 import { Card } from '@/components/ui/card';
@@ -17,7 +17,7 @@ interface ImageGridProps {
 export default function ImageGrid({ images }: ImageGridProps) {
   const [open, setOpen] = React.useState(false);
   const [startIndex, setStartIndex] = React.useState(0);
-  
+
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
@@ -46,12 +46,12 @@ export default function ImageGrid({ images }: ImageGridProps) {
       api.off('select', onSelect);
     };
   }, [api, images]);
-  
+
   const openDialog = (index: number) => {
     setStartIndex(index);
     setOpen(true);
   };
-  
+
   const openFullScreen = (image: GalleryImage) => {
     setFullScreenImage(image);
   };
@@ -65,16 +65,16 @@ export default function ImageGrid({ images }: ImageGridProps) {
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {images.map((image, index) => (
           <div key={image.id} className="relative aspect-square rounded-lg overflow-hidden group cursor-pointer" onClick={() => openDialog(index)}>
-            <Image
+            <NextImage
               src={image.url}
               alt={image.title}
               fill
               className="object-cover"
               sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
             />
-             <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                <p className="text-white text-center p-2 text-sm font-semibold">{image.title}</p>
-             </div>
+            <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+              <p className="text-white text-center p-2 text-sm font-semibold">{image.title}</p>
+            </div>
           </div>
         ))}
       </div>
@@ -93,19 +93,19 @@ export default function ImageGrid({ images }: ImageGridProps) {
                 {images.map((image) => (
                   <CarouselItem key={image.id} className="h-full">
                     <div className="w-full h-full relative rounded-lg overflow-hidden group">
-                      <Image
+                      <NextImage
                         src={image.url}
                         alt={image.title}
                         fill
                         className="object-contain"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 1000px"
                       />
-                       <div 
+                      <div
                         className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer"
                         onClick={() => openFullScreen(image)}
                       >
                         <Button variant="outline" size="icon">
-                          <Maximize className="w-6 h-6"/>
+                          <Maximize className="w-6 h-6" />
                           <span className="sr-only">View full screen</span>
                         </Button>
                       </div>
@@ -153,22 +153,22 @@ export default function ImageGrid({ images }: ImageGridProps) {
         </DialogContent>
       </Dialog>
       {fullScreenImage && (
-        <div 
+        <div
           className="fixed inset-0 bg-black/80 flex items-center justify-center z-[100]"
           onClick={closeFullScreen}
         >
-            <Button variant="ghost" size="icon" className="absolute top-4 right-4 text-white hover:text-white/80" onClick={closeFullScreen}>
-                <X className="w-8 h-8"/>
-                <span className="sr-only">Close</span>
-            </Button>
-            <Image
-                src={fullScreenImage.url}
-                alt={fullScreenImage.title}
-                width={1920}
-                height={1080}
-                className="max-w-[95vw] max-h-[95vh] object-contain rounded-lg"
-                onClick={(e) => e.stopPropagation()} 
-            />
+          <Button variant="ghost" size="icon" className="absolute top-4 right-4 text-white hover:text-white/80" onClick={closeFullScreen}>
+            <X className="w-8 h-8" />
+            <span className="sr-only">Close</span>
+          </Button>
+          <NextImage
+            src={fullScreenImage.url}
+            alt={fullScreenImage.title}
+            width={1920}
+            height={1080}
+            className="max-w-[95vw] max-h-[95vh] object-contain rounded-lg"
+            onClick={(e) => e.stopPropagation()}
+          />
         </div>
       )}
     </>

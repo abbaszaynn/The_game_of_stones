@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import NextImage from 'next/image';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -14,11 +14,12 @@ export default function CompanyCard({ company }: CompanyCardProps) {
     <Card className="flex flex-col h-full bg-card/40 backdrop-blur-md border-primary/10 hover:border-primary/40 transition-all duration-300 hover:shadow-[0_0_30px_rgba(212,175,55,0.15)] group">
       <CardHeader className="flex-row items-center gap-4 pb-2">
         <div className="relative">
-          <Image
+          <NextImage
             src={company.logoUrl}
             alt={`${company.name} logo`}
             width={64}
             height={64}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="rounded-lg border border-primary/20 group-hover:border-primary/50 transition-colors bg-black/50 p-1"
           />
           <div className="absolute inset-0 rounded-lg bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity" />

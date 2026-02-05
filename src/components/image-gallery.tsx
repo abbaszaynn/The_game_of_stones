@@ -2,7 +2,7 @@
 'use client';
 
 import * as React from 'react';
-import Image from 'next/image';
+import NextImage from 'next/image';
 import {
   Dialog,
   DialogContent,
@@ -57,7 +57,7 @@ export default function ImageGallery({ images, children }: ImageGalleryProps) {
       api.off('select', onSelect);
     };
   }, [api, images]);
-  
+
   const openFullScreen = (image: GalleryImage) => {
     setFullScreenImage(image);
   };
@@ -83,19 +83,19 @@ export default function ImageGallery({ images, children }: ImageGalleryProps) {
                 {images.map((image) => (
                   <CarouselItem key={image.id} className="h-full">
                     <div className="w-full h-full relative rounded-lg overflow-hidden group">
-                      <Image
+                      <NextImage
                         src={image.url}
                         alt={image.title}
                         fill
                         className="object-contain"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 1000px"
                       />
-                      <div 
+                      <div
                         className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer"
                         onClick={() => openFullScreen(image)}
                       >
                         <Button variant="outline" size="icon">
-                          <Maximize className="w-6 h-6"/>
+                          <Maximize className="w-6 h-6" />
                           <span className="sr-only">View full screen</span>
                         </Button>
                       </div>
@@ -143,22 +143,22 @@ export default function ImageGallery({ images, children }: ImageGalleryProps) {
         </DialogContent>
       </Dialog>
       {fullScreenImage && (
-        <div 
+        <div
           className="fixed inset-0 bg-black/80 flex items-center justify-center z-[100]"
           onClick={closeFullScreen}
         >
-            <Button variant="ghost" size="icon" className="absolute top-4 right-4 text-white hover:text-white/80" onClick={closeFullScreen}>
-                <X className="w-8 h-8"/>
-                <span className="sr-only">Close</span>
-            </Button>
-            <Image
-                src={fullScreenImage.url}
-                alt={fullScreenImage.title}
-                width={1920}
-                height={1080}
-                className="max-w-[95vw] max-h-[95vh] object-contain rounded-lg"
-                onClick={(e) => e.stopPropagation()} 
-            />
+          <Button variant="ghost" size="icon" className="absolute top-4 right-4 text-white hover:text-white/80" onClick={closeFullScreen}>
+            <X className="w-8 h-8" />
+            <span className="sr-only">Close</span>
+          </Button>
+          <Image
+            src={fullScreenImage.url}
+            alt={fullScreenImage.title}
+            width={1920}
+            height={1080}
+            className="max-w-[95vw] max-h-[95vh] object-contain rounded-lg"
+            onClick={(e) => e.stopPropagation()}
+          />
         </div>
       )}
     </>

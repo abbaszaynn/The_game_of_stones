@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import NextImage from 'next/image';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { formatDate } from '@/lib/utils';
 import type { NewsArticle } from '@/lib/types';
@@ -13,7 +13,7 @@ export default function NewsCard({ article, companyName }: NewsCardProps) {
   return (
     <Card className="flex flex-col overflow-hidden">
       <div className="aspect-video relative">
-        <Image
+        <NextImage
           src={article.imageUrl}
           alt={article.title}
           fill
