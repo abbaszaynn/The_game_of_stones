@@ -64,8 +64,8 @@ export default function Map3DContainer({ companies }: Map3DContainerProps) {
                                     key={`${company.id}-${idx}`}
                                     onClick={() => handleMineSelect(company, location)}
                                     className={`w-full text-left p-3 rounded-lg border transition-all ${selectedMine?.location.name === location.name && selectedMine?.company.id === company.id
-                                            ? 'bg-accent/20 border-accent'
-                                            : 'bg-card hover:bg-accent/10 border-transparent hover:border-accent/50'
+                                        ? 'bg-accent/20 border-accent'
+                                        : 'bg-card hover:bg-accent/10 border-transparent hover:border-accent/50'
                                         }`}
                                 >
                                     <div className="flex items-start gap-3">
@@ -90,7 +90,7 @@ export default function Map3DContainer({ companies }: Map3DContainerProps) {
 
             {/* Selected Mine Info Card */}
             {selectedMine && (
-                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 w-96 max-w-[90vw]">
+                <div className="absolute bottom-8 right-4 md:right-8 z-10 w-96 max-w-[90vw]">
                     <div className="bg-background/95 backdrop-blur-sm rounded-xl shadow-xl border p-4">
                         <div className="flex items-center gap-3 mb-3">
                             <div

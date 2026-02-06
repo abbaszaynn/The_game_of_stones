@@ -25,8 +25,9 @@ export default function ContactPage() {
               </div>
               <div>
                 <h3 className="font-semibold text-white">Phone</h3>
-                <p className="text-muted-foreground">+92 (0) 123 4567 890</p>
-                <p className="text-xs text-muted-foreground">Mon-Fri from 9am to 6pm</p>
+                <p className="text-muted-foreground">+92 310 9108714</p>
+                <p className="text-muted-foreground">+92 317 9023125</p>
+                <p className="text-xs text-muted-foreground mt-1">Mon-Fri from 9am to 6pm</p>
               </div>
             </div>
 
@@ -36,7 +37,7 @@ export default function ContactPage() {
               </div>
               <div>
                 <h3 className="font-semibold text-white">Email</h3>
-                <p className="text-muted-foreground">info@gameofstones.com</p>
+                <p className="text-muted-foreground">mineszircon@gmail.com</p>
                 <p className="text-xs text-muted-foreground">Online support 24/7</p>
               </div>
             </div>
@@ -47,7 +48,7 @@ export default function ContactPage() {
               </div>
               <div>
                 <h3 className="font-semibold text-white">Office</h3>
-                <p className="text-muted-foreground">Gilgit-Baltistan, Pakistan</p>
+                <p className="text-muted-foreground">Office 23, Noor Market, Khomer Yarkot, Gilgit, Gilgit Baltistan.</p>
               </div>
             </div>
           </div>
