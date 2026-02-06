@@ -1,6 +1,14 @@
 import { getNews, getCompanies } from '@/lib/data';
 import NewsCard from '@/components/news-card';
 
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Mining News & Updates | Game of Stones',
+  description: 'Stay updated with the latest mining news from Gilgit Baltistan. Read about new discoveries, investment opportunities, and project milestones.',
+  keywords: ['Mining News Gilgit Baltistan', 'Mineral Sector Updates', 'Investment News Pakistan Mines', 'GB Mining Trends', 'Mining Industry Reports'],
+};
+
 export default async function NewsPage() {
   const articles = await getNews();
   const companies = await getCompanies();

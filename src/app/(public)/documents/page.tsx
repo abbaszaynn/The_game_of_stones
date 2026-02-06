@@ -6,6 +6,14 @@ import { Button } from '@/components/ui/button';
 import { Download } from 'lucide-react';
 import Link from 'next/link';
 
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Mining Documents & Reports | Game of Stones',
+  description: 'Access and download official mining reports, geological surveys, and investment documents for Gilgit Baltistan\'s mineral sector.',
+  keywords: ['Mining Regulations GB', 'Geological Reports Download', 'Investment Compliance Documents', 'Mining Licenses Gilgit', 'Mineral Exploration Reports'],
+};
+
 export default async function DocumentsPage() {
   const documents = await getDocuments();
 
