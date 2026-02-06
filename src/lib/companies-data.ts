@@ -145,10 +145,7 @@ export const companies: Company[] = [
       },
     ],
     images: galleryImages.filter(img => img.companyName === 'Durr Mines and Minerals'),
-    videos: [
-      { id: 'vid-1', url: 'https://www.youtube.com/embed/9bZkp7q19f0', title: 'Drone Flyover of Skardu Site' },
-      { id: 'vid-2', url: 'https://www.youtube.com/embed/9bZkp7q19f0', title: 'Community Water Project Launch' }
-    ],
+    videos: [],
     virtualTourUrl: '#',
     documents: [
       { id: 'doc-topography-bagicha', title: 'Topography Map - Bagicha', url: 'https://mega.nz/file/MEJFnChR#1WB-2XkqCyYkhoX55zoMsaiKZr6C5yKkBOiwSr4l27Q', type: 'Map' },
@@ -208,9 +205,7 @@ export const companies: Company[] = [
       }
     ],
     images: galleryImages.filter(img => img.companyName === 'Earth Lux Mines'),
-    videos: [
-      { id: 'vid-3', url: 'https://www.youtube.com/embed/9bZkp7q19f0', title: 'Gupis Project: A New Frontier' }
-    ],
+    videos: [],
     virtualTourUrl: '#',
     documents: [
       { id: 'doc-topography-jutial', title: 'Topography Map - Jutial Nala', url: 'https://mega.nz/file/NV4E3I5Q#u9raTiI-ojj2qn_UcrO64xpQQfZgfqdfHwDfBYrnbkw', type: 'Map' },
