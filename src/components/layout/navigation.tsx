@@ -13,9 +13,9 @@ const navItems = [
   { href: '/contact', label: 'Contact' },
 ];
 
-export default function Navigation({ isScrolled }: { isScrolled?: boolean }) {
+export default function Navigation({ isScrolled, onLinkClick }: { isScrolled?: boolean; onLinkClick?: () => void }) {
   const pathname = usePathname();
-  
+
   const linkColor = isScrolled ? 'text-white' : 'text-white';
   const linkColorHover = isScrolled ? 'hover:text-white/80' : 'hover:text-white/80';
   const activeLinkColor = isScrolled ? 'text-white font-semibold' : 'text-white font-semibold';
@@ -34,6 +34,7 @@ export default function Navigation({ isScrolled }: { isScrolled?: boolean }) {
             linkColorHover,
             pathname === item.href ? activeLinkColor : inactiveLinkColor
           )}
+          onClick={onLinkClick}
         >
           {item.label}
         </Link>

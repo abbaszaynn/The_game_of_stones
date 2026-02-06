@@ -187,7 +187,7 @@ export default function ImageGallery({ images, children }: ImageGalleryProps) {
                   </Carousel>
 
                   {/* Overlaid Actions */}
-                  <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover/main:opacity-100 transition-opacity duration-300">
+                  <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover/main:opacity-100 transition-opacity duration-300 z-50">
                     {currentImage && (
                       <>
                         <Button

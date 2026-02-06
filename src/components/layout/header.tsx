@@ -12,6 +12,7 @@ import { cn } from '@/lib/utils';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,7 +47,7 @@ export function Header() {
 
           {/* Mobile Nav Trigger */}
           <div className="md:hidden">
-            <Sheet>
+            <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
                 <Button
                   variant="ghost"
@@ -60,13 +61,13 @@ export function Header() {
                 </Button>
               </SheetTrigger>
               <SheetContent side="left" className="pr-0 bg-primary text-primary-foreground">
-                <Link href="/" className="flex items-center">
+                <Link href="/" className="flex items-center" onClick={() => setIsOpen(false)}>
                   <Logo className="mr-2 h-6 w-6" />
                   <span className="font-bold">Game of Stones</span>
                 </Link>
                 <div className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
                   <div className="flex flex-col space-y-3">
-                    <Navigation isScrolled={true} />
+                    <Navigation isScrolled={true} onLinkClick={() => setIsOpen(false)} />
                   </div>
                 </div>
               </SheetContent>
