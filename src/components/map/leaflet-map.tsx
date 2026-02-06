@@ -35,19 +35,20 @@ export default function LeafletMap({ companies, selectedMine, onMineSelect }: Le
         // Create map instance
         const map = L.map(mapContainerRef.current, {
             zoomControl: false,
-            attributionControl: false
+            attributionControl: false,
+            maxZoom: 18 // Requested zoom level
         }).setView([35.8, 74.5], 8);
 
         // Define Base Layers
         const darkLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
             subdomains: 'abcd',
-            maxZoom: 20
+            maxZoom: 18
         });
 
         const satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
             attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
-            maxZoom: 19
+            maxZoom: 18
         });
 
         // Add default layer (Satellite for "Google Earth" feel as requested)
