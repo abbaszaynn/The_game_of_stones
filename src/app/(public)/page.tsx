@@ -77,7 +77,7 @@ export default async function Home() {
             {/* Background Image */}
             <div className="absolute inset-0">
               <NextImage
-                src="https://i.postimg.cc/TYNGkP6M/image-1.png"
+                src="/images/gallery-background.png"
                 alt="Mining exploration site gallery background"
                 fill
                 className="object-cover transition-transform duration-1000 group-hover:scale-105"
