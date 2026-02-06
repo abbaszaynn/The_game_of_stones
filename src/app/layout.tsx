@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google';
 import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
 import { FirebaseClientProvider } from '@/firebase'; // Keeping for now to avoid breakages if still used
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -63,6 +64,7 @@ export default function RootLayout({
         <FirebaseClientProvider>
           {children}
           <Toaster />
+          <SpeedInsights />
         </FirebaseClientProvider>
       </body>
     </html>
