@@ -12,6 +12,13 @@ import Link from 'next/link';
 import GlobeHeroWrapper from '@/components/globe-hero-wrapper';
 import { StarBackground } from '@/components/ui/star-background';
 import JsonLd from '@/components/seo/json-ld';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Top Mining Companies in Gilgit Baltistan | Game of Stones',
+  description: 'Discover potential mines and the top mining companies in Gilgit Baltistan. Our immersive 3D dashboard connects investors with premier mineral exploration projects in GB.',
+  keywords: ['GB MINES', 'Potential mines in GB', 'Top mining companies in Gilgit Baltistan', 'Mineral Exploration GB', 'Gemstones Gilgit', 'Mining Investment Pakistan'],
+};
 
 export default async function Home() {
   const companies = await getCompanies();

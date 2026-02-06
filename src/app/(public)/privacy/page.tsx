@@ -2,6 +2,7 @@
 export const metadata = {
     title: 'Privacy Policy | Game of Stones',
     description: 'Privacy policy and data protection information for Game of Stones.',
+    keywords: ['Privacy Policy', 'Data Protection', 'Game of Stones', 'Mining Data Privacy'],
 };
 
 export default function PrivacyPage() {

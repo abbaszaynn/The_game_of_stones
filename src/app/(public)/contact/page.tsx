@@ -3,7 +3,8 @@ import ContactForm from '@/components/contact-form';
 
 export const metadata = {
   title: 'Contact Us | Game of Stones',
-  description: 'Get in touch with our team regarding mining operations, investments, and partnerships.',
+  description: 'With no dedicated About page, this section serves as our introduction. Contact Game of Stones to learn about investment opportunities in Gilgit Baltistan\'s top mines. We connect investors with premier mining projects.',
+  keywords: ['Contact Game of Stones', 'Mining Investment', 'Gilgit Baltistan', 'About Game of Stones'],
 };
 
 export default function ContactPage() {

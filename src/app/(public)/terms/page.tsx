@@ -2,6 +2,7 @@
 export const metadata = {
     title: 'Terms of Service | Game of Stones',
     description: 'Terms and conditions for using Game of Stones services.',
+    keywords: ['Terms of Service', 'User Agreement', 'Game of Stones', 'Mining Investment Terms'],
 };
 
 export default function TermsPage() {

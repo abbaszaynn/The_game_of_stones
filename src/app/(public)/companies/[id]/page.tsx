@@ -12,8 +12,27 @@ import Link from 'next/link';
 
 import ImageGrid from '@/components/image-grid';
 
+import type { Metadata } from 'next';
+
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
+
+export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+  const company = await getCompanyById(params.id);
+
+  if (!company) {
+    return {
+      title: 'Company Not Found',
+      description: 'The requested mining company profile could not be found.',
+    };
+  }
+
+  return {
+    title: `${company.name} | Mining Company in Gilgit Baltistan`,
+    description: `Learn about ${company.name}, a leading mining company in Gilgit Baltistan. Projects: ${company.projects.map(p => p.name).join(', ')}. ${company.tagline}`,
+    keywords: [company.name, 'Mining Company GB', 'Mineral Exploration', ...company.deposits.map(d => d.name), 'Investment'],
+  };
+}
 
 export default async function CompanyDetailPage({ params }: { params: { id: string } }) {
   const company = await getCompanyById(params.id);

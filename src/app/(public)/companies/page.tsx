@@ -1,7 +1,15 @@
 import { getCompanies } from '@/lib/data';
 import CompanyCard from '@/components/company-card';
 
+import type { Metadata } from 'next';
+
 export const dynamic = 'force-dynamic';
+
+export const metadata: Metadata = {
+  title: 'Mining Companies in Gilgit Baltistan | Game of Stones',
+  description: 'Explore our portfolio of top mining companies in Gilgit Baltistan. View detailed profiles, project history, and investment opportunities in GB mines.',
+  keywords: ['Mining Companies GB', 'Investment Opportunities Gilgit', 'Mineral Projects Pakistan', 'Gemstone Companies'],
+};
 
 export default async function CompaniesPage() {
   const companies = await getCompanies();
