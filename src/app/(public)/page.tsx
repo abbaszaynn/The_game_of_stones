@@ -107,8 +107,9 @@ export default async function Home() {
                 THE GAME OF STONES
               </h2>
 
-              <p className="mx-auto max-w-2xl text-lg text-zinc-200 md:text-xl leading-relaxed mb-10 drop-shadow-lg">
-                Our platform offers immersive 3D virtual tours of mine sites. Explore the terrain and infrastructure from anywhere in the world.
+              <p className="mx-auto max-w-4xl text-lg text-zinc-300/80 font-light md:text-xl leading-relaxed mb-10 drop-shadow-lg">
+                Step into the future of exploration with our immersive, high-resolution multimedia gallery.<br className="hidden md:block" />
+                Interactive virtual tours bring the rugged beauty and immense potential of our mines to your screen.
               </p>
 
               <div className="w-full max-w-md">

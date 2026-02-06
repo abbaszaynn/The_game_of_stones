@@ -176,8 +176,9 @@ export default function GlobeHero({ companies }: { companies: Company[] }) {
                         Game of Stones
                     </h1>
 
-                    <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-8 drop-shadow">
-                        Explore the golden treasures of Gilgit Baltistan&apos;s premier mining sites in realistic 3D
+                    <p className="text-lg md:text-xl text-white/70 font-light max-w-4xl mx-auto mb-8 drop-shadow leading-relaxed">
+                        Unlock exclusive investment opportunities in Gilgit Baltistan&apos;s premier mining sector.<br className="hidden md:block" />
+                        Experience high-fidelity 3D virtual tours of our mineral assets from anywhere in the world.
                     </p>
 
                     <button
