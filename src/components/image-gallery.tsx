@@ -278,30 +278,39 @@ export default function ImageGallery({ images, children }: ImageGalleryProps) {
       </Dialog>
 
       {/* Fullscreen Overlay */}
-      {fullScreenImage && (
-        <div className="fixed inset-0 z-[200] bg-black flex items-center justify-center animate-in fade-in duration-200">
-          <Button
-            variant="ghost"
-            size="icon"
-            className="absolute top-4 right-4 text-white/50 hover:text-white rounded-full hover:bg-white/10 z-[210]"
-            onClick={closeFullScreen}
-          >
-            <X className="w-8 h-8" />
-            <span className="sr-only">Close</span>
-          </Button>
+      {/* Fullscreen Overlay */}
+      <Dialog open={!!fullScreenImage} onOpenChange={() => closeFullScreen()}>
+        <DialogContent className="max-w-[100vw] h-[100vh] border-none bg-black/95 flex items-center justify-center p-0 m-0 z-[200] [&>button]:hidden">
+          <DialogHeader className="hidden">
+            <DialogTitle>Full Screen Image</DialogTitle>
+          </DialogHeader>
 
-          <div className="relative w-full h-full p-4 md:p-10" onClick={closeFullScreen}>
-            <NextImage
-              src={fullScreenImage.url}
-              alt={fullScreenImage.title}
-              fill
-              className="object-contain"
-              quality={100}
-              priority
-            />
+          <div className="relative w-full h-full flex items-center justify-center" onClick={closeFullScreen}>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="absolute top-4 right-4 text-white/50 hover:text-white rounded-full hover:bg-white/10 z-[210]"
+              onClick={closeFullScreen}
+            >
+              <X className="w-8 h-8" />
+              <span className="sr-only">Close</span>
+            </Button>
+
+            {fullScreenImage && (
+              <NextImage
+                src={fullScreenImage.url}
+                alt={fullScreenImage.title}
+                width={1920}
+                height={1080}
+                className="max-w-[95vw] max-h-[95vh] object-contain select-none"
+                priority
+                quality={100}
+                onClick={(e) => e.stopPropagation()}
+              />
+            )}
           </div>
-        </div>
-      )}
+        </DialogContent>
+      </Dialog>
     </>
   );
 }
