@@ -12,7 +12,7 @@ interface NewsCardProps {
 
 export default function NewsCard({ article, companyName }: NewsCardProps) {
   return (
-    <Link href={`/news/${article.id}`} className="flex h-full">
+    <Link href={`/news/${article.id}`} className="flex h-full" aria-label={`Read more about ${article.title}`}>
       <Card className="flex flex-col overflow-hidden w-full transition-all hover:border-primary/50 hover:shadow-lg hover:-translate-y-1">
         <div className="aspect-video relative">
           <NextImage

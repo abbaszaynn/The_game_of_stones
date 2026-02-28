@@ -17,6 +17,27 @@ export async function generateMetadata({ params }: PageProps) {
     return {
         title: `${article.title} | Game of Stones`,
         description: article.excerpt,
+        openGraph: {
+            title: article.title,
+            description: article.excerpt,
+            type: 'article',
+            publishedTime: article.publishDate,
+            authors: ['Game of Stones'],
+            images: [
+                {
+                    url: article.imageUrl,
+                    width: 1200,
+                    height: 630,
+                    alt: article.title,
+                }
+            ],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: article.title,
+            description: article.excerpt,
+            images: [article.imageUrl],
+        },
     };
 }
 
