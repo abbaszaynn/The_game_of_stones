@@ -12,7 +12,7 @@ export function Footer() {
           <div className="flex flex-col items-center md:items-start justify-center text-center md:text-left order-3 md:order-1">
             <p className="text-sm text-white mb-2">Developer Rights</p>
             <Link
-              href="http://www.linkedin.com/in/zain-abbas1"
+              href="https://abbaszayn.vercel.app"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-white hover:text-white/80 transition-colors"
