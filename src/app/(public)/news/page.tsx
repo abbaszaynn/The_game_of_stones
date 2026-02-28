@@ -4,9 +4,9 @@ import NewsCard from '@/components/news-card';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Mining News & Updates | Game of Stones',
-  description: 'Stay updated with the latest mining news from Gilgit Baltistan. Read about new discoveries, investment opportunities, and project milestones.',
-  keywords: ['Mining News Gilgit Baltistan', 'Mineral Sector Updates', 'Investment News Pakistan Mines', 'GB Mining Trends', 'Mining Industry Reports'],
+  title: 'Blogs & Insights | Game of Stones',
+  description: 'Read our latest blogs and insights about the mining potential, geological discoveries, and investment opportunities in Gilgit Baltistan.',
+  keywords: ['Mining Blogs', 'Gilgit Baltistan Minerals', 'Copper Mining GB', 'Sustainable Mining', 'Gemstones Pakistan', 'Mining Industry Insights'],
 };
 
 export default async function NewsPage() {
@@ -23,10 +23,10 @@ export default async function NewsPage() {
       <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
         <div className="space-y-2">
           <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">
-            Latest News & Updates
+            Latest Blogs & Insights
           </h1>
           <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-            Stay informed with the latest announcements, industry trends, and project milestones from our network of companies.
+            Dive into our articles exploring the vast mineral potential of Northern Pakistan, sustainable practices, and the future of the industry.
           </p>
         </div>
       </div>
