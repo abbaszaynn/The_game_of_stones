@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { supabase } from '@/lib/supabase';
+
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -21,19 +21,30 @@ export default function ContactForm() {
         setErrorMessage('');
 
         const formData = new FormData(e.currentTarget);
-        const data = {
-            name: formData.get('name') as string,
-            email: formData.get('email') as string,
-            subject: formData.get('subject') as string,
-            message: formData.get('message') as string,
-        };
+
+        // Add Web3Forms access key
+        formData.append("access_key", process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "");
+
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
 
         try {
-            const { error } = await supabase.from('inquiries').insert([data]);
+            const response = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json"
+                },
+                body: json
+            });
+            const result = await response.json();
 
-            if (error) throw error;
-            setStatus('success');
-            (e.target as HTMLFormElement).reset();
+            if (result.success) {
+                setStatus('success');
+                (e.target as HTMLFormElement).reset();
+            } else {
+                throw new Error(result.message || 'Something went wrong. Please try again.');
+            }
         } catch (error: any) {
             console.error('Error submitting form:', error);
             setStatus('error');
