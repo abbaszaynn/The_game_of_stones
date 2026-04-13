@@ -231,7 +231,7 @@ export const companies: Company[] = [
     ],
     projects: [
       { name: 'Hilal Abad Copper Project' },
-      { name: 'Polymetallic Exploration Zone' },
+      { name: 'Shigar Copper Project' },
     ],
     status: 'Exploratory Phase',
     investorContacts: [
@@ -253,6 +253,29 @@ export const companies: Company[] = [
           { lat: 35.088692, lng: 76.039939 },
         ],
       },
+      {
+        name: 'Shigar Site',
+        polygon: [
+          { lat: 35.637525, lng: 75.902132 },
+          { lat: 35.648217, lng: 75.903757 },
+          { lat: 35.660553, lng: 75.843197 },
+          { lat: 35.680868, lng: 75.787099 },
+          { lat: 35.682053, lng: 75.798407 },
+          { lat: 35.677783, lng: 75.807913 },
+          { lat: 35.662842, lng: 75.843395 },
+          { lat: 35.660891, lng: 75.848296 },
+          { lat: 35.664673, lng: 75.847054 },
+          { lat: 35.66469, lng: 75.848609 },
+          { lat: 35.659531, lng: 75.851257 },
+          { lat: 35.66056, lng: 75.859433 },
+          { lat: 35.664176, lng: 75.860937 },
+          { lat: 35.660715, lng: 75.870378 },
+          { lat: 35.665075, lng: 75.876749 },
+          { lat: 35.668177, lng: 75.903434 },
+          { lat: 35.638013, lng: 75.905601 },
+          { lat: 35.637525, lng: 75.902132 },
+        ],
+      },
     ],
     images: galleryImages.filter(img => img.companyName === 'Zircon Mines'),
     videos: [],
@@ -261,7 +284,8 @@ export const companies: Company[] = [
       { id: 'doc-zircon-incorporation', title: 'Incorporation Letter', url: 'https://mega.nz/file/NEZRzaoS#2IhACOBZZ9bDi5ty3sPWzxtyIBLuh650iu3cIfhcS9w', type: 'License' }
     ],
     deposits: [
-      { name: 'Hilal Abad Polymetallic Complex', location: 'Hilal Abad', type: 'Polymetallic Structure', details: ['Copper', 'Iron', 'Silver', 'Gold', 'Polymetallic Ore Structure', 'Area: 9.97 Sq/Km'] }
+      { name: 'Hilal Abad Polymetallic Complex', location: 'Hilal Abad', type: 'Polymetallic Structure', details: ['Copper', 'Iron', 'Silver', 'Gold', 'Polymetallic Ore Structure', 'Area: 9.97 Sq/Km'] },
+      { name: 'Shigar Copper Deposit', location: 'Shigar', type: 'Copper Ore', details: ['Copper Ore', 'Strong Geological Position', 'High Copper Potential', 'Gold with Copper as a strong indication', 'Area: 8.87 Sq/Km'] }
     ]
   },
 ];

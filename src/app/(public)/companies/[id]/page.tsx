@@ -1,5 +1,4 @@
-
-import { getCompanyById } from '@/lib/data';
+import { getCompanyById, getNews } from '@/lib/data';
 import { notFound } from 'next/navigation';
 import NextImage from 'next/image';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -36,6 +35,8 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
 
 export default async function CompanyDetailPage({ params }: { params: { id: string } }) {
   const company = await getCompanyById(params.id);
+  const allNews = await getNews();
+  const companyNews = allNews.filter(article => article.companyId === params.id);
 
   if (!company) {
     notFound();
@@ -95,6 +96,36 @@ export default async function CompanyDetailPage({ params }: { params: { id: stri
                         History & Vision
                       </h3>
                       <p className="text-muted-foreground leading-relaxed">{company.history}</p>
+                    </div>
+                  )}
+                  {companyNews && companyNews.length > 0 && (
+                    <div className="pt-8 border-t border-white/5">
+                      <h3 className="font-semibold text-white text-xl mb-6 flex items-center gap-2">
+                        <span className="w-1 h-6 bg-primary rounded-full" />
+                        Related Research & Updates
+                      </h3>
+                      <div className="flex flex-col gap-6">
+                        {companyNews.map(article => (
+                          <Link href={`/news/${article.id}`} key={article.id} className="flex flex-col md:flex-row group overflow-hidden rounded-xl border border-white/10 bg-background/50 hover:bg-white/5 transition duration-300 w-full hover:border-primary/50 hover:shadow-[0_0_15px_rgba(212,175,55,0.1)] hover:-translate-y-1">
+                            <div className="relative md:w-2/5 aspect-video md:aspect-auto overflow-hidden shrink-0">
+                              <NextImage 
+                                src={article.imageUrl} 
+                                alt={article.title} 
+                                fill 
+                                className="object-cover transition duration-500 group-hover:scale-105" 
+                              />
+                            </div>
+                            <div className="p-6 md:w-3/5 flex flex-col items-start justify-center text-left">
+                              <h4 className="text-xl md:text-2xl font-bold mb-3 leading-tight text-white group-hover:text-primary transition-colors">{article.title}</h4>
+                              <p className="text-sm md:text-base text-muted-foreground mb-4 line-clamp-3 leading-relaxed">{article.excerpt}</p>
+                              <div className="flex items-center justify-between w-full mt-auto pt-2 border-t border-white/5">
+                                <span className="text-xs md:text-sm text-primary/70">{new Date(article.publishDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                                <span className="text-sm font-semibold text-accent group-hover:text-accent/80">Read More &rarr;</span>
+                              </div>
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
                     </div>
                   )}
                 </CardContent>
