@@ -144,7 +144,7 @@ export default function GlobeHero({ companies }: { companies: Company[] }) {
             <Canvas camera={{ position: [0, 0, 6], fov: 45 }}>
                 <ambientLight intensity={0.5} color="#ffffff" />
                 <pointLight position={[10, 10, 10]} intensity={1.5} color="#ffffff" />
-                <pointLight position={[-10, -5, -10]} intensity={0.5} color="#4444ff" /> {/* Blue rim light */}
+                <pointLight position={[-10, -5, -10]} intensity={0.5} color="#4444ff" />
                 <Stars radius={300} depth={60} count={20000} factor={7} saturation={0} fade />
 
                 <Earth companies={companies} />
